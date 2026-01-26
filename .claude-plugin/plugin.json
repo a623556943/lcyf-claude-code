@@ -1,0 +1,56 @@
+{
+  "name": "lcyf-claude-code",
+  "version": "1.0.0",
+  "displayName": "LCYF Claude Code 配置",
+  "description": "lcyf Java/Spring Boot 微服务项目的生产级 Claude Code 配置",
+  "author": "lcyf Team",
+  "license": "MIT",
+  "repository": "D:\\lcyf-claude-code",
+  "components": {
+    "agents": {
+      "path": "agents",
+      "include": "*.md",
+      "description": "Java 开发、API 设计、数据库优化和模块协调的专业 agents"
+    },
+    "skills": {
+      "path": "skills",
+      "include": "*/SKILL.md",
+      "description": "Java/Spring Boot 开发、数据库设计、API 设计和 lcyf 工作流的领域技能"
+    },
+    "commands": {
+      "path": "commands",
+      "include": "*.md",
+      "description": "lcyf 专用工作流命令"
+    },
+    "rules": {
+      "path": "rules",
+      "include": "*.md",
+      "description": "Java 和 Spring Boot 编码标准及最佳实践"
+    },
+    "hooks": {
+      "path": "hooks/hooks.json",
+      "description": "提交前检查、代码格式化和验证的自动化钩子"
+    },
+    "contexts": {
+      "path": "contexts",
+      "include": "*.md",
+      "description": "不同开发阶段的上下文模式"
+    },
+    "templates": {
+      "path": "templates",
+      "include": "*.md",
+      "description": "常见 Java 模式的代码模板"
+    }
+  },
+  "minCliVersion": "0.8.0",
+  "tags": [
+    "java",
+    "spring-boot",
+    "mybatis-plus",
+    "microservices",
+    "code-review",
+    "api-design",
+    "database-design",
+    "module-management"
+  ]
+}

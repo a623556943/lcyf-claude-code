@@ -1,0 +1,56 @@
+{
+  "version": "1.0.0",
+  "plugins": {
+    "lcyf-claude-code": {
+      "name": "lcyf-claude-code",
+      "displayName": "LCYF Claude Code 配置",
+      "description": "lcyf Java/Spring Boot 微服务项目的生产级 Claude Code 配置。包含为 Java 开发、API 设计、数据库优化和多模块协调优化的专业 agents、skills、commands、rules 和 hooks。",
+      "version": "1.0.0",
+      "author": "lcyf Team",
+      "license": "MIT",
+      "tags": [
+        "java",
+        "spring-boot",
+        "mybatis-plus",
+        "microservices",
+        "code-review",
+        "api-design",
+        "database-design",
+        "module-management"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "D:\\lcyf-claude-code"
+      },
+      "source": {
+        "type": "local",
+        "path": "D:\\lcyf-claude-code"
+      },
+      "components": [
+        "agents",
+        "skills",
+        "commands",
+        "rules",
+        "hooks",
+        "contexts",
+        "templates"
+      ],
+      "features": [
+        "Java/Spring Boot 代码审查",
+        "RESTful API 设计指导",
+        "MySQL 数据库优化",
+        "多模块依赖管理",
+        "EARS 需求设计工作流",
+        "TDD 工作流强制执行",
+        "安全漏洞扫描",
+        "自动化代码质量检查"
+      ]
+    }
+  },
+  "metadata": {
+    "name": "lcyf-claude-code-marketplace",
+    "description": "lcyf Claude Code 插件市场",
+    "maintainer": "lcyf Team",
+    "lastUpdated": "2026-01-26"
+  }
+}

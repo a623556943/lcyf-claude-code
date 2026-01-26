@@ -1,0 +1,33 @@
+{
+  "name": "lcyf-claude-code",
+  "version": "1.0.0",
+  "description": "lcyf Java/Spring Boot 项目的 Claude Code 配置",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tests/run-all.js",
+    "setup": "node scripts/setup/init-project.js",
+    "lint": "echo 'Linting markdown files...' && markdownlint '**/*.md' --ignore node_modules",
+    "validate": "node scripts/validate-config.js"
+  },
+  "keywords": [
+    "claude-code",
+    "java",
+    "spring-boot",
+    "mybatis-plus",
+    "code-assistant",
+    "development-tools"
+  ],
+  "author": "lcyf Team",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "markdownlint-cli": "^0.41.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "D:\\lcyf-claude-code"
+  }
+}

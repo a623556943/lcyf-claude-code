@@ -1,0 +1,179 @@
+{
+  "version": "1.0.0",
+  "description": "lcyf-claude-code hooks configuration with subagent support",
+  "hooks": [
+    {
+      "name": "Java代码自动审查",
+      "description": "编辑Java文件后自动调用java-reviewer agent",
+      "type": "PostToolUse",
+      "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\\\\.java$\"",
+      "hooks": [
+        {
+          "type": "agent",
+          "agent": "java-reviewer",
+          "prompt": "请审查刚才编辑的Java文件: ${tool_input.file_path}",
+          "condition": "auto"
+        }
+      ]
+    },
+    {
+      "name": "API设计审查",
+      "description": "编辑Controller文件后自动调用api-designer agent",
+      "type": "PostToolUse",
+      "matcher": "tool == \"Edit\" && tool_input.file_path matches \"Controller\\\\.java$\"",
+      "hooks": [
+        {
+          "type": "agent",
+          "agent": "api-designer",
+          "prompt": "请审查刚才编辑的Controller API设计: ${tool_input.file_path}",
+          "condition": "auto"
+        }
+      ]
+    },
+    {
+      "name": "数据库设计审查",
+      "description": "编辑Mapper.xml或Entity后调用db-optimizer agent",
+      "type": "PostToolUse",
+      "matcher": "tool == \"Edit\" && (tool_input.file_path matches \"Mapper\\\\.xml$\" || tool_input.file_path matches \"entity.*\\\\.java$\")",
+      "hooks": [
+        {
+          "type": "agent",
+          "agent": "db-optimizer",
+          "prompt": "请审查数据库设计和查询: ${tool_input.file_path}",
+          "condition": "manual"
+        }
+      ]
+    },
+    {
+      "name": "Git提交前全面检查",
+      "description": "Git提交前调用java-reviewer进行全面代码审查",
+      "type": "PreToolUse",
+      "matcher": "tool == \"Bash\" && tool_input.command contains \"git commit\"",
+      "hooks": [
+        {
+          "type": "agent",
+          "agent": "java-reviewer",
+          "prompt": "请对即将提交的所有Java代码变更进行全面审查，包括安全性、事务管理、性能问题",
+          "condition": "manual",
+          "blocking": true
+        },
+        {
+          "type": "agent",
+          "agent": "security-reviewer",
+          "prompt": "请对即将提交的代码进行安全审查，检查SQL注入、XSS、硬编码密钥等问题",
+          "condition": "manual",
+          "blocking": true
+        }
+      ]
+    },
+    {
+      "name": "模块POM变更检查",
+      "description": "修改pom.xml后调用module-coordinator检查依赖",
+      "type": "PostToolUse",
+      "matcher": "tool == \"Edit\" && tool_input.file_path matches \"pom\\\\.xml$\"",
+      "hooks": [
+        {
+          "type": "agent",
+          "agent": "module-coordinator",
+          "prompt": "请检查pom.xml的依赖变更，确认没有引入循环依赖或版本冲突",
+          "condition": "auto"
+        }
+      ]
+    },
+    {
+      "name": "会话结束最终审查",
+      "description": "会话结束前对所有变更进行最终审查",
+      "type": "Stop",
+      "hooks": [
+        {
+          "type": "agent",
+          "agent": "java-reviewer",
+          "prompt": "会话即将结束，请对本次会话的所有Java代码变更进行最终审查，生成审查报告",
+          "condition": "manual"
+        }
+      ]
+    },
+    {
+      "name": "构建错误自动修复",
+      "description": "构建失败时自动调用build-error-resolver",
+      "type": "PostToolUse",
+      "matcher": "tool == \"Bash\" && tool_input.command contains \"mvn\" && tool_output contains \"BUILD FAILURE\"",
+      "hooks": [
+        {
+          "type": "agent",
+          "agent": "build-error-resolver",
+          "prompt": "Maven构建失败，请分析错误并提供修复方案: ${tool_output}",
+          "condition": "auto"
+        }
+      ]
+    },
+    {
+      "name": "多文件编辑批量审查",
+      "description": "连续编辑多个Java文件后批量审查",
+      "type": "Batch",
+      "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\\\\.java$\"",
+      "batchSize": 3,
+      "batchTimeout": 300,
+      "hooks": [
+        {
+          "type": "agent",
+          "agent": "java-reviewer",
+          "prompt": "请批量审查以下编辑的Java文件: ${batch_files}",
+          "condition": "auto"
+        }
+      ]
+    }
+  ],
+  "agentConfig": {
+    "java-reviewer": {
+      "model": "sonnet",
+      "tools": ["Read", "Grep", "Glob", "Bash"],
+      "autoApprove": false
+    },
+    "api-designer": {
+      "model": "sonnet",
+      "tools": ["Read", "Grep", "Glob", "Write"],
+      "autoApprove": false
+    },
+    "db-optimizer": {
+      "model": "sonnet",
+      "tools": ["Read", "Grep", "Bash"],
+      "autoApprove": false
+    },
+    "module-coordinator": {
+      "model": "sonnet",
+      "tools": ["Read", "Grep", "Glob", "Bash"],
+      "autoApprove": false
+    },
+    "security-reviewer": {
+      "model": "opus",
+      "tools": ["Read", "Grep", "Glob", "Bash"],
+      "autoApprove": false
+    },
+    "build-error-resolver": {
+      "model": "sonnet",
+      "tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"],
+      "autoApprove": false
+    }
+  },
+  "settings": {
+    "enabled": true,
+    "parallelAgents": true,
+    "maxConcurrentAgents": 2,
+    "agentTimeout": 300000,
+    "retryOnFailure": true,
+    "maxRetries": 2
+  },
+  "conditions": {
+    "auto": "自动执行，不需要用户确认",
+    "manual": "需要用户确认后才执行",
+    "blocking": "阻塞当前操作，直到agent完成"
+  },
+  "notes": [
+    "这是 lcyf-claude-code v1.0.0 的 hooks 配置",
+    "支持自动调用 subagent 进行代码审查和优化",
+    "condition 可以设置为 auto（自动）或 manual（手动确认）",
+    "blocking 设置为 true 时会阻塞原操作直到 agent 完成",
+    "可以通过 settings.enabled 来启用/禁用所有 hooks"
+  ]
+}
