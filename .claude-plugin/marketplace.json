@@ -20,11 +20,11 @@
       ],
       "repository": {
         "type": "git",
-        "url": "D:\\lcyf-claude-code"
+        "url": "https://github.com/a623556943/lcyf-claude-code.git"
       },
       "source": {
-        "type": "local",
-        "path": "D:\\lcyf-claude-code"
+        "type": "github",
+        "url": "https://github.com/a623556943/lcyf-claude-code"
       },
       "components": [
         "agents",

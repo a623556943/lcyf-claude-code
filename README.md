@@ -251,7 +251,7 @@ MIT License - 自由使用和修改
 
 ## 支持
 
-- **Issues**: [提交问题](https://github.com/lcyf/lcyf-claude-code/issues)
+- **Issues**: [提交问题](https://github.com/a623556943/lcyf-claude-code/issues)
 - **文档**: [查看文档](docs/)
 - **团队**: lcyf 开发团队
 

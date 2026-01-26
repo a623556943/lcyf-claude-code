@@ -27,8 +27,8 @@
 #### 步骤 1: 克隆仓库
 
 ```bash
-# 项目已存在于 D:\lcyf-claude-code
-cd D:\lcyf-claude-code
+git clone https://github.com/a623556943/lcyf-claude-code.git
+cd lcyf-claude-code
 ```
 
 #### 步骤 2: 安装依赖
@@ -70,7 +70,7 @@ node scripts/setup/init-project.js "D:\code project2"
 
 ```bash
 # 在 Claude Code 中执行
-/plugin marketplace add file://D:\lcyf-claude-code
+/plugin marketplace add https://github.com/a623556943/lcyf-claude-code
 ```
 
 或者手动编辑 `~/.claude/settings.json`：
@@ -80,8 +80,8 @@ node scripts/setup/init-project.js "D:\code project2"
   "extraKnownMarketplaces": {
     "lcyf-claude-code": {
       "source": {
-        "type": "local",
-        "path": "D:\\lcyf-claude-code"
+        "type": "github",
+        "url": "https://github.com/a623556943/lcyf-claude-code"
       }
     }
   }
@@ -374,8 +374,8 @@ rm -rf D:\lcyf-claude-code
 ### 检查更新
 
 ```bash
-cd D:\lcyf-claude-code
-git pull origin main
+cd lcyf-claude-code
+git pull origin master
 npm install
 ```
 
@@ -398,4 +398,4 @@ node scripts/setup/init-project.js "D:\code project2" --force
 
 ---
 
-**安装遇到问题？请提交 [Issue](https://github.com/lcyf/lcyf-claude-code/issues)**
+**安装遇到问题？请提交 [Issue](https://github.com/a623556943/lcyf-claude-code/issues)**

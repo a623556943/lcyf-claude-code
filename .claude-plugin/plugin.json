@@ -5,7 +5,7 @@
   "description": "lcyf Java/Spring Boot 微服务项目的生产级 Claude Code 配置",
   "author": "lcyf Team",
   "license": "MIT",
-  "repository": "D:\\lcyf-claude-code",
+  "repository": "https://github.com/a623556943/lcyf-claude-code.git",
   "components": {
     "agents": {
       "path": "agents",

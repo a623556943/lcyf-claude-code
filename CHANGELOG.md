@@ -163,7 +163,7 @@ Contributions are welcome! Please follow the contribution guidelines in CONTRIBU
 
 ### Issues and Feedback
 
-Report issues and provide feedback at: [GitHub Issues](https://github.com/lcyf/lcyf-claude-code/issues)
+Report issues and provide feedback at: [GitHub Issues](https://github.com/a623556943/lcyf-claude-code/issues)
 
 ---
 
