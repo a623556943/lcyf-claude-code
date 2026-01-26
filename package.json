@@ -4,7 +4,7 @@
   "description": "面向Java团队的智能开发伙伴系统 - 基于Claude Code深度定制",
   "main": "index.js",
   "bin": {
-    "lcyf": "./scripts/cli/lcyf-cli.js"
+    "lcyf": "./bin/lcyf.js"
   },
   "scripts": {
     "setup": "node scripts/setup/init-project.js",
@@ -97,11 +97,11 @@
     },
     "components": {
       "agents": 8,
-      "commands": 20,
-      "skills": 15,
-      "rules": 11,
-      "hooks": 25,
-      "templates": 18
+      "commands": 13,
+      "skills": 5,
+      "rules": 12,
+      "hooks": 8,
+      "templates": 4
     },
     "features": [
       "continuous-learning",
