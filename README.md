@@ -77,21 +77,40 @@
 ### 安装
 
 ```bash
-# 全局安装
-npm install -g lcyf-claude-code
+# 1. 克隆仓库
+git clone https://github.com/a623556943/lcyf-claude-code.git
+cd lcyf-claude-code
 
-# 验证安装
-lcyf --version
+# 2. 安装依赖
+npm install
+
+# 3. 复制组件到 Claude Code 配置目录
+
+# Windows (PowerShell)
+Copy-Item -Recurse -Force agents $env:USERPROFILE\.claude\agents
+Copy-Item -Recurse -Force commands $env:USERPROFILE\.claude\commands
+Copy-Item -Recurse -Force skills $env:USERPROFILE\.claude\skills
+Copy-Item -Recurse -Force rules $env:USERPROFILE\.claude\rules
+
+# macOS/Linux
+cp -r agents ~/.claude/
+cp -r commands ~/.claude/
+cp -r skills ~/.claude/
+cp -r rules ~/.claude/
 ```
 
 ### 初始化项目
 
 ```bash
 cd /path/to/your/java/project
-lcyf init
+
+# 创建 .lcyf 目录
+mkdir .lcyf
 ```
 
 ### 开始使用
+
+在 Claude Code 中输入命令：
 
 ```
 /lcyf-新功能 添加用户导出功能
