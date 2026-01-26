@@ -1,121 +1,103 @@
-# LCYF Claude Code 配置工具
+# LCYF Claude Code v2.0
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-![Java](https://img.shields.io/badge/-Java-007396?logo=java&logoColor=white)
-![Spring Boot](https://img.shields.io/badge/-Spring%20Boot-6DB33F?logo=spring-boot&logoColor=white)
-![Node.js](https://img.shields.io/badge/-Node.js-339933?logo=node.js&logoColor=white)
-[![GitHub Issues](https://img.shields.io/github/issues/a623556943/lcyf-claude-code)](https://github.com/a623556943/lcyf-claude-code/issues)
+![Java](https://img.shields.io/badge/-Java_17+-007396?logo=java&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/-Spring%20Boot%203.x-6DB33F?logo=spring-boot&logoColor=white)
+![Version](https://img.shields.io/badge/version-2.0.0-green)
 
-**为 lcyf Java/Spring Boot 微服务项目深度定制的生产级 Claude Code 开发工具链**
+**面向Java/Spring Boot团队的智能开发伙伴系统**
 
-基于 [everything-claude-code](https://github.com/affaan-m/everything-claude-code) 框架，专为 Java 开发优化，提供完整的代码审查、API 设计、数据库优化和多模块协调工作流。
-
-> 💡 **核心优势**: 使用 Claude AI 的高级分析能力，自动化代码审查、设计验证、性能优化，让开发团队专注于核心业务逻辑。
+> 💡 **v2.0 革命性更新**: 持续学习引擎、自动验证循环、模块化单体架构支持、团队知识库
 
 ---
 
 ## 核心特性
 
-### 🎯 专用 Agents
+### 🤖 8个专家Agent
 
-- **java-reviewer** - Java 代码审查专家，检查 Spring Boot 最佳实践
-- **api-designer** - API 设计专家，确保 RESTful 规范和文档完整性
-- **db-optimizer** - 数据库优化专家，MySQL 性能优化和设计审查
-- **module-coordinator** - 模块协调器，管理多模块依赖和接口契约
+| Agent | 职责 |
+|-------|------|
+| 01-规划专家 | 任务分解、执行规划、进度跟踪 |
+| 02-架构专家 | 系统设计、技术决策、架构评审 |
+| 03-Java开发专家 | 功能实现、API开发、数据库操作 |
+| 04-模块协调专家 | 模块依赖分析、边界管理 |
+| 05-代码审查专家 | 代码质量、规范检查 |
+| 06-安全审查专家 | 安全漏洞检测、OWASP Top 10 |
+| 07-测试专家 | TDD实践、覆盖率保障 |
+| 08-学习代理 | 模式提取、知识沉淀 |
 
-### 📚 专业 Skills
+### 📝 13个智能命令
 
-- **java-dev** - Spring Boot、Mybatis-plus、异常处理、事务管理
-- **database-design** - MySQL 优化、索引策略、分页查询
-- **api-design** - RESTful 规范、统一返回值、OpenAPI 文档
-- **module-design** - 依赖管理、接口设计、破坏性变更检查
-- **lcyf-workflow** - EARS 需求设计 → 技术方案 → 任务拆分
+**功能开发**
+- `/lcyf-新功能` - 完整功能开发流程
+- `/lcyf-tdd` - 测试驱动开发
+- `/lcyf-构建修复` - 修复编译错误
+- `/lcyf-重构` - 安全代码重构
 
-### ⚡ 定制命令
+**代码审查**
+- `/lcyf-代码审查` - 全面质量审查
+- `/lcyf-安全扫描` - 安全漏洞检测
+- `/lcyf-API审查` - API设计审查
+- `/lcyf-数据库审查` - 数据库设计审查
 
-- `/lcyf-new-feature` - 完整新功能开发流程
-- `/lcyf-review` - Java 代码质量审查
-- `/lcyf-db-review` - 数据库设计审查
-- `/lcyf-api-review` - API 设计审查
-- `/lcyf-module-check` - 模块依赖检查
+**模块管理**
+- `/lcyf-模块检查` - 模块依赖检查
 
-### 🔒 自动化质量检查
+**验证检查**
+- `/lcyf-验证` - 全面验证
+- `/lcyf-检查点` - 检查点管理
 
-- Pre-commit 检查（SQL 注入、XSS、硬编码密钥）
-- Post-edit 格式化（Google Java Format、Checkstyle）
-- 强制 TDD 工作流（最低 80% 测试覆盖率）
-- 安全漏洞扫描
+**知识管理**
+- `/lcyf-知识管理` - 知识库管理
+
+**智能助手**
+- `/lcyf-自动` - 智能命令选择
+
+### 📏 12条编码规范
+
+| 规则 | 说明 |
+|------|------|
+| 00-总则 | 基本原则和强制要求 |
+| 01-安全规范 | 安全编码、敏感信息处理 |
+| 02-编码风格 | 代码格式、命名规范 |
+| 03-测试要求 | 测试覆盖率、TDD工作流 |
+| 04-Git工作流 | 分支策略、提交规范 |
+| 05-性能优化 | 数据库、缓存、并发优化 |
+| 06-Java编码规范 | Java特定编码标准 |
+| 07-SpringBoot最佳实践 | Spring Boot使用规范 |
+| 08-MyBatis规范 | MyBatis-Plus使用规范 |
+| 09-API设计规范 | RESTful API设计 |
+| 10-数据库设计规范 | 表结构、索引设计 |
+| 11-模块依赖规范 | 模块化架构依赖规则 |
 
 ---
 
-## 技术栈支持
+## 快速开始
 
-- **Java** 17+
-- **Spring Boot** 3.5.x
-- **Mybatis-plus** 3.x
-- **MySQL** 8.0+
-- **Redis** 7.x
-- **Maven/Gradle**
-
----
-
-## 🚀 快速开始
-
-### ⚡ 30 秒快速体验
+### 安装
 
 ```bash
-# 1. 克隆仓库
-git clone https://github.com/a623556943/lcyf-claude-code.git
-cd lcyf-claude-code
+# 全局安装
+npm install -g lcyf-claude-code
 
-# 2. 安装依赖
-npm install
+# 验证安装
+lcyf --version
+```
 
-# 3. 初始化你的项目
-node scripts/setup/init-project.js "/path/to/your/java/project"
+### 初始化项目
 
-# 4. 开始使用
+```bash
 cd /path/to/your/java/project
-# 在 Claude Code 中尝试：
-# /lcyf-new-feature
+lcyf init
 ```
 
-### 详细安装步骤
+### 开始使用
 
-**方式 1: 本地安装（推荐）**
-
-1. **克隆仓库**
-   ```bash
-   git clone https://github.com/a623556943/lcyf-claude-code.git
-   cd lcyf-claude-code
-   ```
-
-2. **安装依赖**
-   ```bash
-   npm install
-   ```
-
-3. **初始化项目**
-   ```bash
-   node scripts/setup/init-project.js "/path/to/your/project"
-   ```
-
-4. **启用 Plugin（可选）**
-   在 Claude Code 中执行：
-   ```bash
-   /plugin marketplace add https://github.com/a623556943/lcyf-claude-code
-   /plugin install lcyf-claude-code
-   ```
-
-**方式 2: 直接从 GitHub 安装**
-
-在 Claude Code 中执行：
-```bash
-/plugin marketplace add https://github.com/a623556943/lcyf-claude-code
-/plugin install lcyf-claude-code
+```
+/lcyf-新功能 添加用户导出功能
 ```
 
-> 👉 [详细安装指南](docs/INSTALLATION.md)
+> 📖 详细说明请参考 [快速开始文档](docs/快速开始.md)
 
 ---
 
@@ -123,314 +105,137 @@ cd /path/to/your/java/project
 
 ```
 lcyf-claude-code/
-├── agents/              # 专用 Agents（java-reviewer, api-designer, db-optimizer, module-coordinator）
-├── skills/              # 领域技能（java-dev, database-design, api-design, module-design, lcyf-workflow）
-├── commands/            # 定制命令（lcyf-new-feature, lcyf-review, 等）
-├── rules/               # 编码规范（java-coding-standards, spring-boot-best-practices, 等）
-├── hooks/               # 自动化钩子（pre-commit, post-edit）
-├── templates/           # 代码模板（Controller, Service, Mapper, DTO）
-├── contexts/            # 上下文模式（lcyf-dev, lcyf-review）
-├── scripts/             # 工具脚本
-├── examples/            # 示例配置
-└── docs/                # 详细文档
+├── agents/              # 8个专家Agent
+│   ├── 01-规划专家.md
+│   ├── 02-架构专家.md
+│   ├── 03-Java开发专家.md
+│   ├── 04-模块协调专家.md
+│   ├── 05-代码审查专家.md
+│   ├── 06-安全审查专家.md
+│   ├── 07-测试专家.md
+│   └── 08-学习代理.md
+├── commands/            # 20个命令
+│   ├── lcyf-新功能.md
+│   ├── lcyf-代码审查.md
+│   ├── lcyf-tdd.md
+│   └── ...
+├── rules/               # 11条规则
+│   ├── 00-总则.md
+│   ├── 01-安全规范.md
+│   └── ...
+├── skills/              # 领域技能
+├── templates/           # 代码模板
+│   └── java/
+│       ├── adapter/Controller.java.template
+│       ├── biz/service/Service.java.template
+│       └── ...
+├── hooks/               # 自动化钩子
+│   └── hooks.json
+├── core/                # 核心引擎
+│   ├── learning-engine/
+│   ├── verification-engine/
+│   └── orchestrator/
+├── docs/                # 文档
+│   ├── 快速开始.md
+│   ├── 安装指南.md
+│   ├── CLI使用指南.md
+│   └── ...
+└── .lcyf/               # 知识库（项目级）
+    ├── config.json
+    ├── learned-patterns/
+    ├── team-conventions/
+    └── instincts/
 ```
 
 ---
 
-## 使用示例
+## 技术栈支持
 
-### 开发新功能
-
-```bash
-# 使用完整工作流
-/lcyf-new-feature
-
-# Claude Code 将引导你完成：
-# 1. EARS 需求设计
-# 2. 技术方案设计（API + 数据库 + 缓存）
-# 3. 任务拆分
-# 4. TDD 实现
-# 5. 代码审查
-# 6. 文档更新
-```
-
-### 代码审查
-
-```bash
-# Java 代码审查
-/lcyf-review
-
-# 数据库设计审查
-/lcyf-db-review
-
-# API 设计审查
-/lcyf-api-review
-
-# 模块依赖检查
-/lcyf-module-check
-```
+| 技术 | 版本 |
+|------|------|
+| Java | 17 / 21 |
+| Spring Boot | 3.x |
+| MyBatis-Plus | 3.5.x |
+| MySQL | 8.x |
+| Redis | 7.x |
+| Maven/Gradle | 3.8+ / 8.0+ |
 
 ---
 
-## 工作流程
+## v2.0 新特性
 
-### 1. 需求设计 (EARS 语法)
+### 🧠 持续学习引擎
 
-```markdown
-## 需求 1 - 用户登录功能
+自动从开发过程中学习可复用模式：
+- 代码模式提取
+- 问题解决方案记录
+- 团队约定积累
+- 高频模式自动升级为"本能"
 
-**用户故事**: 作为用户，我希望能够通过用户名和密码登录系统
+### ✅ 验证循环
 
-#### 验收标准
-1. When 用户输入正确的用户名和密码时，the 系统应当返回 JWT token
-2. When 用户输入错误的用户名或密码时，the 系统应当返回错误信息
-3. The 系统应当记录登录日志
-```
+自动化质量验证：
+- 构建检查
+- 测试运行
+- 安全扫描
+- 覆盖率分析
 
-### 2. 技术方案设计
+### 🏗️ 模块化单体架构
 
-```markdown
-## API 设计
-POST /api/v1/auth/login
-Request: { "username": "string", "password": "string" }
-Response: { "success": true, "data": { "token": "string" } }
+专为模块化单体设计：
+- 模块依赖分析
+- 边界检查
+- 循环依赖检测
+- 跨层调用检查
 
-## 数据库设计
-- 表: sys_user (id, username, password_hash, salt, status, created_at)
-- 索引: idx_username (唯一索引)
+### 👥 团队知识库
 
-## 缓存策略
-- Redis: user:token:{token} -> user_id (TTL: 2小时)
-```
-
-### 3. 任务拆分与实现
-
-Claude Code 自动拆分为可执行任务，强制 TDD 流程。
-
----
-
-## 配置
-
-### 项目级配置
-
-在 `D:\code project2\.claude\CLAUDE.md` 中：
-
-```markdown
-# lcyf Project Configuration
-
-使用 lcyf-claude-code 工具链进行开发
-
-## 技术栈
-- Java 17 / Spring Boot 3.5.x
-- Mybatis-plus 3.x / MySQL 8.0
-- Redis 7.x
-
-## 开发流程
-参考 /lcyf-new-feature 命令
-```
+团队知识共享：
+- 团队约定同步
+- 共享代码模式
+- 统一配置管理
 
 ---
 
 ## 文档
 
-- [🔧 安装指南](docs/INSTALLATION.md) - 详细的安装和配置说明
-- [📖 使用指南](docs/USAGE.md) - 命令和工作流详解
-- [🏗️ 架构说明](docs/ARCHITECTURE.md) - 系统设计和扩展点
-- [❓ FAQ](docs/FAQ.md) - 常见问题和解决方案
-- [🤝 贡献指南](CONTRIBUTING.md) - 如何为项目贡献
-- [📚 示例项目](examples/) - 实际使用示例
+| 文档 | 说明 |
+|------|------|
+| [快速开始](docs/快速开始.md) | 5分钟上手指南 |
+| [安装指南](docs/安装指南.md) | 详细安装说明 |
+| [CLI使用指南](docs/CLI使用指南.md) | 命令行工具 |
+| [迁移指南](docs/迁移指南.md) | v1.0到v2.0迁移 |
+| [模板变量格式规范](docs/模板变量格式规范.md) | Mustache模板语法 |
+| [知识库架构说明](docs/知识库架构说明.md) | 知识库结构 |
+| [Agent与Engine职责说明](docs/Agent与Engine职责说明.md) | 架构设计 |
 
 ---
 
-## 💡 典型使用场景
+## 与v1.0对比
 
-### 场景 1: 快速开发新功能
-
-```bash
-# 一条命令启动完整工作流：需求→方案→实现→审查
-/lcyf-new-feature
-
-# Claude Code 会引导你：
-# 1️⃣ 定义需求（EARS 语法）
-# 2️⃣ 设计技术方案（API + 数据库 + 缓存）
-# 3️⃣ 拆分实现任务
-# 4️⃣ TDD 开发（先写测试，再实现）
-# 5️⃣ 自动代码审查
-# 6️⃣ 生成开发文档
-```
-
-### 场景 2: 代码质量检查
-
-```bash
-# 快速审查代码
-/lcyf-review
-
-# 数据库设计审查
-/lcyf-db-review
-
-# API 设计审查
-/lcyf-api-review
-
-# 模块依赖检查
-/lcyf-module-check
-```
-
-### 场景 3: Bug 修复和重构
-
-```bash
-# 识别问题
-# Claude Code 分析问题根源
-
-# 制定修复方案
-# 编写测试验证
-# 代码审查
-/lcyf-review
-```
-
----
-
-## 📊 核心工作流对比
-
-| 工作流 | 传统方式 | 使用 lcyf-claude-code |
-|-------|---------|----------------------|
-| **新功能开发** | 📝 需求文档 → 💻 编码 → 🔍 审查 → 🧪 测试 | ✅ /lcyf-new-feature（自动化） |
-| **代码审查** | 👥 人工审查（耗时） | ✅ /lcyf-review（快速） |
-| **API 设计** | 📋 文档设计 → 实现 → 验证 | ✅ /lcyf-api-review（自动验证） |
-| **数据库优化** | 🔍 性能测试 → 调优 | ✅ /lcyf-db-review（自动分析） |
-| **Bug 定位** | 🐛 手动调试 | ✅ 智能分析 + 测试 |
-
-**效率提升**: 节省 30-50% 的代码审查和设计验证时间 ⚡
-
----
-
-## 🎯 关键特性详解
-
-### 🔄 完整工作流自动化
-
-```
-需求 → 设计 → 实现 → 测试 → 审查 → 文档
-  ↑                                   ↓
-  └─────────────── 自动化 ─────────────┘
-```
-
-### 🤖 多个专业 AI Agent
-
-每个 Agent 都是特定领域的专家：
-
-- **java-reviewer** - Java 代码审查和 Spring Boot 最佳实践
-- **api-designer** - RESTful API 规范和设计
-- **db-optimizer** - 数据库性能和设计优化
-- **module-coordinator** - 多模块架构和依赖管理
-
-### 📚 知识库 + 规范
-
-预定义的最佳实践和编码规范：
-
-- Java 编码规范
-- Spring Boot 最佳实践
-- MyBatis-Plus 使用指南
-- 安全检查清单
-- 测试覆盖率要求
-
-### 🔗 无缝集成
-
-与 Claude Code 深度集成，无需额外学习成本：
-
-```bash
-# 直接在 Claude Code 中使用
-/lcyf-new-feature
-请使用 api-designer 帮我设计用户管理 API...
-```
-
----
-
-## 🔒 质量保证
-
-### 自动化检查
-
-✅ **Pre-commit 检查**
-- SQL 注入防护
-- XSS 攻击防护
-- 硬编码密钥检查
-- 测试覆盖率验证
-
-✅ **Post-edit 检查**
-- 代码格式化（Google Java Format）
-- 代码检查（Checkstyle）
-- 类型检查（TypeScript）
-
-✅ **强制 TDD 流程**
-- 最低 80% 测试覆盖率
-- 单元测试 + 集成测试 + E2E 测试
-
----
-
-## 🌟 为什么选择 lcyf-claude-code？
-
-| 对比项 | 传统代码审查 | lcyf-claude-code |
-|--------|-----------|-----------------|
-| **成本** | 需要高级工程师 | AI 自动化 |
-| **速度** | 1-2 天 | 实时反馈 |
-| **一致性** | 因人而异 | 100% 一致 |
-| **学习曲线** | 新人需要时间适应 | 自动指导 |
-| **覆盖范围** | 代码 + 文档 | 代码 + 设计 + 数据库 + 模块 |
-
----
-
-## 📈 开发效率数据
-
-基于实际项目使用数据：
-
-- ⏱️ **代码审查时间** ↓ 40%（自动化检查）
-- ✅ **缺陷发现率** ↑ 60%（深度分析）
-- 📚 **文档完整度** ↑ 80%（自动生成）
-- 🧪 **测试覆盖率** ↑ 85%（TDD 强制）
-- 🚀 **开发周期** ↓ 25%（整体流程优化）
-
----
-
-## 与 everything-claude-code 的关系
-
-本项目基于 [everything-claude-code](https://github.com/affaan-m/everything-claude-code) 框架：
-
-- **继承**: 基础架构、通用 agents（planner, tdd-guide, code-reviewer 等）
-- **扩展**: 新增 Java/Spring Boot 专用 agents 和 skills
-- **定制**: 针对 lcyf 项目的工作流和规范
-
----
-
-## 开发路线图
-
-### v1.0.0 (当前)
-
-- [x] 基础项目结构
-- [x] 核心 agents 和 skills
-- [x] 基础文档
-
-### v1.1.0 (计划中)
-
-- [ ] 完整的 agents 实现
-- [ ] 所有 skills 内容
-- [ ] Hooks 和自动化脚本
-- [ ] 代码模板库
-
-### v1.2.0 (计划中)
-
-- [ ] 持续学习功能
-- [ ] 知识库积累
-- [ ] 性能优化
+| 方面 | v1.0 | v2.0 |
+|------|------|------|
+| 架构 | 简单工具集合 | 三层架构 |
+| Agents | 4个 | 8个专家 |
+| Commands | 5个 | 13个 |
+| Rules | 4条 | 12条 |
+| 学习能力 | 无 | 持续学习引擎 |
+| 验证能力 | 手动 | 自动验证引擎 |
+| 模块支持 | 基础 | 深度模块协调 |
+| CLI工具 | 无 | 完整CLI |
+| 语言 | 英文 | 中文 |
 
 ---
 
 ## 贡献
 
-欢迎贡献！请参考 [CONTRIBUTING.md](CONTRIBUTING.md) 了解贡献指南。
+欢迎贡献！请参考 [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ---
 
 ## 许可证
 
-MIT License - 自由使用和修改
+MIT License
 
 ---
 
@@ -438,8 +243,7 @@ MIT License - 自由使用和修改
 
 - **Issues**: [提交问题](https://github.com/a623556943/lcyf-claude-code/issues)
 - **文档**: [查看文档](docs/)
-- **团队**: lcyf 开发团队
 
 ---
 
-**基于 lcyf-claude-code 构建更好的 Java 应用！**
+**使用 lcyf-claude-code v2.0 构建更好的Java应用！**

@@ -1,56 +1,42 @@
 {
   "name": "lcyf-claude-code",
-  "version": "1.0.0",
-  "displayName": "LCYF Claude Code 配置",
-  "description": "lcyf Java/Spring Boot 微服务项目的生产级 Claude Code 配置",
-  "author": "lcyf Team",
-  "license": "MIT",
-  "repository": "https://github.com/a623556943/lcyf-claude-code.git",
-  "components": {
-    "agents": {
-      "path": "agents",
-      "include": "*.md",
-      "description": "Java 开发、API 设计、数据库优化和模块协调的专业 agents"
-    },
-    "skills": {
-      "path": "skills",
-      "include": "*/SKILL.md",
-      "description": "Java/Spring Boot 开发、数据库设计、API 设计和 lcyf 工作流的领域技能"
-    },
-    "commands": {
-      "path": "commands",
-      "include": "*.md",
-      "description": "lcyf 专用工作流命令"
-    },
-    "rules": {
-      "path": "rules",
-      "include": "*.md",
-      "description": "Java 和 Spring Boot 编码标准及最佳实践"
-    },
-    "hooks": {
-      "path": "hooks/hooks.json",
-      "description": "提交前检查、代码格式化和验证的自动化钩子"
-    },
-    "contexts": {
-      "path": "contexts",
-      "include": "*.md",
-      "description": "不同开发阶段的上下文模式"
-    },
-    "templates": {
-      "path": "templates",
-      "include": "*.md",
-      "description": "常见 Java 模式的代码模板"
-    }
+  "version": "2.0.0",
+  "displayName": "LCYF Claude Code - Java团队智能开发系统",
+  "description": "面向Java/Spring Boot团队的智能开发伙伴系统",
+  "author": {
+    "name": "lcyf Team",
+    "email": "team@lcyf.com"
   },
-  "minCliVersion": "0.8.0",
-  "tags": [
-    "java",
-    "spring-boot",
-    "mybatis-plus",
-    "microservices",
-    "code-review",
-    "api-design",
-    "database-design",
-    "module-management"
-  ]
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/a623556943/lcyf-claude-code.git"
+  },
+  "license": "MIT",
+  "categories": ["java", "spring-boot", "development", "testing", "code-quality"],
+  "engines": {
+    "claudeCode": ">=1.0.0",
+    "node": ">=18.0.0"
+  },
+  "components": {
+    "agents": {"path": "agents", "count": 8},
+    "commands": {"path": "commands", "count": 13},
+    "skills": {"path": "skills", "count": 5},
+    "rules": {"path": "rules", "count": 12},
+    "hooks": {"path": "hooks", "config": "hooks/hooks.json"},
+    "templates": {"path": "templates", "count": 4}
+  },
+  "features": [
+    "continuous-learning",
+    "module-coordination",
+    "tdd-workflow",
+    "security-scanning",
+    "verification-loops",
+    "team-knowledge-base"
+  ],
+  "documentation": {
+    "quickStart": "docs/快速开始.md",
+    "cli": "docs/CLI使用指南.md",
+    "templates": "docs/模板变量格式规范.md",
+    "knowledge": "docs/知识库架构说明.md"
+  }
 }

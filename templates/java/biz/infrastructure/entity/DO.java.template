@@ -1,0 +1,58 @@
+package {{modulePackage}}.biz.infrastructure.entity;
+
+import com.baomidou.mybatisplus.annotation.*;
+import {{basePackage}}.framework.dal.mybatis.core.dataobject.BaseDO;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.*;
+import lombok.experimental.Accessors;
+
+import java.io.Serial;
+import java.io.Serializable;
+{{#hasDateFields}}
+import java.time.LocalDateTime;
+{{/hasDateFields}}
+{{#hasBigDecimalFields}}
+import java.math.BigDecimal;
+{{/hasBigDecimalFields}}
+
+/**
+ * {{entityComment}}实体
+ *
+ * 数据库表: {{tableName}}
+ *
+ * @author {{author}}
+ * @date {{date}}
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = {{#extendsBaseDO}}true{{/extendsBaseDO}}{{^extendsBaseDO}}false{{/extendsBaseDO}})
+@ToString
+@Accessors(chain = true)
+@TableName(value = "{{tableName}}", autoResultMap = true)
+@Schema(description = "{{entityComment}}实体")
+public class {{entityName}}Do {{#extendsBaseDO}}extends BaseDO {{/extendsBaseDO}}implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 主键ID
+     */
+    @Schema(description = "主键ID")
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
+    private Long id;
+
+    {{#fields}}
+    /**
+     * {{comment}}
+     */
+    @Schema(description = "{{comment}}")
+    @TableField("{{column}}")
+    {{#notNull}}
+    @TableField(strategy = FieldStrategy.NOT_NULL)
+    {{/notNull}}
+    private {{type}} {{name}};
+
+    {{/fields}}
+}

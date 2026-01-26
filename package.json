@@ -1,33 +1,121 @@
 {
   "name": "lcyf-claude-code",
-  "version": "1.0.0",
-  "description": "lcyf Java/Spring Boot 项目的 Claude Code 配置",
+  "version": "2.0.0",
+  "description": "面向Java团队的智能开发伙伴系统 - 基于Claude Code深度定制",
   "main": "index.js",
+  "bin": {
+    "lcyf": "./scripts/cli/lcyf-cli.js"
+  },
   "scripts": {
-    "test": "node tests/run-all.js",
     "setup": "node scripts/setup/init-project.js",
-    "lint": "echo 'Linting markdown files...' && markdownlint '**/*.md' --ignore node_modules",
-    "validate": "node scripts/validate-config.js"
+    "setup:team": "node scripts/setup/setup-team.js",
+    "install": "node scripts/setup/install.js",
+    "test": "node tests/run-all.js",
+    "test:core": "node tests/core/run-core-tests.js",
+    "test:hooks": "node tests/hooks/run-hook-tests.js",
+    "validate": "node scripts/setup/validate-config.js",
+    "lint": "eslint scripts/**/*.js hooks/**/*.js",
+    "format": "prettier --write \"**/*.{js,json,md}\"",
+    "clean": "node scripts/maintenance/clean.js",
+    "update": "git pull && npm install",
+    "postinstall": "node scripts/setup/post-install.js"
   },
   "keywords": [
     "claude-code",
+    "claude-ai",
     "java",
     "spring-boot",
     "mybatis-plus",
+    "development-tools",
     "code-assistant",
-    "development-tools"
+    "ai-agent",
+    "continuous-learning",
+    "code-quality",
+    "test-driven-development",
+    "modular-monolith",
+    "team-workflow"
   ],
   "author": "lcyf Team",
   "license": "MIT",
-  "dependencies": {},
-  "devDependencies": {
-    "markdownlint-cli": "^0.41.0"
-  },
-  "engines": {
-    "node": ">=18.0.0"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/a623556943/lcyf-claude-code.git"
+  },
+  "bugs": {
+    "url": "https://github.com/a623556943/lcyf-claude-code/issues"
+  },
+  "homepage": "https://github.com/a623556943/lcyf-claude-code#readme",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.0.0",
+    "inquirer": "^9.2.15",
+    "ora": "^8.0.1",
+    "yaml": "^2.3.4"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-node": "^11.1.0",
+    "prettier": "^3.2.4",
+    "markdownlint-cli": "^0.39.0"
+  },
+  "optionalDependencies": {
+    "google-java-format": "^1.19.2"
+  },
+  "peerDependencies": {
+    "claude-code": ">=1.0.0"
+  },
+  "config": {
+    "pluginRoot": "${CLAUDE_PLUGIN_ROOT}",
+    "knowledgeBase": ".lcyf",
+    "templatesPath": "templates",
+    "agentsPath": "agents",
+    "skillsPath": "skills",
+    "commandsPath": "commands",
+    "rulesPath": "rules",
+    "hooksPath": "hooks",
+    "corePath": "core"
+  },
+  "claudeCode": {
+    "plugin": {
+      "name": "lcyf-claude-code",
+      "version": "2.0.0",
+      "description": "Java团队智能开发系统",
+      "author": "lcyf Team",
+      "type": "development",
+      "categories": [
+        "java",
+        "development",
+        "testing",
+        "code-quality",
+        "ai-agents"
+      ]
+    },
+    "components": {
+      "agents": 8,
+      "commands": 20,
+      "skills": 15,
+      "rules": 11,
+      "hooks": 25,
+      "templates": 18
+    },
+    "features": [
+      "continuous-learning",
+      "module-coordination",
+      "tdd-workflow",
+      "security-scanning",
+      "performance-optimization",
+      "verification-loops",
+      "parallel-execution",
+      "team-knowledge-base"
+    ]
+  },
+  "contributing": {
+    "guide": "CONTRIBUTING.md",
+    "codeOfConduct": "CODE_OF_CONDUCT.md"
   }
 }

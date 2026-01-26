@@ -1,0 +1,153 @@
+package {{modulePackage}}.adapter.web;
+
+import {{basePackage}}.framework.commons.pojo.CommonResult;
+import {{basePackage}}.framework.commons.pojo.PageResult;
+{{#needAuth}}
+import {{basePackage}}.framework.security.core.util.LoginUtil;
+{{/needAuth}}
+{{#needLog}}
+import {{basePackage}}.framework.operatelog.core.annotations.OperateLog;
+import {{basePackage}}.framework.operatelog.core.enums.OperateTypeEnum;
+{{/needLog}}
+import {{modulePackage}}.api.pojo.cmd.{{entityName}}AddCmd;
+import {{modulePackage}}.api.pojo.cmd.{{entityName}}UpdateCmd;
+import {{modulePackage}}.api.pojo.dto.{{entityName}}Dto;
+import {{modulePackage}}.api.pojo.query.{{entityName}}Query;
+import {{modulePackage}}.api.pojo.view.{{entityName}}View;
+import {{modulePackage}}.biz.service.I{{entityName}}Service;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+{{#hasPagination}}
+import cn.zhxu.bs.util.MapUtils;
+import java.util.Map;
+{{/hasPagination}}
+
+/**
+ * {{entityComment}} Web控制器
+ *
+ * 业务职责:
+ * 1. 处理{{entityComment}}相关的HTTP请求
+ * 2. 参数验证和转换
+ * 3. 调用Service层业务逻辑
+ * 4. 返回统一格式的响应
+ *
+ * @author {{author}}
+ * @date {{date}}
+ */
+@RestController
+@RequestMapping("{{requestMapping}}")
+@Tag(name = "{{apiTag}}")
+@RequiredArgsConstructor
+public class {{controllerName}} {
+
+    private final I{{entityName}}Service {{entityName|lowercase}}Service;
+
+    /**
+     * 创建{{entityComment}}
+     *
+     * 业务场景: 新增{{entityComment}}记录
+     *
+     * @param cmd 创建命令对象，包含必需的业务字段
+     * @return 新创建记录的ID
+     */
+    @PostMapping
+    @Operation(summary = "创建{{entityComment}}")
+    {{#needLog}}
+    @OperateLog(type = OperateTypeEnum.ADD, description = "创建{{entityComment}}")
+    {{/needLog}}
+    public CommonResult<Long> create(@RequestBody @Valid {{entityName}}AddCmd cmd) {
+        {{#needAuth}}
+        Long id = {{entityName|lowercase}}Service.create(cmd, LoginUtil.userCode());
+        {{/needAuth}}
+        {{^needAuth}}
+        Long id = {{entityName|lowercase}}Service.create(cmd);
+        {{/needAuth}}
+        return CommonResult.success(id);
+    }
+
+    /**
+     * 更新{{entityComment}}
+     *
+     * 业务场景: 修改{{entityComment}}记录
+     *
+     * @param id {{entityComment}}ID
+     * @param cmd 更新命令对象
+     * @return 是否成功
+     */
+    @PutMapping("/{id}")
+    @Operation(summary = "更新{{entityComment}}")
+    {{#needLog}}
+    @OperateLog(type = OperateTypeEnum.UPDATE, description = "更新{{entityComment}}")
+    {{/needLog}}
+    public CommonResult<Boolean> update(@PathVariable Long id,
+                                       @RequestBody @Valid {{entityName}}UpdateCmd cmd) {
+        {{#needAuth}}
+        {{entityName|lowercase}}Service.update(id, cmd, LoginUtil.userCode());
+        {{/needAuth}}
+        {{^needAuth}}
+        {{entityName|lowercase}}Service.update(id, cmd);
+        {{/needAuth}}
+        return CommonResult.success(true);
+    }
+
+    /**
+     * 删除{{entityComment}}
+     *
+     * 业务场景: 逻辑删除{{entityComment}}记录
+     *
+     * @param id {{entityComment}}ID
+     * @return 是否成功
+     */
+    @DeleteMapping("/{id}")
+    @Operation(summary = "删除{{entityComment}}")
+    {{#needLog}}
+    @OperateLog(type = OperateTypeEnum.DELETE, description = "删除{{entityComment}}")
+    {{/needLog}}
+    public CommonResult<Boolean> delete(@PathVariable Long id) {
+        {{entityName|lowercase}}Service.delete(id);
+        return CommonResult.success(true);
+    }
+
+    /**
+     * 查询{{entityComment}}详情
+     *
+     * 业务场景: 根据ID查询{{entityComment}}完整信息
+     *
+     * @param id {{entityComment}}ID
+     * @return {{entityComment}}详情数据
+     */
+    @GetMapping("/{id}")
+    @Operation(summary = "查询{{entityComment}}详情")
+    public CommonResult<{{entityName}}Dto> get(@PathVariable Long id) {
+        {{entityName}}Dto dto = {{entityName|lowercase}}Service.get(id);
+        return CommonResult.success(dto);
+    }
+
+    {{#hasPagination}}
+    /**
+     * 分页查询{{entityComment}}
+     *
+     * 业务场景: 条件查询{{entityComment}}列表，支持分页和排序
+     *
+     * @param query 查询条件对象
+     * @param request HTTP请求，用于提取租户信息
+     * @return 分页结果集
+     */
+    @GetMapping
+    @Operation(summary = "分页查询{{entityComment}}")
+    public CommonResult<PageResult<{{entityName}}View>> page({{entityName}}Query query,
+                                                             HttpServletRequest request) {
+        Map<String, Object> paraMap = MapUtils.flat(request.getParameterMap());
+        {{#needAuth}}
+        paraMap.put("tenantCode", LoginUtil.tenantCode());
+        {{/needAuth}}
+        PageResult<{{entityName}}View> pageResult = {{entityName|lowercase}}Service.page(paraMap);
+        return CommonResult.success(pageResult);
+    }
+    {{/hasPagination}}
+}
