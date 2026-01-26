@@ -1,4 +1,4 @@
-# Module Design Skill
+# 模块设计技能
 
 ---
 name: module-design
@@ -6,35 +6,35 @@ description: lcyf 项目的多模块依赖管理和接口设计
 version: 1.0.0
 ---
 
-## Overview
+## 概览
 
-Multi-module architecture guidance:
-- Dependency management strategies
-- Interface design and contracts
-- Breaking change detection
-- Version compatibility
+多模块架构指导：
+- 依赖管理策略
+- 接口设计和契约
+- 破坏性变更检测
+- 版本兼容性
 
-## Core Principles
+## 核心原则
 
-### 1. Module Structure
+### 1. 模块结构
 ```
-lcyf-framework           # Base framework
-├── lcyf-module-base     # Shared DTOs and interfaces
-├── lcyf-module-finance  # Finance domain
-├── lcyf-module-policy   # Policy domain
-└── lcyf-module-sales    # Sales domain
+lcyf-framework           # 基础框架
+├── lcyf-module-base     # 共享 DTO 和接口
+├── lcyf-module-finance  # 财务领域
+├── lcyf-module-policy   # 保单领域
+└── lcyf-module-sales    # 销售领域
 ```
 
-### 2. Dependency Rules
-- No circular dependencies
-- Depend on interfaces, not implementations
-- Shared interfaces in `lcyf-module-base`
-- Version management in parent POM
+### 2. 依赖规则
+- 无循环依赖
+- 依赖接口，不依赖实现
+- 共享接口放在 `lcyf-module-base`
+- 版本管理在父 POM 中
 
-### 3. Interface Contract
+### 3. 接口契约
 ```java
 /**
- * Policy service interface.
+ * 保单服务接口。
  * @since 1.0.0
  * @version 1.0.0
  */
@@ -43,13 +43,13 @@ public interface PolicyService {
 }
 ```
 
-### 4. Breaking Change Detection
-- Major version bump for breaking changes
-- Deprecate before removing
-- Provide migration guide
-- Notify dependent modules
+### 4. 破坏性变更检测
+- 主版本号增量用于破坏性变更
+- 删除前先弃用
+- 提供迁移指南
+- 通知依赖模块
 
-## Related Resources
+## 相关资源
 - module-coordinator agent
-- Maven dependency plugin
-- Module architecture guidelines
+- Maven 依赖插件
+- 模块架构指南

@@ -1,21 +1,21 @@
-# API Design Rules
+# API 设计规范
 
-Always-follow guidelines for API design in lcyf projects.
+lcyf 项目中必须遵守的 RESTful API 设计规范。
 
-## RESTful Principles
+## RESTful 原则
 
-- Use nouns for resources, not verbs
-- Use plural nouns: `/users`, `/orders`
-- Use HTTP methods correctly:
-  - GET: Retrieve
-  - POST: Create
-  - PUT: Replace
-  - PATCH: Update
-  - DELETE: Remove
+- 使用名词表示资源，不使用动词
+- 使用复数名词：`/users`、`/orders`
+- 正确使用 HTTP 方法：
+  - GET：查询
+  - POST：创建
+  - PUT：替换
+  - PATCH：修改
+  - DELETE：删除
 
-## URL Structure
+## URL 结构
 
-✅ Good:
+✅ **正确的设计**
 ```
 GET    /api/v1/users
 POST   /api/v1/users
@@ -24,54 +24,54 @@ PUT    /api/v1/users/{id}
 DELETE /api/v1/users/{id}
 ```
 
-❌ Bad:
+❌ **错误的设计**
 ```
 GET /api/v1/getAllUsers
 POST /api/v1/createUser
 POST /api/v1/deleteUser/{id}
 ```
 
-## Response Structure
+## 响应结构
 
-Always use unified Result wrapper:
+必须使用统一的 Result 包装器：
 ```json
 {
   "success": true,
   "data": { ... },
-  "message": "Operation successful"
+  "message": "操作成功"
 }
 ```
 
-## Status Codes
+## HTTP 状态码
 
-- 200: Success (GET, PUT, PATCH)
-- 201: Created (POST)
-- 204: No Content (DELETE)
-- 400: Bad Request
-- 401: Unauthorized
-- 403: Forbidden
-- 404: Not Found
-- 500: Internal Server Error
+- **200**: 成功（GET、PUT、PATCH）
+- **201**: 已创建（POST）
+- **204**: 无内容（DELETE）
+- **400**: 请求错误
+- **401**: 未授权
+- **403**: 禁止访问
+- **404**: 未找到
+- **500**: 服务器内部错误
 
-## Input Validation
+## 输入验证
 
-- Use Bean Validation annotations
-- Validate all public endpoints
-- Return clear error messages
+- 使用 Bean Validation 注解
+- 验证所有公共端点
+- 返回清晰的错误消息
 
-## Versioning
+## API 版本控制
 
-- Always version APIs: `/api/v1/...`
-- Use major version in URL
-- Document breaking changes
+- 必须对 API 进行版本管理：`/api/v1/...`
+- 在 URL 中使用主版本号
+- 记录破坏性变更
 
-## Documentation
+## 文档
 
-- Use OpenAPI/Swagger annotations
-- Document all endpoints
-- Provide request/response examples
-- Document error responses
+- 使用 OpenAPI/Swagger 注解
+- 记录所有端点
+- 提供请求/响应示例
+- 记录错误响应
 
 ---
 
-遵循 RESTful API 设计规范。
+遵循 RESTful API 设计规范确保 API 的一致性和易用性。

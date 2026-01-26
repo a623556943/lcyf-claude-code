@@ -1,4 +1,4 @@
-# Java Development Skill
+# Java 开发技能
 
 ---
 name: java-dev
@@ -6,43 +6,43 @@ description: lcyf 项目的 Java 和 Spring Boot 开发模式及最佳实践
 version: 1.0.0
 ---
 
-## Overview
+## 概览
 
-This skill provides comprehensive guidance for Java development in lcyf projects, focusing on:
-- Spring Boot 3.5.x patterns and best practices
-- Mybatis-plus usage and optimization
-- Exception handling strategies
-- Transaction management
-- Common patterns and anti-patterns
+为 lcyf 项目中的 Java 开发提供全面指导，重点包括：
+- Spring Boot 3.5.x 的模式和最佳实践
+- Mybatis-plus 使用和优化
+- 异常处理策略
+- 事务管理
+- 常见的模式和反模式
 
-## When to Use
+## 何时使用
 
-Automatically loaded when:
-- Working with Java files (`.java`)
-- Developing Spring Boot applications
-- Writing service layer code
-- Implementing database operations with Mybatis-plus
+自动加载：
+- 处理 Java 文件（`.java`）时
+- 开发 Spring Boot 应用时
+- 编写服务层代码时
+- 使用 Mybatis-plus 实现数据库操作时
 
-Manually invoke with:
+手动调用：
 ```
 请使用 java-dev skill 帮我编写 Spring Boot Controller/Service/Mapper...
 ```
 
-## Components
+## 组件
 
-### 1. Spring Boot Patterns (`spring-boot-patterns.md`)
+### 1. Spring Boot 模式（`spring-boot-patterns.md`）
 
-**Key Topics:**
-- Controller/Service/Repository layering
-- Dependency injection best practices (constructor injection)
-- Configuration management (@ConfigurationProperties)
-- Async processing and scheduled tasks
-- Caching with @Cacheable
-- Event-driven architecture with ApplicationEvent
+**关键主题：**
+- Controller/Service/Repository 分层
+- 依赖注入最佳实践（构造函数注入）
+- 配置管理（@ConfigurationProperties）
+- 异步处理和定时任务
+- 使用 @Cacheable 进行缓存
+- 使用 ApplicationEvent 的事件驱动架构
 
-**Quick Reference:**
+**快速参考：**
 ```java
-// ✅ Good - Constructor injection
+// ✅ 好 - 构造函数注入
 @Service
 @Slf4j
 public class UserService {
@@ -56,7 +56,7 @@ public class UserService {
     }
 }
 
-// ❌ Bad - Field injection
+// ❌ 不好 - 字段注入
 @Service
 public class UserService {
     @Autowired
@@ -64,19 +64,19 @@ public class UserService {
 }
 ```
 
-### 2. Mybatis-plus Guide (`mybatis-plus-guide.md`)
+### 2. Mybatis-plus 指南（`mybatis-plus-guide.md`）
 
-**Key Topics:**
-- BaseMapper usage
-- QueryWrapper and LambdaQueryWrapper
-- Pagination configuration
-- Logical deletion (@TableLogic)
-- Optimistic locking (@Version)
-- Auto-fill fields (created_at, updated_at)
+**关键主题：**
+- BaseMapper 使用
+- QueryWrapper 和 LambdaQueryWrapper
+- 分页配置
+- 逻辑删除（@TableLogic）
+- 乐观锁定（@Version）
+- 自动填充字段（created_at、updated_at）
 
-**Quick Reference:**
+**快速参考：**
 ```java
-// ✅ Good - LambdaQueryWrapper
+// ✅ 好 - LambdaQueryWrapper
 public List<User> findActiveUsers(String keyword) {
     return baseMapper.selectList(
         new LambdaQueryWrapper<User>()

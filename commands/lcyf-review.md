@@ -1,37 +1,37 @@
-# lcyf-review Command
+# lcyf-review 命令
 
-Java code review for lcyf projects.
+lcyf 项目的 Java 代码审查。
 
-## Command
+## 命令
 
 `/lcyf-review [file_path]`
 
-## Description
+## 描述
 
-Reviews Java code for:
+审查 Java 代码的以下方面：
 
-- Spring Boot best practices
-- Transaction management
-- Exception handling
-- Security issues
-- Performance problems
+- Spring Boot 最佳实践
+- 事务管理
+- 异常处理
+- 安全问题
+- 性能问题
 
-## Usage
+## 使用方式
 
 ```
-/lcyf-review                    # Review all changed files
-/lcyf-review src/main/java/...  # Review specific file
+/lcyf-review                    # 审查所有修改的文件
+/lcyf-review src/main/java/...  # 审查特定文件
 ```
 
-## Implementation
+## 实现
 
-Invoke the `java-reviewer` agent to perform comprehensive code review.
+调用 `java-reviewer` agent 执行全面的代码审查。
 
-## Output
+## 输出
 
-Review report with:
+包含以下内容的审查报告：
 
-- Critical issues
-- High priority issues
-- Recommendations
-- Overall assessment (Approved/Warning/Block)
+- 严重问题
+- 高优先级问题
+- 建议
+- 整体评估（通过/警告/阻止）

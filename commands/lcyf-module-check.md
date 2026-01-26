@@ -1,25 +1,30 @@
-# lcyf-module-check Command
+# lcyf-module-check 命令
 
-Module dependency and interface contract validation.
+模块依赖和接口契约验证。
 
-## Command
+## 命令
+
 `/lcyf-module-check [module_name]`
 
-## Description
-Checks module health for:
-- Circular dependencies
-- Dependency version conflicts
-- Interface contract compliance
-- Breaking changes
+## 描述
 
-## Usage
+检查模块健康状态：
+- 循环依赖
+- 依赖版本冲突
+- 接口契约合规性
+- 破坏性变更
+
+## 使用方式
+
 ```
-/lcyf-module-check                      # Check all modules
-/lcyf-module-check lcyf-module-finance  # Check specific module
+/lcyf-module-check                      # 检查所有模块
+/lcyf-module-check lcyf-module-finance  # 检查特定模块
 ```
 
-## Implementation
-Invoke the `module-coordinator` agent for multi-module analysis.
+## 实现
 
-## Output
-Module health report with dependency graph and recommendations.
+调用 `module-coordinator` agent 进行多模块分析。
+
+## 输出
+
+包含依赖关系图和建议的模块健康报告。

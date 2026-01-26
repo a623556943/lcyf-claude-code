@@ -1,30 +1,34 @@
-# lcyf-new-feature Command
+# lcyf-new-feature 命令
 
-Complete feature development workflow for lcyf projects.
+lcyf 项目完整的功能开发工作流。
 
-## Command
+## 命令
+
 `/lcyf-new-feature`
 
-## Description
-Guides you through the complete feature development lifecycle:
-1. EARS requirement design
-2. Technical design (API + DB + Cache)
-3. Task breakdown
-4. TDD implementation
-5. Code review
-6. Documentation
+## 描述
 
-## Usage
+引导你完成完整的功能开发生命周期：
+1. EARS 需求设计
+2. 技术方案设计（API + 数据库 + 缓存）
+3. 任务拆分
+4. TDD 实现
+5. 代码审查
+6. 文档更新
+
+## 使用方式
+
 ```
 /lcyf-new-feature
 ```
 
-## Workflow
+## 工作流程
 
-You will guide the user through the following phases:
+将通过以下阶段引导用户：
 
-### Phase 1: Requirement Collection
-Ask the user to describe the feature requirements. Then generate EARS-format requirements:
+### 阶段 1：需求收集
+
+要求用户描述功能需求。然后生成 EARS 格式的需求：
 
 ```markdown
 ## 需求 1 - [功能名称]
@@ -36,48 +40,52 @@ Ask the user to describe the feature requirements. Then generate EARS-format req
 2. ...
 ```
 
-### Phase 2: Technical Design
-Based on requirements, design:
+### 阶段 2：技术设计
 
-**API Design:**
+基于需求，设计：
+
+**API 设计：**
 ```
 POST /api/v1/[resource]
 Request: { ... }
 Response: { ... }
 ```
 
-**Database Design:**
+**数据库设计：**
 ```
 表: [table_name]
 字段: ...
 索引: ...
 ```
 
-**Cache Strategy:**
+**缓存策略：**
 ```
 Redis: [key_pattern] -> [value] (TTL: [duration])
 ```
 
-### Phase 3: Task Breakdown
-Break down into actionable tasks:
+### 阶段 3：任务拆分
+
+分解为可执行的任务：
 ```
-- [ ] Task 1
-- [ ] Task 2
+- [ ] 任务 1
+- [ ] 任务 2
 ...
 ```
 
-### Phase 4: Implementation
-Use TDD approach:
-1. Write failing tests (RED)
-2. Implement code (GREEN)
-3. Refactor (IMPROVE)
+### 阶段 4：实现
 
-### Phase 5: Review
-1. Run `/lcyf-review` for Java code review
-2. Run `/lcyf-db-review` for database review
-3. Run `/lcyf-api-review` for API review
+使用 TDD 方法：
+1. 编写失败的测试（RED）
+2. 实现代码（GREEN）
+3. 重构（IMPROVE）
 
-## Example Session
+### 阶段 5：审查
+
+1. 运行 `/lcyf-review` 进行 Java 代码审查
+2. 运行 `/lcyf-db-review` 进行数据库审查
+3. 运行 `/lcyf-api-review` 进行 API 审查
+
+## 示例会话
 
 ```
-User: /lcyf-new-feature
+用户: /lcyf-new-feature

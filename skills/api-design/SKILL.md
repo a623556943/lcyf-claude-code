@@ -1,4 +1,4 @@
-# API Design Skill
+# API 设计技能
 
 ---
 name: api-design
@@ -6,27 +6,27 @@ description: lcyf 项目的 RESTful API 设计模式和文档标准
 version: 1.0.0
 ---
 
-## Overview
+## 概览
 
-RESTful API design guidance including:
-- RESTful principles and conventions
-- Unified response structure
-- OpenAPI/Swagger documentation
-- Versioning strategies
+RESTful API 设计指导包括：
+- RESTful 原则和规范
+- 统一的响应结构
+- OpenAPI/Swagger 文档
+- 版本控制策略
 
-## Core Patterns
+## 核心模式
 
-### 1. RESTful URL Design
+### 1. RESTful URL 设计
 ```
-GET    /api/v1/users              # List users
-POST   /api/v1/users              # Create user
-GET    /api/v1/users/{id}         # Get user
-PUT    /api/v1/users/{id}         # Replace user
-PATCH  /api/v1/users/{id}         # Update user
-DELETE /api/v1/users/{id}         # Delete user
+GET    /api/v1/users              # 列表查询
+POST   /api/v1/users              # 创建资源
+GET    /api/v1/users/{id}         # 获取单个资源
+PUT    /api/v1/users/{id}         # 替换资源
+PATCH  /api/v1/users/{id}         # 更新资源
+DELETE /api/v1/users/{id}         # 删除资源
 ```
 
-### 2. Unified Response Structure
+### 2. 统一响应结构
 ```java
 public class Result<T> {
     private Boolean success;
@@ -36,14 +36,14 @@ public class Result<T> {
     private LocalDateTime timestamp;
 }
 
-// Success response
+// 成功响应
 Result.ok(data);
 
-// Error response
-Result.error("USER_NOT_FOUND", "User not found");
+// 错误响应
+Result.error("USER_NOT_FOUND", "用户未找到");
 ```
 
-### 3. Input Validation
+### 3. 输入验证
 ```java
 public class CreateUserDTO {
     @NotBlank
@@ -57,24 +57,24 @@ public class CreateUserDTO {
 
 @PostMapping
 public Result create(@Valid @RequestBody CreateUserDTO dto) {
-    // Implementation
+    // 实现
 }
 ```
 
-### 4. OpenAPI Documentation
+### 4. OpenAPI 文档
 ```java
-@Operation(summary = "Create user")
+@Operation(summary = "创建用户")
 @ApiResponses({
-    @ApiResponse(responseCode = "201", description = "User created"),
-    @ApiResponse(responseCode = "400", description = "Invalid input")
+    @ApiResponse(responseCode = "201", description = "用户已创建"),
+    @ApiResponse(responseCode = "400", description = "输入错误")
 })
 @PostMapping
 public Result<UserVO> createUser(@Valid @RequestBody CreateUserDTO dto) {
-    // Implementation
+    // 实现
 }
 ```
 
-## Related Resources
+## 相关资源
 - api-designer agent
 - api-design-rules
-- OpenAPI specification
+- OpenAPI 规范

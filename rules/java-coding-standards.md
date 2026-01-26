@@ -1,49 +1,49 @@
-# Java Coding Standards
+# Java 编码规范
 
-Always-follow guidelines for Java development in lcyf projects.
+lcyf 项目中必须遵守的 Java 开发规范。
 
-## Naming Conventions
+## 命名规范
 
-- Classes: PascalCase (`UserService`, `OrderController`)
-- Methods/Variables: camelCase (`getUserById`, `totalAmount`)
-- Constants: UPPER_SNAKE_CASE (`MAX_RETRY_COUNT`, `DEFAULT_PAGE_SIZE`)
-- Package names: lowercase (`com.lcyf.module.finance`)
+- **类名**: PascalCase (`UserService`, `OrderController`)
+- **方法/变量**: camelCase (`getUserById`, `totalAmount`)
+- **常量**: UPPER_SNAKE_CASE (`MAX_RETRY_COUNT`, `DEFAULT_PAGE_SIZE`)
+- **包名**: 小写 (`com.lcyf.module.finance`)
 
-## Class Structure
+## 类结构顺序
 
-- Fields first (private, then protected)
-- Constructors second
-- Public methods third
-- Private methods last
+- **字段** （private，然后 protected）
+- **构造方法**
+- **公有方法**
+- **私有方法**
 
-## Code Style
+## 代码风格
 
-- Line length: Max 120 characters
-- Indentation: 4 spaces
-- Braces: Always use, even for single-line blocks
-- No unused imports
+- **行长**: 最多 120 个字符
+- **缩进**: 4 个空格
+- **花括号**: 必须使用，即使是单行代码块
+- **无未使用的导入**
 
-## Best Practices
+## 最佳实践
 
-- Use constructor injection, not field injection
-- Make fields final whenever possible
-- Avoid public fields
-- One class per file
-- Use @Override annotation
+- ✅ 使用构造函数注入，不要字段注入
+- ✅ 尽可能使字段为 final
+- ✅ 避免使用 public 字段
+- ✅ 一个文件只有一个类
+- ✅ 使用 @Override 注解
 
-## Comments
+## 注释规范
 
-- Javadoc for public methods
-- Comments explain "why", not "what"
-- No commented-out code
+- Javadoc 用于公有方法
+- 注释解释 **为什么**，不是 **是什么**
+- 不允许保留已注释的代码
 
-##禁止
+## 禁止事项
 
-- No System.out.println (use SLF4J logger)
-- No hardcoded values (use constants or properties)
-- No raw types (use generics)
-- No null checks on @NotNull parameters
+- ❌ 不使用 System.out.println（使用 SLF4J logger）
+- ❌ 不硬编码值（使用常量或配置）
+- ❌ 不使用原始类型（使用泛型）
+- ❌ 不对 @NotNull 参数进行 null 检查
 
 ---
 
-遵循这些规范以保持代码一致性。
+遵循这些规范以保持代码一致性和可维护性。

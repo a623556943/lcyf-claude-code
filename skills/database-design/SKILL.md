@@ -1,4 +1,4 @@
-# Database Design Skill
+# 数据库设计技能
 
 ---
 name: database-design
@@ -6,17 +6,17 @@ description: lcyf 项目的 MySQL 数据库设计模式、索引策略和查询�
 version: 1.0.0
 ---
 
-## Overview
+## 概览
 
-Comprehensive database design guidance focusing on:
-- MySQL table design and normalization
-- Index strategy and optimization
-- Query performance tuning
-- Pagination best practices
+全面的数据库设计指导，重点关注：
+- MySQL 表设计和规范化
+- 索引策略和优化
+- 查询性能调优
+- 分页最佳实践
 
-## Core Principles
+## 核心原则
 
-### 1. Table Design
+### 1. 表设计
 ```sql
 CREATE TABLE sys_user (
   id BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -30,23 +30,23 @@ CREATE TABLE sys_user (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 ```
 
-### 2. Index Strategy
-- Primary key: Always BIGINT AUTO_INCREMENT
-- Foreign keys: Always indexed
-- Frequently queried columns: Add indexes
-- Composite indexes: Most selective column first
-- Avoid over-indexing: Slows INSERT/UPDATE
+### 2. 索引策略
+- 主键：始终使用 BIGINT AUTO_INCREMENT
+- 外键：必须建立索引
+- 频繁查询的列：添加索引
+- 复合索引：将最有选择性的列放在前面
+- 避免过度索引：会减慢 INSERT/UPDATE
 
-### 3. Query Optimization
-- Use EXPLAIN to analyze queries
-- Avoid SELECT *
-- Use LIMIT for large result sets
-- Implement pagination correctly
-- Identify N+1 query problems
+### 3. 查询优化
+- 使用 EXPLAIN 分析查询
+- 避免 SELECT *
+- 对大型结果集使用 LIMIT
+- 正确实现分页
+- 识别 N+1 查询问题
 
-### 4. Pagination Pattern
+### 4. 分页模式
 ```java
-// Mybatis-plus pagination
+// Mybatis-plus 分页
 IPage<User> page = userMapper.selectPage(
     new Page<>(pageNum, pageSize),
     new LambdaQueryWrapper<User>()
@@ -55,7 +55,7 @@ IPage<User> page = userMapper.selectPage(
 );
 ```
 
-## Related Resources
+## 相关资源
 - db-optimizer agent
 - database-design-rules
-- MySQL official documentation
+- MySQL 官方文档

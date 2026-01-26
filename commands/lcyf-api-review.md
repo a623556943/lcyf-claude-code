@@ -1,25 +1,30 @@
-# lcyf-api-review Command
+# lcyf-api-review 命令
 
-API design review for lcyf projects.
+lcyf 项目的 API 设计审查。
 
-## Command
+## 命令
+
 `/lcyf-api-review [controller_path]`
 
-## Description
-Reviews API design for:
-- RESTful principles
-- Request/Response validation
-- Documentation completeness
-- Status code correctness
+## 描述
 
-## Usage
+审查 API 设计的以下方面：
+- RESTful 原则
+- 请求/响应验证
+- 文档完整性
+- 状态码正确性
+
+## 使用方式
+
 ```
-/lcyf-api-review                      # Review all controllers
-/lcyf-api-review UserController.java  # Review specific controller
+/lcyf-api-review                      # 审查所有控制器
+/lcyf-api-review UserController.java  # 审查特定控制器
 ```
 
-## Implementation
-Invoke the `api-designer` agent for API design review.
+## 实现
 
-## Output
-Review report with API design quality assessment.
+调用 `api-designer` agent 进行 API 设计审查。
+
+## 输出
+
+包含 API 设计质量评估的审查报告。

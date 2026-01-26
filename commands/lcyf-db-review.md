@@ -1,25 +1,30 @@
-# lcyf-db-review Command
+# lcyf-db-review 命令
 
-Database design review for lcyf projects.
+lcyf 项目的数据库设计审查。
 
-## Command
+## 命令
+
 `/lcyf-db-review [table_name]`
 
-## Description
-Reviews database design for:
-- Table structure optimization
-- Index strategies
-- Query performance
-- Transaction management
+## 描述
 
-## Usage
+审查数据库设计的以下方面：
+- 表结构优化
+- 索引策略
+- 查询性能
+- 事务管理
+
+## 使用方式
+
 ```
-/lcyf-db-review              # Review all database changes
-/lcyf-db-review sys_user     # Review specific table
+/lcyf-db-review              # 审查所有数据库变更
+/lcyf-db-review sys_user     # 审查特定表
 ```
 
-## Implementation
-Invoke the `db-optimizer` agent for comprehensive database review.
+## 实现
 
-## Output
-Review report with performance grade and optimization recommendations.
+调用 `db-optimizer` agent 进行全面的数据库审查。
+
+## 输出
+
+包含性能等级和优化建议的审查报告。

@@ -1,4 +1,4 @@
-# LCYF Workflow Skill
+# lcyf 工作流技能
 
 ---
 
@@ -8,27 +8,27 @@ version: 1.0.0
 
 ---
 
-## Overview
+## 概览
 
-Standardized workflow for lcyf feature development:
+lcyf 功能开发的标准化工作流：
 
-1. **Requirement Design** (EARS syntax)
-2. **Technical Design** (API + DB + Cache)
-3. **Task Breakdown** (Actionable tasks)
-4. **Implementation** (TDD approach)
-5. **Review** (Code + DB + API)
+1. **需求设计** (EARS 语法)
+2. **技术方案设计** (API + 数据库 + 缓存)
+3. **任务拆分** (可执行任务)
+4. **实现** (TDD 方法)
+5. **审查** (代码 + 数据库 + API)
 
-## Component Files
+## 组件文件
 
-- `requirement-design.md` - EARS requirement template
-- `technical-design.md` - Technical design template
-- `task-breakdown.md` - Task breakdown template
+- `requirement-design.md` - EARS 需求模板
+- `technical-design.md` - 技术方案模板
+- `task-breakdown.md` - 任务拆分模板
 
-## Workflow Phases
+## 工作流阶段
 
-### Phase 1: Requirement Design (EARS)
+### 阶段 1：需求设计 (EARS)
 
-**Format:**
+**格式：**
 
 ```markdown
 ## 需求 X - [功能名称]
@@ -40,7 +40,7 @@ Standardized workflow for lcyf feature development:
 2. ...
 ```
 
-**Example:**
+**示例：**
 
 ```markdown
 ## 需求 1 - 用户登录功能
@@ -53,26 +53,26 @@ Standardized workflow for lcyf feature development:
 3. The 系统应当记录登录日志
 ```
 
-### Phase 2: Technical Design
+### 阶段 2：技术方案设计
 
-**Format:**
+**格式：**
 
 ```markdown
 ## API 设计
-[HTTP Method] [Endpoint]
+[HTTP 方法] [端点]
 Request: { ... }
 Response: { ... }
 
 ## 数据库设计
 - 表: [table_name]
-- 字段: [field descriptions]
-- 索引: [index strategy]
+- 字段: [字段描述]
+- 索引: [索引策略]
 
 ## 缓存策略
 - Redis: [key_pattern] -> [value] (TTL: [duration])
 ```
 
-**Example:**
+**示例：**
 
 ```markdown
 ## API 设计

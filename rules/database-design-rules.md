@@ -1,52 +1,52 @@
-# Database Design Rules
+# 数据库设计规范
 
-Always-follow guidelines for database design in lcyf projects.
+lcyf 项目中必须遵守的数据库设计规范。
 
-## Table Naming
+## 表命名
 
-- Use lowercase with underscores: `sys_user`, `order_item`
-- Plural for collection tables: `users`, `orders`
-- Prefix system tables with `sys_`
+- 使用小写加下划线：`sys_user`、`order_item`
+- 集合表使用复数：`users`、`orders`
+- 系统表使用 `sys_` 前缀
 
-## Column Design
+## 字段设计
 
-- ID columns: BIGINT AUTO_INCREMENT
-- Strings: VARCHAR(n), not TEXT for short strings
-- Dates: TIMESTAMP or DATETIME
-- Boolean: TINYINT (0/1)
-- Always include created_at and updated_at
+- **ID 字段**: BIGINT AUTO_INCREMENT
+- **字符串**: 短字符串使用 VARCHAR(n)，不要用 TEXT
+- **日期**: TIMESTAMP 或 DATETIME
+- **布尔值**: TINYINT（0/1）
+- **必需**: 所有表都必须包含 created_at 和 updated_at
 
-## Index Strategy
+## 索引策略
 
-- Primary key: AUTO_INCREMENT BIGINT
-- Foreign keys: Always indexed
-- Frequently queried columns: Add indexes
-- Composite indexes: Most selective column first
-- Avoid over-indexing
+- **主键**: AUTO_INCREMENT BIGINT
+- **外键**: 必须建立索引
+- **频繁查询的列**: 添加索引
+- **复合索引**: 最有选择性的列放在前面
+- **避免过度索引**
 
-## Required Fields
+## 必需字段
 
-Every table MUST have:
+每个表都 **必须** 包含：
 - `id` (BIGINT AUTO_INCREMENT PRIMARY KEY)
 - `created_at` (TIMESTAMP DEFAULT CURRENT_TIMESTAMP)
 - `updated_at` (TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)
-- `is_deleted` (TINYINT DEFAULT 0) for soft delete
+- `is_deleted` (TINYINT DEFAULT 0) 用于软删除
 
-## Performance Rules
+## 性能规则
 
-- Use EXPLAIN to analyze queries
-- Avoid SELECT *
-- Implement pagination for large datasets
-- Use LIMIT appropriately
-- Identify N+1 query problems
+- 使用 EXPLAIN 分析查询
+- 避免 SELECT *
+- 为大型数据集实现分页
+- 适当使用 LIMIT
+- 识别 N+1 查询问题
 
-## Constraints
+## 约束
 
-- Define UNIQUE constraints for business keys
-- Use FOREIGN KEY constraints
-- Set NOT NULL where appropriate
-- Use CHECK constraints for validation
+- 为业务键定义 UNIQUE 约束
+- 使用 FOREIGN KEY 约束
+- 在适当的地方使用 NOT NULL
+- 使用 CHECK 约束进行验证
 
 ---
 
-遵循这些规则以确保数据库设计质量。
+遵循这些规则以确保数据库设计质量和性能。
