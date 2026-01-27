@@ -5,6 +5,43 @@ description: 在实现 lcyf-cloud Java/Spring Boot 功能时使用。提供 Cont
 
 # Java全栈开发技能
 
+## 文件清单
+
+本 skill 包含以下内容，供 Claude 参考：
+
+### 核心内容
+- **代码模板**（第58-520行）：10个完整的代码模板
+  - Controller 模板（第58-120行）：REST API 控制器模板，包含 CRUD 操作
+  - Service 接口模板（第122-164行）：业务服务接口定义
+  - Service 实现模板（第166-223行）：业务逻辑实现
+  - Gateway 模板（第225-289行）：数据访问层，集成 CrudRepository 和 BeanSearcher
+  - Assembler 模板（第291-343行）：MapStruct 对象转换器
+  - Mapper 模板（第345-358行）：MyBatis-Plus Mapper 接口
+  - Entity (DO) 模板（第360-395行）：数据实体类，继承 TenantBaseDO
+  - DTO 模板（第397-421行）：数据传输对象
+  - AddCmd 模板（第423-449行）：新增命令对象，包含校验注解
+  - UpdateCmd 模板（第451-478行）：更新命令对象
+
+- **常用代码片段**（第480-520行）：
+  - 分页查询示例（使用 BeanSearcher）
+  - 事务处理示例（@Transactional）
+  - 缓存使用示例（@Cacheable, @CacheEvict）
+
+- **分层架构说明**（第24-54行）：
+  - adapter/biz/api 三层架构图
+  - 各层职责说明
+  - 调用关系流程
+
+- **技术栈清单**（第12-21行）：
+  - Java 17/21, Spring Boot 3.x
+  - MyBatis-Plus, Dubbo, MapStruct, BeanSearcher
+  - Redis, MySQL 版本信息
+
+### 何时加载
+- 执行 `/lcyf-new-feature` 命令时
+- java-developer agent 需要代码模板时
+- 用户请求 Java/Spring Boot 代码实现时
+
 ## 概述
 
 提供Java/Spring Boot全栈开发的最佳实践和代码模板。

@@ -1,6 +1,6 @@
-# LCYF Claude Code - Java团队智能开发系统 v2.0
+# LCYF Claude Code - Java团队智能开发系统 v2.1
 
-> 面向 Java/Spring Boot 团队的智能开发伙伴系统
+> 面向 Java/Spring Boot 团队的轻量级智能开发伙伴系统
 
 ---
 
@@ -22,7 +22,7 @@
 ┌─────────────────────────────────────────┐
 │              adapter（适配层）            │
 │  ┌─────────┐ ┌─────────┐ ┌─────────┐   │
-│  │   web   │ │   rpc   │ ���   mq    │   │
+│  │   web   │ │   rpc   │ │   mq    │   │
 │  └─────────┘ └─────────┘ └─────────┘   │
 └─────────────────────────────────────────┘
                     │
@@ -53,33 +53,12 @@
 
 ## 可用命令
 
-### 核心开发命令
-
 | 命令 | 用途 |
 |------|------|
 | `/lcyf-new-feature` | 完整的新功能开发工作流 |
-| `/lcyf-tdd` | 测试驱动开发流程 |
-| `/lcyf-refactor` | 代码重构流程 |
+| `/lcyf-code-review` | 全面代码质量审查 |
 | `/lcyf-build-fix` | 修复构建错误 |
-
-### 代码审查命令
-
-| 命令 | 用途 |
-|------|------|
-| `/lcyf-code-review` | 全面代码审查 |
-| `/lcyf-security-scan` | 安全漏洞扫描 |
-| `/lcyf-api-review` | API 设计审查 |
-| `/lcyf-db-review` | 数据库设计审查 |
-| `/lcyf-module-check` | 模块依赖检查 |
-
-### 管理命令
-
-| 命令 | 用途 |
-|------|------|
-| `/lcyf-verify` | 执行质量验证 |
-| `/lcyf-checkpoint` | 创建/恢复检查点 |
 | `/lcyf-learn` | 知识库管理 |
-| `/lcyf-auto` | 智能命令选择 |
 
 ---
 
@@ -116,19 +95,6 @@
 ---
 
 ## 质量要求
-
-### 测试覆盖率
-
-- **最低要求**: 80%
-- **单元测试**: Service 层必须覆盖
-- **集成测试**: Controller 层必须覆盖
-
-### 安全检查
-
-- 无硬编码密钥
-- 无 SQL 注入风险
-- 无 XSS 风险
-- 无敏感信息泄露
 
 ### 代码规范
 
@@ -171,7 +137,7 @@ base ← 所有模块可依赖
 /lcyf-new-feature
 
 # 输入功能描述
-我想开发用户登录功能
+我想开发用户导出功能
 ```
 
 ### 2. 代码审查
@@ -179,19 +145,20 @@ base ← 所有模块可依赖
 ```bash
 # 代码审查
 /lcyf-code-review
-
-# 安全扫描
-/lcyf-security-scan
 ```
 
-### 3. 验证代码
+### 3. 修复构建错误
 
 ```bash
-# 快速验证
-/lcyf-verify quick
+# 修复构建
+/lcyf-build-fix
+```
 
-# 完整验证
-/lcyf-verify full
+### 4. 知识管理
+
+```bash
+# 知识库管理
+/lcyf-learn list
 ```
 
 ---
@@ -204,8 +171,7 @@ base ← 所有模块可依赖
 | architect | 系统设计、技术决策 |
 | java-developer | 功能实现、代码编写 |
 | code-reviewer | 代码质量检查 |
-| security-reviewer | 安全漏洞检测 |
-| tdd-guide | TDD、测试覆盖率 |
+| knowledge-manager | 知识提取、本能升级 |
 
 ## Skill 列表
 
@@ -214,10 +180,22 @@ base ← 所有模块可依赖
 | java-full-stack | Java/Spring Boot 代码模板 |
 | modular-monolith | 模块化架构设计原则 |
 | continuous-learning | 知识积累和模式提取 |
-| verification-loop | 代码质量验证 |
 | workflows | 标准化开发工作流 |
-| security-review | 安全检查清单和模式 |
-| tdd-workflow | TDD 测试模板和覆盖率 |
+
+---
+
+## 规则列表
+
+| 规则 | 说明 |
+|------|------|
+| 00-总则 | 基本原则和强制要求 |
+| 02-编码风格 | 代码格式、命名规范 |
+| 04-Git工作流 | 分支策略、提交规范 |
+| 05-性能优化 | 数据库、缓存、并发优化 |
+| 06-Java编码规范 | Java特定编码标准 |
+| 07-SpringBoot最佳实践 | Spring Boot使用规范 |
+| 08-MyBatis规范 | MyBatis-Plus使用规范 |
+| 09-API设计规范 | RESTful API设计 |
 
 ---
 
@@ -231,5 +209,5 @@ base ← 所有模块可依赖
 
 ---
 
-**版本**: 2.0.0
+**版本**: 2.1.0
 **仓库**: https://github.com/a623556943/lcyf-claude-code

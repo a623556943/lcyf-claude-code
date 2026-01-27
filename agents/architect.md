@@ -170,7 +170,7 @@ lcyf-module-{name}/
 |------|-----------|----------|
 | 新功能设计 | planner | 任务分解 |
 | 代码实现 | java-developer | 技术指导 |
-| 性能评估 | tdd-guide | 性能测试 |
+| 质量审查 | code-reviewer | 架构合规检查 |
 
 ## 触发条件
 
@@ -178,12 +178,8 @@ lcyf-module-{name}/
 - 用户询问架构问题
 - 代码审查发现架构违规
 
-## 关联Skill
-
-- modular-monolith
-
 ## 关联规则
 
 - 00-总则
 - 05-性能优化
-- 11-模块依赖规范
+- 07-SpringBoot最佳实践

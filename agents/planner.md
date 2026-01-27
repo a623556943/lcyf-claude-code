@@ -66,8 +66,7 @@ model: opus
 | 架构设计 | architect | 系统设计、技术选型 |
 | 代码实现 | java-developer | 功能开发、API实现 |
 | 代码审查 | code-reviewer | 质量检查 |
-| 安全检查 | security-reviewer | 安全漏洞扫描 |
-| 测试相关 | tdd-guide | TDD、覆盖率 |
+| 知识管理 | knowledge-manager | 知识提取、本能升级 |
 
 ## 输出格式
 
@@ -119,13 +118,8 @@ model: opus
 ## 触发条件
 
 - 用户输入 `/lcyf-new-feature`
-- 用户输入 `/lcyf-refactor`
 - 用户请求复杂任务
 - 其他Agent请求协调
-
-## 关联Skill
-
-- workflows
 
 ## 关联规则
 

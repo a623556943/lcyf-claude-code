@@ -84,7 +84,7 @@ e) **验证修复**
 
 建议
 ----
-- 剩余错误需要模块重构，建议使用 /lcyf-refactor
+- 剩余错误需要模块重构，建议联系architect agent
 ```
 
 ## 常见错误类型及修复策略
@@ -97,7 +97,7 @@ e) **验证修复**
 ### 依赖问题
 - **ClassNotFoundException**: 检查pom.xml依赖
 - **版本冲突**: 使用dependencyManagement统一版本
-- **循环依赖**: 需要架构调整，使用 /lcyf-module-check
+- **循环依赖**: 需要架构调整，联系architect agent
 
 ### 注解处理错误
 - **Lombok编译失败**: 检查IDE插件、Maven插件配置
@@ -135,14 +135,11 @@ mvn clean compile -U
 ```
 
 ## 关联命令
-- `/lcyf-module-check` - 检查模块依赖问题
-- `/lcyf-refactor` - 需要架构调整时使用
+
 - `/lcyf-code-review` - 修复完成后进行审查
+- `/lcyf-new-feature` - 新功能开发
 
 ## 关联Agent
 
 - java-developer
-
-## 关联Skill
-
-- java-full-stack
+- architect (循环依赖问题时)

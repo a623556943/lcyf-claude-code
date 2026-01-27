@@ -56,8 +56,7 @@ description: 完整的新功能开发流程，从需求分析、架构设计到�
 1. [ ] 创建导出DTO
 2. [ ] 实现导出Service方法
 3. [ ] 添加导出Controller接口
-4. [ ] 编写单元测试
-5. [ ] 添加导出权限
+4. [ ] 添加导出权限
 
 ### 依赖关系
 - 任务3依赖任务2
@@ -84,8 +83,6 @@ description: 完整的新功能开发流程，从需求分析、架构设计到�
 
 ### 阶段4: 知识沉淀
 
-**使用Skill**: continuous-learning
-
 **学习内容**:
 - 可复用的代码模式
 - 问题解决方案
@@ -101,20 +98,18 @@ description: 完整的新功能开发流程，从需求分析、架构设计到�
 
 ## 关联命令
 
-- `/lcyf-verify` - 执行验证
+- `/lcyf-code-review` - 代码审查
+- `/lcyf-learn` - 知识沉淀
 
 ## 关联Agent
 
 - planner
 - architect
 - java-developer
-
-## 关联Skill
-
-- continuous-learning
-- java-full-stack
+- knowledge-manager
 
 ## 关联规则
 
 - 00-总则
 - 06-Java编码规范
+- 07-SpringBoot最佳实践

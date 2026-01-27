@@ -14,8 +14,8 @@
       },
       {
         "matcher": "tool == \"Edit\" && tool_input.file_path matches \"pom\\.xml|build\\.gradle\"",
-        "hooks": [{"type": "command", "command": "node -e \"console.error('[Hook] 提示: 修改构建文件后建议运行 /lcyf-module-check')\""}],
-        "description": "修改构建文件后提醒检查模块依赖"
+        "hooks": [{"type": "command", "command": "node -e \"console.error('[Hook] 提示: 修改构建文件后建议运行 /lcyf-build-fix 验证构建')\""}],
+        "description": "修改构建文件后提醒验证构建"
       }
     ],
     "PostToolUse": [
