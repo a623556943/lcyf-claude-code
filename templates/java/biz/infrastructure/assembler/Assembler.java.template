@@ -1,0 +1,67 @@
+package com.lcyf.cloud.module.{{moduleName}}.biz.infrastructure.assembler;
+
+import com.lcyf.cloud.framework.common.pojo.PageResult;
+import com.lcyf.cloud.module.{{moduleName}}.biz.infrastructure.entity.{{EntityName}}Do;
+import com.lcyf.cloud.module.{{moduleName}}.api.pojo.dto.{{EntityName}}Dto;
+import com.lcyf.cloud.module.{{moduleName}}.api.pojo.cmd.{{EntityName}}AddCmd;
+import com.lcyf.cloud.module.{{moduleName}}.api.pojo.cmd.{{EntityName}}UpdateCmd;
+import org.mapstruct.*;
+import org.mapstruct.factory.Mappers;
+
+import java.util.List;
+
+/**
+ * {{description}}对象转换器
+ * 使用 MapStruct 进行对象转换
+ *
+ * @author {{author}}
+ * @since {{date}}
+ */
+@Mapper(componentModel = "spring",
+        nullValueIterableMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT,
+        nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS,
+        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+public interface {{EntityName}}Assembler {
+
+    {{EntityName}}Assembler INSTANCE = Mappers.getMapper({{EntityName}}Assembler.class);
+
+    /**
+     * AddCmd -> DO
+     *
+     * @param addCmd 新增命令
+     * @return DO实体
+     */
+    {{EntityName}}Do convert({{EntityName}}AddCmd addCmd);
+
+    /**
+     * UpdateCmd -> DO
+     *
+     * @param updateCmd 更新命令
+     * @return DO实体
+     */
+    {{EntityName}}Do convert({{EntityName}}UpdateCmd updateCmd);
+
+    /**
+     * DO -> DTO
+     *
+     * @param entity DO实体
+     * @return DTO对象
+     */
+    {{EntityName}}Dto convert({{EntityName}}Do entity);
+
+    /**
+     * DO List -> DTO List
+     *
+     * @param list DO列表
+     * @return DTO列表
+     */
+    List<{{EntityName}}Dto> convertList(List<{{EntityName}}Do> list);
+
+    /**
+     * DO PageResult -> DTO PageResult
+     *
+     * @param page DO分页结果
+     * @return DTO分页结果
+     */
+    PageResult<{{EntityName}}Dto> convertPage(PageResult<{{EntityName}}Do> page);
+}

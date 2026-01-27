@@ -1,0 +1,62 @@
+package com.lcyf.cloud.module.{{moduleName}}.biz.service.impl;
+
+import com.lcyf.cloud.framework.common.pojo.PageResult;
+import com.lcyf.cloud.module.{{moduleName}}.biz.service.I{{EntityName}}Service;
+import com.lcyf.cloud.module.{{moduleName}}.biz.infrastructure.gateway.{{EntityName}}Gateway;
+import com.lcyf.cloud.module.{{moduleName}}.api.pojo.dto.{{EntityName}}Dto;
+import com.lcyf.cloud.module.{{moduleName}}.api.pojo.cmd.{{EntityName}}AddCmd;
+import com.lcyf.cloud.module.{{moduleName}}.api.pojo.cmd.{{EntityName}}UpdateCmd;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.util.Map;
+
+/**
+ * {{description}} Service实现
+ *
+ * 业务职责:
+ * 1. 实现业务逻辑
+ * 2. 事务管理
+ * 3. 调用Gateway层
+ *
+ * @author {{author}}
+ * @since {{date}}
+ */
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class {{EntityName}}ServiceImpl implements I{{EntityName}}Service {
+
+    private final {{EntityName}}Gateway {{entityName}}Gateway;
+
+    @Override
+    public PageResult<{{EntityName}}Dto> get{{EntityName}}Page(Map<String, Object> paraMap) {
+        log.info("分页查询{{description}}, params: {}", paraMap);
+        return {{entityName}}Gateway.selectPage(paraMap);
+    }
+
+    @Override
+    public {{EntityName}}Dto get(Long id) {
+        log.info("获取{{description}}详情, id: {}", id);
+        return {{entityName}}Gateway.selectById(id);
+    }
+
+    @Override
+    public Long create({{EntityName}}AddCmd addCmd) {
+        log.info("新增{{description}}, cmd: {}", addCmd);
+        return {{entityName}}Gateway.save(addCmd);
+    }
+
+    @Override
+    public void modify({{EntityName}}UpdateCmd updateCmd) {
+        log.info("修改{{description}}, cmd: {}", updateCmd);
+        {{entityName}}Gateway.updateById(updateCmd);
+    }
+
+    @Override
+    public void delete(Long id) {
+        log.info("删除{{description}}, id: {}", id);
+        {{entityName}}Gateway.removeById(id);
+    }
+}

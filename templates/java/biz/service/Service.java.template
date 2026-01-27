@@ -1,118 +1,88 @@
-package {{modulePackage}}.biz.service;
+package com.lcyf.cloud.module.{{moduleName}}.biz.service;
 
-import {{basePackage}}.framework.commons.pojo.PageResult;
-import {{modulePackage}}.api.pojo.cmd.{{entityName}}AddCmd;
-import {{modulePackage}}.api.pojo.cmd.{{entityName}}UpdateCmd;
-import {{modulePackage}}.api.pojo.dto.{{entityName}}Dto;
-import {{modulePackage}}.api.pojo.view.{{entityName}}View;
+import com.lcyf.cloud.framework.common.pojo.PageResult;
+import com.lcyf.cloud.module.{{moduleName}}.api.pojo.dto.{{EntityName}}Dto;
+import com.lcyf.cloud.module.{{moduleName}}.api.pojo.cmd.{{EntityName}}AddCmd;
+import com.lcyf.cloud.module.{{moduleName}}.api.pojo.cmd.{{EntityName}}UpdateCmd;
 
-import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 /**
- * {{entityComment}} Service接口
+ * {{description}} Service接口
  *
  * 业务职责:
- * 1. 定义{{entityComment}}业务逻辑接口
+ * 1. 定义{{description}}业务逻辑接口
  * 2. 声明事务边界
  * 3. 提供业务方法契约
  *
  * @author {{author}}
- * @date {{date}}
+ * @since {{date}}
  */
-public interface I{{entityName}}Service {
+public interface I{{EntityName}}Service {
 
     /**
-     * 创建{{entityComment}}
+     * 分页查询{{description}}
+     *
+     * 业务流程:
+     * 1. 接收查询参数
+     * 2. 调用Gateway层分页查询
+     * 3. 返回分页结果
+     *
+     * @param paraMap 查询参数Map（支持BeanSearcher动态查询）
+     * @return 分页结果集
+     */
+    PageResult<{{EntityName}}Dto> get{{EntityName}}Page(Map<String, Object> paraMap);
+
+    /**
+     * 根据ID获取{{description}}
+     *
+     * 业务流程:
+     * 1. 校验ID有效性
+     * 2. 查询数据
+     * 3. 返回详情
+     *
+     * @param id {{description}}ID
+     * @return {{description}}详情数据
+     * @throws com.lcyf.cloud.framework.common.exception.ServiceException 记录不存在
+     */
+    {{EntityName}}Dto get(Long id);
+
+    /**
+     * 新增{{description}}
      *
      * 业务流程:
      * 1. 参数验证
      * 2. 业务规则校验
      * 3. 数据持久化
-     * {{#needCache}}4. 清除相关缓存{{/needCache}}
      *
-     * @param cmd 创建命令对象
-     * {{#needAuth}}
-     * @param userCode 操作人编码
-     * {{/needAuth}}
+     * @param addCmd 新增命令对象
      * @return 新创建记录的ID
-     * @throws {{basePackage}}.framework.commons.exception.BusinessException 业务异常
+     * @throws com.lcyf.cloud.framework.common.exception.ServiceException 业务异常
      */
-    {{#needAuth}}
-    Long create({{entityName}}AddCmd cmd, String userCode);
-    {{/needAuth}}
-    {{^needAuth}}
-    Long create({{entityName}}AddCmd cmd);
-    {{/needAuth}}
+    Long create({{EntityName}}AddCmd addCmd);
 
     /**
-     * 更新{{entityComment}}
+     * 修改{{description}}
      *
      * 业务流程:
      * 1. 检查记录是否存在
      * 2. 验证业务规则
      * 3. 更新数据
-     * {{#needCache}}4. 清除缓存{{/needCache}}
      *
-     * @param id {{entityComment}}ID
-     * @param cmd 更新命令对象
-     * {{#needAuth}}
-     * @param userCode 操作人编码
-     * {{/needAuth}}
-     * @throws {{basePackage}}.framework.commons.exception.BusinessException 记录不存在或更新失败
+     * @param updateCmd 更新命令对象
+     * @throws com.lcyf.cloud.framework.common.exception.ServiceException 记录不存在或更新失败
      */
-    {{#needAuth}}
-    void update(Long id, {{entityName}}UpdateCmd cmd, String userCode);
-    {{/needAuth}}
-    {{^needAuth}}
-    void update(Long id, {{entityName}}UpdateCmd cmd);
-    {{/needAuth}}
+    void modify({{EntityName}}UpdateCmd updateCmd);
 
     /**
-     * 删除{{entityComment}}
+     * 删除{{description}}
      *
      * 业务流程:
      * 1. 检查是否可删除（关联数据检查）
      * 2. 逻辑删除记录
-     * {{#needCache}}3. 清除缓存{{/needCache}}
      *
-     * @param id {{entityComment}}ID
-     * @throws {{basePackage}}.framework.commons.exception.BusinessException 记录不存在或删除失败
+     * @param id {{description}}ID
+     * @throws com.lcyf.cloud.framework.common.exception.ServiceException 记录不存在或删除失败
      */
     void delete(Long id);
-
-    /**
-     * 批量删除{{entityComment}}
-     *
-     * @param ids {{entityComment}}ID集合
-     */
-    void batchDelete(Collection<Long> ids);
-
-    /**
-     * 查询{{entityComment}}详情
-     *
-     * @param id {{entityComment}}ID
-     * @return {{entityComment}}详情数据，不存在返回null
-     */
-    {{#needCache}}
-    @Cacheable(value = "{{cacheName}}", key = "#id")
-    {{/needCache}}
-    {{entityName}}Dto get(Long id);
-
-    /**
-     * 批量查询{{entityComment}}
-     *
-     * @param ids {{entityComment}}ID集合
-     * @return {{entityComment}}列表
-     */
-    List<{{entityName}}Dto> list(Collection<Long> ids);
-
-    /**
-     * 分页查询{{entityComment}}
-     *
-     * @param paraMap 查询参数Map（支持Bean Searcher动态查询）
-     * @return 分页结果集
-     */
-    PageResult<{{entityName}}View> page(Map<String, Object> paraMap);
 }

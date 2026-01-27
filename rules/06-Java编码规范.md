@@ -1,326 +1,583 @@
-# 06-Java编码规范
+# 06-Java编码规范 (lcyf-cloud 架构)
 
-## 概述
+> **Tech Stack**: Java 21 + Spring Boot 3.5.x + Dubbo 3.3.3 + MyBatis-Plus 3.5.x + DDD+COLA
 
-Java编码规范确保代码风格统一，提高可读性和可维护性。
+---
 
-## 命名规范
+## 🎯 核心约束速查表
 
-### 包命名
+### ✅ MUST (必须)
 
-```java
-// ✅ 全小写，使用点分隔
-package com.lcyf.cloud.system.biz.service;
-package com.lcyf.cloud.sales.adapter.web;
+| 规则 | 说明 |
+|------|------|
+| `@RequiredArgsConstructor` | 所有依赖注入，禁用 `@Autowired` |
+| `@Slf4j` | 所有 Service/Gateway 类 |
+| `@Validated` + `@Valid` | Controller 类 + Cmd 参数 |
+| `extends TenantBaseDO` | 业务实体继承（多租户） |
+| `IdType.ASSIGN_ID` | 主键生成策略 |
+| `implements Serializable` | 所有 DTO/Cmd + `serialVersionUID` |
+| `BeanSearcher` | 分页查询 |
+| `MapStruct Assembler` | 对象转换 |
+| `ServiceException` | 业务异常 |
 
-// ❌ 错误
-package com.lcyf.cloud.System.Biz.Service;
-package com_lcyf_cloud_system;
+### ❌ NEVER (禁止)
+
+| 禁止行为 | 替代方案 |
+|---------|---------|
+| `@Autowired` | `@RequiredArgsConstructor` |
+| Magic values | 常量/枚举 |
+| `catch` 不打日志 | `log.error(..., e)` |
+| 返回 `null` | `Optional` / 空集合 |
+| 手动设置 `tenant_code` | 框架自动注入 |
+| `System.out.println` | `@Slf4j` |
+| 在 DTO/DO 中写业务逻辑 | 放 Service 层 |
+
+---
+
+## 📐 架构决策矩阵
+
+### 组件放置位置
+
+| 组件类型 | 路径 |
+|---------|------|
+| Controller | `{module}-adapter/web/{business}/` |
+| Service Interface | `{module}-biz/service/` |
+| Service Impl | `{module}-biz/service/impl/` |
+| Gateway | `{module}-biz/infrastructure/gateway/` |
+| Mapper | `{module}-biz/infrastructure/mapper/` |
+| Assembler | `{module}-biz/infrastructure/assembler/` |
+| DO (Entity) | `{module}-biz/infrastructure/entity/` |
+| Cmd/Dto/Query/Vo | `{module}-api/pojo/{type}/` |
+| Enum (模块) | `{module}-api/enums/` |
+| Enum (全局) | `lcyf-common-dto/enums/` |
+| DTO (跨模块) | `lcyf-common-dto/dto/` |
+| RPC Interface | `{module}-api/rpc/` |
+| RPC Impl | `{module}-adapter/rpc/` |
+
+### ⚠️ 重要：API 层统一位置
+
+**所有业务模块的 API 层（Cmd/DTO/Query/Vo/Enum/RPC）统一放在 `lcyf-module-base` 仓库，而非各自业务模块仓库。**
+
+```
+lcyf-module-base/                          ← API 层统一仓库
+├── lcyf-module-system-api/
+├── lcyf-module-policy-api/
+├── lcyf-module-{xxx}-api/
+│   └── src/main/java/.../api/
+│       ├── pojo/cmd/    ← Cmd
+│       ├── pojo/dto/    ← DTO
+│       ├── pojo/query/  ← Query
+│       ├── enums/       ← Enum
+│       └── rpc/         ← RPC
+└── ...
+
+lcyf-module-{xxx}/                         ← 业务模块仓库（只有 biz + adapter）
+├── lcyf-module-{xxx}-biz/
+└── lcyf-module-{xxx}-adapter/
 ```
 
-### 类命名
+| 正确 ✅ | 错误 ❌ |
+|--------|--------|
+| `lcyf-module-base/lcyf-module-{xxx}-api/` | `lcyf-module-{xxx}/lcyf-module-{xxx}-api/` (不存在) |
+
+### 生成决策
+
+| 场景 | 生成范围 |
+|------|---------|
+| 新 CRUD 实体 | 全栈: DO→Mapper→Cmd/Dto→Assembler→Gateway→Service→Controller |
+| 已有实体加方法 | 只修改对应层 |
+| 跨模块 RPC | 接口放 `{module}-api/rpc/`，实现放 `{module}-adapter/rpc/` |
+
+---
+
+## 🛠️ 代码模板
+
+### 1. Controller
 
 ```java
-// ✅ PascalCase
-public class UserService {}
-public class OrderController {}
-public interface IUserService {}
-public abstract class AbstractHandler {}
-public enum StatusEnum {}
+@RestController
+@RequestMapping("/api/v1/{module}/auth/{business}")
+@Tag(name = "{业务描述}")
+@RequiredArgsConstructor
+@Validated
+public class {Entity}Controller {
 
-// ❌ 错误
-public class userService {}      // 首字母小写
-public class User_Service {}     // 使用下划线
-public class USERService {}      // 大写缩写词
+    private final I{Entity}Service {entity}Service;
+
+    @GetMapping("/page")
+    @Operation(summary = "分页查询")
+    public CommonResult<PageResult<{Entity}Dto>> page(HttpServletRequest request) {
+        return CommonResult.success({entity}Service.get{Entity}Page(MapUtils.flat(request.getParameterMap())));
+    }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "详情")
+    public CommonResult<{Entity}Dto> get(@PathVariable Long id) {
+        return CommonResult.success({entity}Service.get(id));
+    }
+
+    @PostMapping("/add")
+    @Operation(summary = "新增")
+    public CommonResult<Object> add(@RequestBody @Valid {Entity}AddCmd cmd) {
+        {entity}Service.create(cmd);
+        return CommonResult.success();
+    }
+
+    @PutMapping("/update")
+    @Operation(summary = "修改")
+    public CommonResult<Object> update(@RequestBody @Valid {Entity}UpdateCmd cmd) {
+        {entity}Service.modify(cmd);
+        return CommonResult.success();
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @Operation(summary = "删除")
+    public CommonResult<Object> delete(@PathVariable Long id) {
+        {entity}Service.delete(id);
+        return CommonResult.success();
+    }
+}
 ```
+
+**URL 规则**:
+- 认证: `/api/v{n}/{module}/auth/{business}`
+- 公开: `/api/v{n}/{module}/{business}`
+- 开放平台: `/openapi/v{n}/{type}/{business}`
+
+### 2. Service Interface
+
+```java
+public interface I{Entity}Service {
+    PageResult<{Entity}Dto> get{Entity}Page(Map<String, Object> paraMap);
+    {Entity}Dto get(Long id);
+    Long create({Entity}AddCmd addCmd);
+    void modify({Entity}UpdateCmd updateCmd);
+    void delete(Long id);
+}
+```
+
+### 3. Service Impl
+
+```java
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class {Entity}ServiceImpl implements I{Entity}Service {
+
+    private final {Entity}Gateway {entity}Gateway;
+
+    @Override
+    public PageResult<{Entity}Dto> get{Entity}Page(Map<String, Object> paraMap) {
+        log.info("分页查询{业务}, params: {}", paraMap);
+        return {entity}Gateway.selectPage(paraMap);
+    }
+
+    @Override
+    public {Entity}Dto get(Long id) {
+        return {entity}Gateway.selectById(id);
+    }
+
+    @Override
+    public Long create({Entity}AddCmd addCmd) {
+        log.info("新增{业务}, cmd: {}", addCmd);
+        return {entity}Gateway.save(addCmd);
+    }
+
+    @Override
+    public void modify({Entity}UpdateCmd updateCmd) {
+        log.info("修改{业务}, cmd: {}", updateCmd);
+        {entity}Gateway.updateById(updateCmd);
+    }
+
+    @Override
+    public void delete(Long id) {
+        log.info("删除{业务}, id: {}", id);
+        {entity}Gateway.removeById(id);
+    }
+}
+```
+
+### 4. Gateway
+
+```java
+@Service
+@RequiredArgsConstructor
+public class {Entity}Gateway extends CrudRepository<{Entity}Mapper, {Entity}Do> {
+
+    private final {Entity}Assembler {entity}Assembler;
+    private final BeanSearcher beanSearcher;
+
+    public PageResult<{Entity}Dto> selectPage(Map<String, Object> paraMap) {
+        SearchResult<{Entity}Do> search = beanSearcher.search({Entity}Do.class, paraMap);
+        return {entity}Assembler.convertPage(new PageResult<>(search.getDataList(), search.getTotalCount().longValue()));
+    }
+
+    public {Entity}Dto selectById(Long id) {
+        return {entity}Assembler.convert(super.getById(id));
+    }
+
+    public Long save({Entity}AddCmd addCmd) {
+        {Entity}Do entity = {entity}Assembler.convert(addCmd);
+        super.save(entity);
+        return entity.getId();
+    }
+
+    public void updateById({Entity}UpdateCmd updateCmd) {
+        this.updateById({entity}Assembler.convert(updateCmd));
+    }
+}
+```
+
+### 5. Mapper
+
+```java
+public interface {Entity}Mapper extends BaseMapper<{Entity}Do> { }
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lcyf.cloud.module.{domain}.biz.infrastructure.mapper.{Entity}Mapper">
+</mapper>
+```
+
+### 6. Assembler (MapStruct)
+
+```java
+@Mapper(componentModel = "spring",
+        nullValueIterableMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT,
+        nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS,
+        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+public interface {Entity}Assembler {
+
+    {Entity}Assembler INSTANCE = Mappers.getMapper({Entity}Assembler.class);
+
+    {Entity}Do convert({Entity}AddCmd addCmd);
+    {Entity}Do convert({Entity}UpdateCmd updateCmd);
+    {Entity}Dto convert({Entity}Do entity);
+    List<{Entity}Dto> convertList(List<{Entity}Do> list);
+    PageResult<{Entity}Dto> convertPage(PageResult<{Entity}Do> page);
+}
+```
+
+### 7. DO (Entity)
+
+```java
+@Data
+@EqualsAndHashCode(callSuper = true)
+@TableName("{table_name}")
+@SearchBean(tables = "{table_name}")
+@Schema(description = "{业务描述}实体")
+public class {Entity}Do extends TenantBaseDO {
+
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
+    @DbField("id")
+    @Schema(description = "主键ID")
+    private Long id;
+
+    @DbField("{db_field}")
+    @Schema(description = "{字段描述}")
+    private String {fieldName};
+}
+```
+
+**继承规则**: 多租户业务实体 → `TenantBaseDO` | 全局配置表 → `BaseDO`
+
+### 8. DTO
+
+```java
+@Data
+@Schema(description = "{业务描述}DTO")
+public class {Entity}Dto implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Schema(description = "主键ID")
+    private Long id;
+
+    @Schema(description = "{字段描述}")
+    private String {fieldName};
+}
+```
+
+### 9. AddCmd / UpdateCmd
+
+```java
+@Data
+@Schema(description = "{业务描述}新增命令")
+public class {Entity}AddCmd implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Schema(description = "{字段描述}")
+    @NotBlank(message = "{字段描述}不能为空")
+    private String {fieldName};
+}
+```
+
+```java
+@Data
+@Schema(description = "{业务描述}更新命令")
+public class {Entity}UpdateCmd implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Schema(description = "主键ID")
+    @NotNull(message = "ID不能为空")
+    private Long id;
+
+    @Schema(description = "{字段描述}")
+    @NotBlank(message = "{字段描述}不能为空")
+    private String {fieldName};
+}
+```
+
+### 10. Enum
+
+```java
+@Getter
+@AllArgsConstructor
+public enum {Name}Enum implements ArrayValuable {
+
+    TYPE_A("0", "类型A"),
+    TYPE_B("1", "类型B");
+
+    private final String code;
+    private final String desc;
+
+    public static final Set<Object> CODE_ARRAY = Arrays.stream(values())
+        .map(s -> (Object) s.getCode()).collect(Collectors.toSet());
+
+    public static final Map<Object, String> VALUE_DESC_MAP = Arrays.stream(values())
+        .collect(Collectors.toMap({Name}Enum::getCode, {Name}Enum::getDesc));
+
+    public static {Name}Enum parse(String code) {
+        for ({Name}Enum v : values()) {
+            if (v.getCode().equals(code)) return v;
+        }
+        throw new RuntimeException("枚举解析失败: " + code);
+    }
+
+    @Override
+    public Set<Object> array() { return CODE_ARRAY; }
+
+    @Override
+    public Map<Object, String> valueDescMap() { return VALUE_DESC_MAP; }
+}
+```
+
+### 11. RPC Interface + Impl
+
+```java
+// Interface: {module}-api/rpc/
+public interface {Domain}Api {
+    {Entity}Dto get{Entity}ById(Long id);
+    List<{Entity}Dto> get{Entity}List({Entity}Query query);
+    Long save{Entity}({Entity}Cmd cmd);
+    void delete{Entity}(Long id);
+}
+
+// Impl: {module}-adapter/rpc/
+@DubboService
+@RequiredArgsConstructor
+public class {Domain}ApiImpl implements {Domain}Api {
+    private final I{Entity}Service {entity}Service;
+
+    @Override
+    public {Entity}Dto get{Entity}ById(Long id) {
+        return {entity}Service.get(id);
+    }
+}
+
+// Consumer
+@DubboReference
+private {Domain}Api {domain}Api;
+```
+
+---
+
+## 🔍 命名规范
 
 ### 方法命名
 
-```java
-// ✅ camelCase，动词开头
-public User getById(Long id) {}
-public List<User> listByStatus(Integer status) {}
-public Long create(UserDTO dto) {}
-public void update(UserDTO dto) {}
-public void deleteById(Long id) {}
-public boolean isActive() {}
-public boolean hasPermission() {}
+| 层级 | 分页 | 详情 | 新增 | 修改 | 删除 |
+|------|------|------|------|------|------|
+| Controller | `page()` | `get()` | `add()` | `update()` | `delete()` |
+| Service | `get{E}Page()` | `get()` | `create()` | `modify()` | `delete()` |
+| Gateway | `selectPage()` | `selectById()` | `save()` | `updateById()` | `removeById()` |
+| RPC | `query{E}Page()` | `get{E}ById()` | `save{E}()` | `modify{E}()` | `delete{E}()` |
 
-// ❌ 错误
-public User GetById(Long id) {}        // 首字母大写
-public User get_by_id(Long id) {}      // 使用下划线
-public User query(Long id) {}          // 不够描述性
+### 类命名
+
+| 类型 | 模式 | 示例 |
+|------|------|------|
+| Controller | `{Entity}Controller` | `FeeAuditController` |
+| Service | `I{Entity}Service` / `{Entity}ServiceImpl` | `IFeeAuditService` |
+| Gateway | `{Entity}Gateway` | `FeeAuditGateway` |
+| Mapper | `{Entity}Mapper` | `FeeAuditMapper` |
+| Assembler | `{Entity}Assembler` | `FeeAuditAssembler` |
+| DO | `{Entity}Do` | `FeeAuditDo` |
+| DTO | `{Entity}Dto` | `FeeAuditDto` |
+| Cmd | `{Entity}AddCmd` / `{Entity}UpdateCmd` | `FeeAuditAddCmd` |
+| Enum | `{Name}Enum` | `EnableStatusEnum` |
+
+---
+
+## ⚠️ 异常 & 日志
+
+### 异常处理
+
+```java
+// 业务校验失败
+throw new ServiceException(ErrorCode.XXX_ERROR);
+throw new ServiceException(ErrorCodeConstants.XXX_ERROR, "详细信息");
+
+// 系统错误
+throw new ServerException(ErrorCode.SYSTEM_ERROR);
 ```
 
-### 变量命名
+**规则**: Controller 不捕获异常(交给全局处理) | Service 必须 catch 并打日志
+
+### 日志规范
 
 ```java
-// ✅ camelCase
-private Long userId;
-private String userName;
-private List<Order> pendingOrders;
-
-// ✅ 常量全大写+下划线
-public static final int MAX_RETRY_COUNT = 3;
-public static final String DEFAULT_CHARSET = "UTF-8";
-
-// ❌ 错误
-private Long UserId;          // 首字母大写
-private String user_name;     // 使用下划线
-private List<Order> l;        // 无意义
-```
-
-## 代码结构
-
-### 类文件结构
-
-```java
-// 1. 包声明
-package com.lcyf.cloud.system.biz.service.impl;
-
-// 2. Import语句（分组：java、javax、第三方、本项目）
-import java.util.List;
-import java.util.Map;
-
-import jakarta.annotation.Resource;
-
-import org.springframework.stereotype.Service;
-
-import com.lcyf.cloud.system.biz.service.IUserService;
-
-// 3. 类声明
-/**
- * 用户服务实现
- *
- * @author zhangsan
- */
-@Service
-public class UserServiceImpl implements IUserService {
-
-    // 4. 静态常量
-    private static final int DEFAULT_PAGE_SIZE = 10;
-
-    // 5. 静态变量
-    private static final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
-
-    // 6. 实例变量
-    @Resource
-    private UserMapper userMapper;
-
-    // 7. 构造方法
-
-    // 8. 公共方法
-
-    // 9. 私有方法
-}
-```
-
-### 方法长度
-
-```java
-// ✅ 方法不超过50行，单一职责
-public void processOrder(Order order) {
-    validateOrder(order);
-    calculatePrice(order);
-    applyDiscount(order);
-    saveOrder(order);
-    sendNotification(order);
-}
-
-private void validateOrder(Order order) {
-    // 验证逻辑
-}
-
-private void calculatePrice(Order order) {
-    // 计算价格
-}
-
-// ❌ 方法过长
-public void processOrder(Order order) {
-    // 100+ 行代码...
-}
-```
-
-## 异常处理
-
-### 异常使用
-
-```java
-// ✅ 使用具体异常
-public User getById(Long id) {
-    User user = userMapper.selectById(id);
-    if (user == null) {
-        throw new NotFoundException("用户不存在: " + id);
-    }
-    return user;
-}
-
-// ✅ 捕获具体异常
-try {
-    userService.save(user);
-} catch (DuplicateKeyException e) {
-    throw new BusinessException("用户名已存在", e);
-}
-
-// ❌ 不要捕获Exception
-try {
-    // ...
-} catch (Exception e) {
-    // 太宽泛
-}
-```
-
-### 自定义异常
-
-```java
-// ✅ 业务异常
-public class BusinessException extends RuntimeException {
-    private final Integer code;
-    private final String message;
-
-    public BusinessException(String message) {
-        this(ErrorCode.BUSINESS_ERROR.getCode(), message);
-    }
-
-    public BusinessException(Integer code, String message) {
-        super(message);
-        this.code = code;
-        this.message = message;
+@Slf4j
+public class XxxServiceImpl {
+    public void process(Long id) {
+        log.info("开始处理, id={}", id);          // ✅ 用占位符 {}
+        try {
+            log.debug("处理详情: {}", detail);
+        } catch (Exception e) {
+            log.error("处理失败, id={}", id, e);  // ✅ 异常对象放最后
+            throw new ServiceException(ErrorCode.XXX_ERROR);
+        }
     }
 }
 ```
 
-## 集合处理
+**禁止**: 字符串拼接 `"id=" + id` | 不打异常对象 | 打印敏感数据
 
-### Stream API
+---
 
-```java
-// ✅ 使用Stream简化集合操作
-List<String> names = users.stream()
-    .filter(u -> u.getStatus() == 1)
-    .map(User::getName)
-    .collect(Collectors.toList());
+## 🔐 参数校验
 
-Map<Long, User> userMap = users.stream()
-    .collect(Collectors.toMap(User::getId, Function.identity()));
+### 常用注解
 
-// ✅ 并行流处理大数据
-long count = largeList.parallelStream()
-    .filter(this::isValid)
-    .count();
-```
+| 注解 | 用途 |
+|------|------|
+| `@NotNull` | 非 null |
+| `@NotBlank` | 字符串非空白 |
+| `@NotEmpty` | 集合非空 |
+| `@Min` / `@Max` | 数值范围 |
+| `@Email` | 邮箱格式 |
+| `@Pattern` | 正则匹配 |
+| `@Valid` | 嵌套校验 |
 
-### Optional处理
+### 使用方式
 
 ```java
-// ✅ 使用Optional避免NPE
-public String getUserName(Long id) {
-    return Optional.ofNullable(userMapper.selectById(id))
-        .map(User::getName)
-        .orElse("unknown");
-}
-
-// ✅ 链式调用
-Optional.ofNullable(user)
-    .map(User::getDepartment)
-    .map(Department::getManager)
-    .map(User::getName)
-    .orElse("N/A");
-
-// ❌ 避免isPresent + get
-if (optional.isPresent()) {
-    return optional.get();
+@RestController
+@Validated                                        // Controller 类上
+public class XxxController {
+    @PostMapping("/add")
+    public CommonResult<Object> add(@RequestBody @Valid XxxAddCmd cmd) { }  // 参数上
 }
 ```
 
-## 空值处理
+---
 
-### 防御性编程
+## 📦 依赖管理
 
-```java
-// ✅ 参数校验
-public void process(List<User> users) {
-    if (CollectionUtils.isEmpty(users)) {
-        return;
-    }
-    // 处理逻辑
-}
+### 禁止指定版本
 
-// ✅ 使用Objects工具类
-Objects.requireNonNull(user, "user不能为null");
+```xml
+<!-- ❌ 错误 -->
+<dependency>
+    <artifactId>lcyf-framework-starter-web</artifactId>
+    <version>2.24.0-SNAPSHOT</version>
+</dependency>
 
-// ✅ 字符串判断
-if (StringUtils.isNotBlank(name)) {
-    // 处理
-}
+<!-- ✅ 正确 -->
+<dependency>
+    <artifactId>lcyf-framework-starter-web</artifactId>
+</dependency>
 ```
 
-## 日志规范
+### 框架 Starter
 
-### 日志级别
+| Starter | 功能 |
+|---------|------|
+| `lcyf-framework-starter-web` | Web 基础 |
+| `lcyf-framework-starter-dal` | 数据库 |
+| `lcyf-framework-starter-redis` | 缓存 |
+| `lcyf-framework-starter-dubbo` | RPC |
+| `lcyf-framework-starter-mq` | 消息队列 |
+| `lcyf-framework-starter-security` | 安全认证 |
+| `lcyf-framework-starter-tenant` | 多租户 |
+| `lcyf-framework-starter-excel` | Excel |
+| `lcyf-framework-starter-oss` | 对象存储 |
 
-```java
-// ERROR: 错误，需要关注
-log.error("订单处理失败, orderId={}", orderId, e);
+---
 
-// WARN: 警告，潜在问题
-log.warn("重试次数过多, userId={}, retryCount={}", userId, retryCount);
-
-// INFO: 重要业务信息
-log.info("用户登录成功, userId={}", userId);
-
-// DEBUG: 调试信息
-log.debug("查询参数: {}", query);
-```
-
-### 日志格式
+## 📚 工具类速查
 
 ```java
-// ✅ 使用占位符
-log.info("用户登录, userId={}, ip={}", userId, ip);
+// 字符串/集合
+StringUtils.hasText(str)
+CollectionUtil.isEmpty(list)
+ObjectUtil.isNotNull(obj)
 
-// ❌ 不要字符串拼接
-log.info("用户登录, userId=" + userId + ", ip=" + ip);
+// 日期
+DateUtil.format(date, "yyyy-MM-dd")
+DateUtil.parse("2024-01-01", "yyyy-MM-dd")
 
-// ✅ 异常日志包含堆栈
-log.error("处理失败, orderId={}", orderId, e);
+// Bean
+BeanUtil.copyProperties(source, target)
 
-// ❌ 不要只记录message
-log.error("处理失败: " + e.getMessage());
+// 异常
+ServiceExceptionUtil.exception(ErrorCode.XXX_ERROR)
 ```
 
-## 注释规范
+---
 
-### 类注释
+## ✅ 3 秒自检清单
 
-```java
-/**
- * 用户服务实现
- *
- * <p>处理用户相关的业务逻辑</p>
- *
- * @author zhangsan
- * @since 2025-01-01
- */
-public class UserServiceImpl {
-}
-```
+### 注解检查
+- [ ] `@RequiredArgsConstructor` (Service/Controller/Gateway)
+- [ ] `@Slf4j` (Service/Gateway)
+- [ ] `@Validated` (Controller 类) + `@Valid` (Cmd 参数)
+- [ ] `@Tag` + `@Operation` (Controller)
+- [ ] `@Schema` (DTO/Cmd 字段)
+- [ ] `@TableName` + `@SearchBean` + `@DbField` (DO)
 
-### 方法注释
+### 继承检查
+- [ ] DO extends `TenantBaseDO` (业务) / `BaseDO` (全局)
+- [ ] 主键 `IdType.ASSIGN_ID`
+- [ ] DTO/Cmd implements `Serializable` + `serialVersionUID`
 
-```java
-/**
- * 根据ID获取用户
- *
- * @param id 用户ID
- * @return 用户信息
- * @throws NotFoundException 用户不存在时抛出
- */
-public User getById(Long id) {
-}
-```
+### 禁止检查
+- [ ] ❌ 无 `@Autowired`
+- [ ] ❌ 无 Magic Values
+- [ ] ❌ 无 `return null`
+- [ ] ❌ 无 手动设置 `tenant_code`
+- [ ] ❌ 无 catch 不打日志
+
+---
+
+## 🚀 生成步骤
+
+1. **收集需求**: 实体名、领域、字段、是否多租户、所属模块
+2. **按顺序生成**:
+   1. DO → Mapper → Cmd/Dto → Assembler → Gateway → Service → Controller
+3. **自检清单验证**
+4. **完整生成**: 不生成半成品
+
+---
 
 ## 关联Agent
 
 - 03-Java开发专家.md：Java代码实现
 - 05-代码审查专家.md：代码审查
+- 07-SpringBoot最佳实践.md：Spring Boot规范
+- 08-MyBatis规范.md：MyBatis-Plus规范
+
+---
+
+**Last Updated**: 2026-01-27 | **Applies To**: lcyf-cloud All Microservices

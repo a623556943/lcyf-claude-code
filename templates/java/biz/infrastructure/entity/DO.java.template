@@ -1,13 +1,19 @@
-package {{modulePackage}}.biz.infrastructure.entity;
+package com.lcyf.cloud.module.{{moduleName}}.biz.infrastructure.entity;
 
-import com.baomidou.mybatisplus.annotation.*;
-import {{basePackage}}.framework.dal.mybatis.core.dataobject.BaseDO;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.ejlchina.searcher.bean.DbField;
+import com.ejlchina.searcher.bean.SearchBean;
+{{#useTenantBaseDO}}
+import com.lcyf.cloud.framework.tenant.core.db.TenantBaseDO;
+{{/useTenantBaseDO}}
+{{^useTenantBaseDO}}
+import com.lcyf.cloud.framework.mybatis.core.dataobject.BaseDO;
+{{/useTenantBaseDO}}
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
-import lombok.experimental.Accessors;
-
-import java.io.Serial;
-import java.io.Serializable;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 {{#hasDateFields}}
 import java.time.LocalDateTime;
 {{/hasDateFields}}
@@ -16,43 +22,35 @@ import java.math.BigDecimal;
 {{/hasBigDecimalFields}}
 
 /**
- * {{entityComment}}实体
+ * {{description}}实体
  *
  * 数据库表: {{tableName}}
  *
  * @author {{author}}
- * @date {{date}}
+ * @since {{date}}
  */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(callSuper = {{#extendsBaseDO}}true{{/extendsBaseDO}}{{^extendsBaseDO}}false{{/extendsBaseDO}})
-@ToString
-@Accessors(chain = true)
-@TableName(value = "{{tableName}}", autoResultMap = true)
-@Schema(description = "{{entityComment}}实体")
-public class {{entityName}}Do {{#extendsBaseDO}}extends BaseDO {{/extendsBaseDO}}implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 1L;
+@EqualsAndHashCode(callSuper = true)
+@TableName("{{tableName}}")
+@SearchBean(tables = "{{tableName}}")
+@Schema(description = "{{description}}实体")
+public class {{EntityName}}Do extends {{#useTenantBaseDO}}TenantBaseDO{{/useTenantBaseDO}}{{^useTenantBaseDO}}BaseDO{{/useTenantBaseDO}} {
 
     /**
      * 主键ID
      */
-    @Schema(description = "主键ID")
     @TableId(value = "id", type = IdType.ASSIGN_ID)
+    @DbField("id")
+    @Schema(description = "主键ID")
     private Long id;
 
     {{#fields}}
     /**
-     * {{comment}}
+     * {{fieldDescription}}
      */
-    @Schema(description = "{{comment}}")
-    @TableField("{{column}}")
-    {{#notNull}}
-    @TableField(strategy = FieldStrategy.NOT_NULL)
-    {{/notNull}}
-    private {{type}} {{name}};
+    @DbField("{{dbFieldName}}")
+    @Schema(description = "{{fieldDescription}}")
+    private {{fieldType}} {{fieldName}};
 
     {{/fields}}
 }

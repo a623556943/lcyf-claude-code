@@ -1,0 +1,37 @@
+package com.lcyf.cloud.module.{{moduleName}}.api.pojo.cmd;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+
+import java.io.Serializable;
+
+/**
+ * {{description}}更新命令
+ *
+ * @author {{author}}
+ * @since {{date}}
+ */
+@Data
+@Schema(description = "{{description}}更新命令")
+public class {{EntityName}}UpdateCmd implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @NotNull(message = "ID不能为空")
+    @Schema(description = "主键ID")
+    private Long id;
+
+    {{#fields}}
+    @Schema(description = "{{fieldDescription}}")
+    {{#notNull}}
+    @NotNull(message = "{{fieldDescription}}不能为空")
+    {{/notNull}}
+    {{#notBlank}}
+    @NotBlank(message = "{{fieldDescription}}不能为空")
+    {{/notBlank}}
+    private {{fieldType}} {{fieldName}};
+
+    {{/fields}}
+}
