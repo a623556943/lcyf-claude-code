@@ -74,45 +74,58 @@
 
 ## 快速开始
 
-### 安装
+> **项目级配置**: 配置仅在当前项目中生效，支持团队共享和版本控制。
 
-```bash
-# 1. 克隆仓库
-git clone https://github.com/a623556943/lcyf-claude-code.git
-cd lcyf-claude-code
-
-# 2. 安装依赖
-npm install
-
-# 3. 复制组件到 Claude Code 配置目录
-
-# Windows (PowerShell)
-Copy-Item -Recurse -Force agents $env:USERPROFILE\.claude\agents
-Copy-Item -Recurse -Force commands $env:USERPROFILE\.claude\commands
-Copy-Item -Recurse -Force skills $env:USERPROFILE\.claude\skills
-Copy-Item -Recurse -Force rules $env:USERPROFILE\.claude\rules
-
-# macOS/Linux
-cp -r agents ~/.claude/
-cp -r commands ~/.claude/
-cp -r skills ~/.claude/
-cp -r rules ~/.claude/
-```
-
-### 初始化项目
+### 方案A: Git 子模块（推荐）
 
 ```bash
 cd /path/to/your/java/project
 
-# 创建 .lcyf 目录
-mkdir .lcyf
+# 1. 添加 lcyf-claude-code 作为子模块
+git submodule add https://github.com/a623556943/lcyf-claude-code.git .claude/lcyf-claude-code
+git submodule update --init --recursive
+
+# 2. 创建符号链接到配置文件
+# Windows (PowerShell - 管理员)
+$lcyfPath = Join-Path (Get-Location) ".claude\lcyf-claude-code"
+New-Item -ItemType SymbolicLink -Path ".\.claude\agents" -Target "$lcyfPath\agents" -Force
+New-Item -ItemType SymbolicLink -Path ".\.claude\commands" -Target "$lcyfPath\commands" -Force
+New-Item -ItemType SymbolicLink -Path ".\.claude\skills" -Target "$lcyfPath\skills" -Force
+New-Item -ItemType SymbolicLink -Path ".\.claude\rules" -Target "$lcyfPath\rules" -Force
+New-Item -ItemType SymbolicLink -Path ".\.claude\templates" -Target "$lcyfPath\templates" -Force
+
+# macOS/Linux
+ln -s "./.claude/lcyf-claude-code/agents" "./.claude/agents"
+ln -s "./.claude/lcyf-claude-code/commands" "./.claude/commands"
+ln -s "./.claude/lcyf-claude-code/skills" "./.claude/skills"
+ln -s "./.claude/lcyf-claude-code/rules" "./.claude/rules"
+ln -s "./.claude/lcyf-claude-code/templates" "./.claude/templates"
+
+# 3. 创建项目配置
+mkdir -p .claude/learned-patterns .claude/team-conventions .claude/instincts
+```
+
+### 方案B: 快速复制
+
+```bash
+cd /path/to/your/java/project
+
+# 克隆配置
+git clone https://github.com/a623556943/lcyf-claude-code.git /tmp/lcyf-claude-code
+
+# 复制到项目
+mkdir -p .claude
+cp -r /tmp/lcyf-claude-code/{agents,commands,skills,rules,templates} .claude/
+mkdir -p .claude/learned-patterns .claude/team-conventions .claude/instincts
 ```
 
 ### 开始使用
 
-在 Claude Code 中输入命令：
+```bash
+# 在 Claude Code 中打开项目
+claude-code .
 
-```
+# 输入命令
 /lcyf-新功能 添加用户导出功能
 ```
 
