@@ -103,21 +103,22 @@
 ## 知识库结构
 
 ```
-.lcyf/
-├── learned-patterns/          # 学习到的模式
-│   ├── code-patterns/
-│   ├── problem-solutions/
-│   └── best-practices/
-├── team-conventions/          # 团队约定
-│   ├── naming-rules.json
-│   ├── coding-standards.json
-│   └── git-workflow.json
-├── instincts/                 # 本能规则
-│   └── auto-patterns.json
-└── module-knowledge/          # 模块专属知识
-    ├── system/
-    ├── sales/
-    └── finance/
+build-parent/doc/
+├── knowledge/                     # 知识库根目录
+│   ├── learned-patterns/          # 学习到的模式
+│   │   ├── code-patterns/
+│   │   ├── problem-solutions/
+│   │   └── best-practices/
+│   ├── team-conventions/          # 团队约定
+│   │   ├── naming-rules.json
+│   │   ├── coding-standards.json
+│   │   └── git-workflow.json
+│   ├── instincts/                 # 本能规则
+│   │   └── auto-patterns.json
+│   └── module-knowledge/          # 模块专属知识
+│       ├── system/
+│       ├── sales/
+│       └── finance/
 ```
 
 ## 输出格式
