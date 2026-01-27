@@ -1,4 +1,8 @@
-# /lcyf-重构
+---
+description: 安全地执行代码重构，保持功能不变的同时优化代码结构。适合优化代码质量、消除重复代码或改善架构。
+---
+
+# /lcyf-refactor
 
 ## 概述
 
@@ -7,10 +11,10 @@
 ## 用法
 
 ```
-/lcyf-重构 <重构目标>
-/lcyf-重构 优化UserService结构
-/lcyf-重构 提取公共工具方法
-/lcyf-重构 消除重复代码
+/lcyf-refactor <重构目标>
+/lcyf-refactor 优化UserService结构
+/lcyf-refactor 提取公共工具方法
+/lcyf-refactor 消除重复代码
 ```
 
 ## 重构类型
@@ -113,7 +117,7 @@
 ### 步骤1: 提取验证方法
 - **变更**: 提取validateUserInput方法
 - **影响文件**: UserServiceImpl.java
-- **验证**: ✅ 功能正常
+- **验证**: 功能正常
 
 ### 步骤2: 引入参数对象
 - **变更**: 创建UserUpdateCmd替代8个参数
@@ -121,12 +125,12 @@
   - UserServiceImpl.java
   - UserController.java
   - UserUpdateCmd.java (新)
-- **验证**: ✅ 功能正常
+- **验证**: 功能正常
 
 ### 步骤3: 拆分长方法
 - **变更**: createUser拆分为5个私有方法
 - **影响文件**: UserServiceImpl.java
-- **验证**: ✅ 功能正常
+- **验证**: 功能正常
 
 ## 重构结果
 
@@ -137,8 +141,8 @@
 | 平均方法行数 | 45 | 20 |
 
 ## 验证结果
-✅ 功能行为不变
-✅ 代码质量提升
+功能行为不变
+代码质量提升
 ```
 
 ## 参数
@@ -150,12 +154,12 @@
 
 ## 关联命令
 
-- `/lcyf-代码审查` - 代码审查
+- `/lcyf-code-review` - 代码审查
 
 ## 关联Agent
 
-- 01-规划专家
-- 03-Java开发专家
+- planner
+- java-developer
 
 ## 关联规则
 

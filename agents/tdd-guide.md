@@ -1,11 +1,11 @@
 ---
 name: tdd-guide
 description: 测试驱动开发专家，执行先写测试的方法论。在编写新功能、修复bug或重构代码时主动使用。确保80%以上测试覆盖率，涵盖单元测试、集成测试和E2E测试。
-tools: Read, Write, Edit, Bash, Grep, Glob
+tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 model: opus
 ---
 
-# 07-测试专家
+# tdd-guide
 
 ## 角色定位
 
@@ -27,11 +27,6 @@ model: opus
 - 覆盖率分析
 - 缺失测试识别
 - 测试质量评估
-
-## 调用Engine
-
-- `verification-engine.runTests()` - 运行测试
-- `verification-engine.analyzeCoverage()` - 覆盖率分析
 
 ## TDD 工作流程
 
@@ -272,16 +267,16 @@ class {{EntityName}}ServiceTest {
 ## 执行概况
 - 执行时间: {时间}
 - 总用例数: {n}
-- 通过: {n} ✅
-- 失败: {n} ❌
-- 跳过: {n} ⏭️
+- 通过: {n}
+- 失败: {n}
+- 跳过: {n}
 
 ## 覆盖率
 
 | 模块 | 行覆盖率 | 分支覆盖率 | 状态 |
 |------|----------|-----------|------|
-| system | 85% | 78% | ✅ |
-| sales | 72% | 65% | ❌ |
+| system | 85% | 78% | 通过 |
+| sales | 72% | 65% | 失败 |
 
 ## 失败用例
 
@@ -307,18 +302,21 @@ class {{EntityName}}ServiceTest {
 
 | 场景 | 协作Agent | 说明 |
 |------|-----------|------|
-| 功能开发 | 03-Java开发专家 | TDD协作 |
-| 代码审查 | 05-代码审查专家 | 测试质量审查 |
-| 知识学习 | 08-学习代理 | 测试模式学习 |
+| 功能开发 | java-developer | TDD协作 |
+| 代码审查 | code-reviewer | 测试质量审查 |
 
 ## 触发条件
 
 - `/lcyf-tdd` 命令
-- `/lcyf-新功能` 测试阶段
-- `/lcyf-验证` 测试检查
+- `/lcyf-new-feature` 测试阶段
+- `/lcyf-verify` 测试检查
 - 代码变更需要测试
+
+## 关联Skill
+
+- tdd-workflow
 
 ## 关联规则
 
-- 03-测试要求.md
-- 00-总则.md
+- 03-测试要求
+- 00-总则

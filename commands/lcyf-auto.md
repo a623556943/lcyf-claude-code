@@ -1,4 +1,8 @@
-# /lcyf-自动
+---
+description: 智能分析用户意图，自动选择并执行最合适的命令。适合不确定使用哪个命令时快速启动任务。
+---
+
+# /lcyf-auto
 
 ## 元数据
 - **使用 Agents:** 所有Agents（智能选择）
@@ -10,7 +14,7 @@
 ## 使用方式
 
 ```
-/lcyf-自动 <任务描述>
+/lcyf-auto <任务描述>
 ```
 
 ## 工作原理
@@ -22,46 +26,40 @@
 ```javascript
 意图分类表
 =========
-新功能开发 → /lcyf-新功能
+新功能开发 → /lcyf-new-feature
   关键词: "添加"、"新增"、"实现"、"开发"
 
-Bug修复 → /lcyf-修复Bug
+Bug修复 → /lcyf-build-fix
   关键词: "修复"、"fix"、"bug"、"问题"
 
-规划设计 → /lcyf-规划
+规划设计 → /lcyf-new-feature (规划阶段)
   关键词: "规划"、"设计"、"方案"、"架构"
 
-代码质量 → /lcyf-代码审查
+代码质量 → /lcyf-code-review
   关键词: "审查"、"检查"、"优化"、"质量"
 
-安全检查 → /lcyf-安全审查
+安全检查 → /lcyf-security-scan
   关键词: "安全"、"漏洞"、"风险"、"加密"
 
-测试相关 → /lcyf-tdd 或 /lcyf-测试覆盖
+测试相关 → /lcyf-tdd
   关键词: "测试"、"单元测试"、"覆盖率"
 
-构建问题 → /lcyf-构建修复
+构建问题 → /lcyf-build-fix
   关键词: "构建失败"、"编译错误"、"打包失败"
 
-性能问题 → /lcyf-性能优化
-  关键词: "慢"、"性能"、"优化"、"卡顿"
-
-模块问题 → /lcyf-模块检查
+模块问题 → /lcyf-module-check
   关键词: "模块"、"依赖"、"循环依赖"
 
-数据库相关 → /lcyf-数据库审查
+数据库相关 → /lcyf-db-review
   关键词: "数据库"、"SQL"、"表设计"、"索引"
 
-API相关 → /lcyf-API审查
+API相关 → /lcyf-api-review
   关键词: "API"、"接口"、"RESTful"
 
-重构清理 → /lcyf-重构清理
+重构清理 → /lcyf-refactor
   关键词: "重构"、"清理"、"优化代码"
 
-文档更新 → /lcyf-更新文档
-  关键词: "文档"、"README"、"说明"
-
-验证检查 → /lcyf-验证
+验证检查 → /lcyf-verify
   关键词: "验证"、"检验"、"确认"、"ready"
 ```
 
@@ -122,7 +120,7 @@ API相关 → /lcyf-API审查
 ### 示例1: 新功能开发
 
 ```
-用户: /lcyf-自动 我需要添加用户登录功能
+用户: /lcyf-auto 我需要添加用户登录功能
 
 Claude:
 正在分析任务...
@@ -131,19 +129,19 @@ Claude:
 关键词: "添加"、"功能"
 上下文: Git分支 feature/user-login
 
-推荐命令: /lcyf-新功能
+推荐命令: /lcyf-new-feature
 理由:
 - 需要完整的开发流程（规划→实现→测试→审查）
 - 涉及安全敏感功能（登录），需要安全审查
 - 新功能需要充分的测试覆盖
 
-是否执行 /lcyf-新功能？[Y/n]
+是否执行 /lcyf-new-feature？[Y/n]
 ```
 
 ### 示例2: 构建错误
 
 ```
-用户: /lcyf-自动 我的项目构建失败了，有很多编译错误
+用户: /lcyf-auto 我的项目构建失败了，有很多编译错误
 
 Claude:
 正在分析任务...
@@ -152,34 +150,34 @@ Claude:
 关键词: "构建失败"、"编译错误"
 上下文: 检测到最近一次构建失败
 
-推荐命令: /lcyf-构建修复
+推荐命令: /lcyf-build-fix
 理由:
 - 存在编译错误，需要逐个修复
 - 使用增量修复策略更安全
 - 自动验证每次修复
 
-是否执行 /lcyf-构建修复？[Y/n]
+是否执行 /lcyf-build-fix？[Y/n]
 ```
 
 ### 示例3: 多个匹配
 
 ```
-用户: /lcyf-自动 检查一下代码
+用户: /lcyf-auto 检查一下代码
 
 Claude:
 正在分析任务...
 
 检测到多个可能的意图：
 
-1. /lcyf-代码审查 (推荐)
+1. /lcyf-code-review (推荐)
    - 全面的代码质量检查
    - 检查规范、性能、可维护性
 
-2. /lcyf-安全审查
+2. /lcyf-security-scan
    - 专注于安全漏洞
    - 适合敏感代码
 
-3. /lcyf-验证
+3. /lcyf-verify
    - 快速验证构建和测试
    - 适合提交前检查
 
@@ -189,7 +187,7 @@ Claude:
 ### 示例4: 智能建议
 
 ```
-用户: /lcyf-自动 优化性能
+用户: /lcyf-auto 优化性能
 
 Claude:
 正在分析任务...
@@ -201,9 +199,9 @@ Claude:
 - 存在N+1查询问题
 
 推荐执行顺序:
-1. /lcyf-数据库审查 - 优先检查SQL性能
-2. /lcyf-性能优化 - 整体性能分析
-3. /lcyf-代码审查 - 检查代码层面优化机会
+1. /lcyf-db-review - 优先检查SQL性能
+2. /lcyf-code-review - 整体代码分析
+3. /lcyf-refactor - 代码层面优化
 
 是否按此顺序执行？[Y/n]
 或选择单个命令: [1/2/3/n]
@@ -214,61 +212,35 @@ Claude:
 ### 规则1: 安全优先
 ```
 IF 关键词包含 ["密码", "加密", "token", "安全"]
-THEN 推荐 /lcyf-安全审查
+THEN 推荐 /lcyf-security-scan
 ```
 
 ### 规则2: 构建失败立即修复
 ```
 IF 上次构建失败
 AND 用户提到 "编译" 或 "构建"
-THEN 强制推荐 /lcyf-构建修复
+THEN 强制推荐 /lcyf-build-fix
 ```
 
 ### 规则3: 新功能需要规划
 ```
 IF 任务描述 > 50字
 AND 关键词包含 "新功能"
-THEN 推荐先执行 /lcyf-规划
+THEN 推荐先执行规划阶段
 ```
 
 ### 规则4: 提交前必须验证
 ```
 IF Git有未提交更改
 AND 用户提到 "提交" 或 "commit"
-THEN 推荐先执行 /lcyf-验证 pre-commit
+THEN 推荐先执行 /lcyf-verify pre-commit
 ```
 
 ### 规则5: 模块变更需要检查
 ```
 IF 修改了 pom.xml
 OR 修改了模块间接口
-THEN 推荐执行 /lcyf-模块检查
-```
-
-## 学习能力
-
-系统会学习用户的使用习惯：
-
-```
-学习数据存储
-============
-.lcyf/learning/
-├── intent-history.json      # 意图识别历史
-├── command-frequency.json   # 命令使用频率
-└── user-preferences.json    # 用户偏好
-```
-
-随着使用次数增加，决策会越来越准确：
-
-```json
-{
-  "user_patterns": {
-    "feature_workflow": "规划 → TDD → 代码审查 → 安全审查",
-    "bug_workflow": "验证 → 修复 → 测试覆盖",
-    "preferred_agents": ["Java开发专家", "测试专家"],
-    "skip_confirmation": ["代码审查", "验证"]
-  }
-}
+THEN 推荐执行 /lcyf-module-check
 ```
 
 ## 交互模式
@@ -278,19 +250,19 @@ THEN 推荐执行 /lcyf-模块检查
 
 ### 静默模式
 ```
-/lcyf-自动 --silent <任务描述>
+/lcyf-auto --silent <任务描述>
 ```
 不需要确认，直接执行最匹配的命令
 
 ### 解释模式
 ```
-/lcyf-自动 --explain <任务描述>
+/lcyf-auto --explain <任务描述>
 ```
 只显示决策过程，不执行命令
 
 ### 批量模式
 ```
-/lcyf-自动 --batch <任务1> <任务2> <任务3>
+/lcyf-auto --batch <任务1> <任务2> <任务3>
 ```
 一次处理多个任务
 
@@ -301,14 +273,14 @@ THEN 推荐执行 /lcyf-模块检查
 - **危险操作需要确认**: 删除、重构等操作会强制确认
 - **保持描述清晰**: 越清晰的描述，识别越准确
 
-## 相关命令
+## 关联命令
 
-所有 lcyf 命令都可以被 /lcyf-自动 调用
+所有 lcyf 命令都可以被 /lcyf-auto 调用
 
 ## 典型对话
 
 ```
-用户: /lcyf-自动 帮我看看这个API接口有什么问题
+用户: /lcyf-auto 帮我看看这个API接口有什么问题
 
 Claude:
 正在分析...
@@ -318,13 +290,13 @@ Claude:
 2. 未定义统一异常处理
 3. 返回值格式不统一
 
-推荐: /lcyf-API审查
+推荐: /lcyf-api-review
 是否执行？[Y/n] y
 
-正在执行 /lcyf-API审查...
+正在执行 /lcyf-api-review...
 
 [执行API审查流程...]
 
 审查完成！发现3个问题，已生成修复建议。
-下一步建议: /lcyf-代码审查 确保整体质量
+下一步建议: /lcyf-code-review 确保整体质量
 ```

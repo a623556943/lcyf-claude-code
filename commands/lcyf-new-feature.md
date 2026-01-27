@@ -1,4 +1,8 @@
-# /lcyf-新功能
+---
+description: 完整的新功能开发流程，从需求分析、架构设计到代码实现和知识沉淀。适合实现复杂功能、需要规划的任务。
+---
+
+# /lcyf-new-feature
 
 ## 概述
 
@@ -7,32 +11,32 @@
 ## 用法
 
 ```
-/lcyf-新功能 <功能描述>
-/lcyf-新功能 添加用户导出功能
-/lcyf-新功能 实现订单取消流程
+/lcyf-new-feature <功能描述>
+/lcyf-new-feature 添加用户导出功能
+/lcyf-new-feature 实现订单取消流程
 ```
 
 ## 执行流程
 
 ```
 1. 需求分析
-   └── 01-规划专家: 理解需求，拆分任务
+   └── planner: 理解需求，拆分任务
 
 2. 架构设计
-   └── 02-架构专家: 确定技术方案
+   └── architect: 确定技术方案
 
 3. 代码实现
-   └── 03-Java开发专家: 实现代码
+   └── java-developer: 实现代码
 
 4. 知识沉淀
-   └── 08-学习代理: 提取可复用模式
+   └── continuous-learning skill: 提取可复用模式
 ```
 
 ## 阶段详情
 
 ### 阶段1: 需求分析
 
-**执行Agent**: 01-规划专家
+**执行Agent**: planner
 
 **输出**:
 - 任务分解清单
@@ -62,7 +66,7 @@
 
 ### 阶段2: 架构设计
 
-**执行Agent**: 02-架构专家
+**执行Agent**: architect
 
 **检查项**:
 - [ ] 符合模块边界
@@ -71,7 +75,7 @@
 
 ### 阶段3: 代码实现
 
-**执行Agent**: 03-Java开发专家
+**执行Agent**: java-developer
 
 **工作流**:
 ```
@@ -80,7 +84,7 @@
 
 ### 阶段4: 知识沉淀
 
-**执行Agent**: 08-学习代理
+**使用Skill**: continuous-learning
 
 **学习内容**:
 - 可复用的代码模式
@@ -97,14 +101,18 @@
 
 ## 关联命令
 
-- `/lcyf-验证` - 执行验证
+- `/lcyf-verify` - 执行验证
 
 ## 关联Agent
 
-- 01-规划专家
-- 02-架构专家
-- 03-Java开发专家
-- 08-学习代理
+- planner
+- architect
+- java-developer
+
+## 关联Skill
+
+- continuous-learning
+- java-full-stack
 
 ## 关联规则
 

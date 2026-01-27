@@ -1,4 +1,8 @@
-# /lcyf-安全扫描
+---
+description: 执行深度安全漏洞扫描，检测代码中的安全风险。适合处理敏感功能、认证授权或提交前安全检查。
+---
+
+# /lcyf-security-scan
 
 ## 概述
 
@@ -7,10 +11,10 @@
 ## 用法
 
 ```
-/lcyf-安全扫描
-/lcyf-安全扫描 --scope=changed    # 只扫描变更文件
-/lcyf-安全扫描 --scope=module --module=system
-/lcyf-安全扫描 --owasp            # OWASP Top 10 检查
+/lcyf-security-scan
+/lcyf-security-scan --scope=changed    # 只扫描变更文件
+/lcyf-security-scan --scope=module --module=system
+/lcyf-security-scan --owasp            # OWASP Top 10 检查
 ```
 
 ## 扫描内容
@@ -43,7 +47,7 @@
 
 ```
 1. 代码扫描
-   └── 06-安全审查专家: 静态代码分析
+   └── security-reviewer: 静态代码分析
 
 2. 依赖检查
    └── 检查Maven依赖的已知漏洞
@@ -63,19 +67,19 @@
 ## 扫描概览
 - 扫描文件: 45
 - 扫描时间: 2025-01-26 10:00:00
-- 风险等级: 🟠 中
+- 风险等级: 中
 
 ## 漏洞汇总
 
 | 风险 | 数量 | 说明 |
 |------|------|------|
-| 🔴 高 | 1 | 必须立即修复 |
-| 🟠 中 | 3 | 建议尽快修复 |
-| 🟡 低 | 5 | 按计划修复 |
+| 高 | 1 | 必须立即修复 |
+| 中 | 3 | 建议尽快修复 |
+| 低 | 5 | 按计划修复 |
 
 ## 详细发现
 
-### 🔴 高风险
+### 高风险
 
 #### VULN-001: SQL注入风险
 - **位置**: UserMapper.java:45
@@ -89,7 +93,7 @@
 @Select("SELECT * FROM user WHERE name = #{name}")
 ```
 
-### 🟠 中风险
+### 中风险
 
 #### VULN-002: 硬编码密钥
 - **位置**: PaymentConfig.java:12
@@ -104,7 +108,7 @@ private static final String API_KEY = "sk-xxxxx";
 
 | 依赖 | 版本 | CVE | 严重性 |
 |------|------|-----|--------|
-| log4j-core | 2.14.0 | CVE-2021-44228 | 🔴 高 |
+| log4j-core | 2.14.0 | CVE-2021-44228 | 高 |
 
 ## 修复优先级
 
@@ -127,12 +131,16 @@ private static final String API_KEY = "sk-xxxxx";
 
 ## 关联命令
 
-- `/lcyf-代码审查` - 综合代码审查
-- `/lcyf-验证` - 执行验证
+- `/lcyf-code-review` - 综合代码审查
+- `/lcyf-verify` - 执行验证
 
 ## 关联Agent
 
-- 06-安全审查专家
+- security-reviewer
+
+## 关联Skill
+
+- security-review
 
 ## 关联规则
 

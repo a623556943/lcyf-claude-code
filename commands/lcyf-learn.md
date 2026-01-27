@@ -1,4 +1,8 @@
-# /lcyf-知识管理
+---
+description: 管理项目知识库，包括学习到的模式、团队约定、问题解决方案。适合知识沉淀、模式提取或团队经验分享。
+---
+
+# /lcyf-learn
 
 ## 概述
 
@@ -7,12 +11,12 @@
 ## 用法
 
 ```
-/lcyf-知识管理 list              # 列出知识库内容
-/lcyf-知识管理 search <关键词>   # 搜索知识
-/lcyf-知识管理 add               # 添加知识
-/lcyf-知识管理 export            # 导出知识库
-/lcyf-知识管理 import <文件>     # 导入知识库
-/lcyf-知识管理 cleanup           # 清理过期知识
+/lcyf-learn list              # 列出知识库内容
+/lcyf-learn search <关键词>   # 搜索知识
+/lcyf-learn add               # 添加知识
+/lcyf-learn export            # 导出知识库
+/lcyf-learn import <文件>     # 导入知识库
+/lcyf-learn cleanup           # 清理过期知识
 ```
 
 ## 子命令
@@ -20,32 +24,32 @@
 ### list - 列出知识
 
 ```
-/lcyf-知识管理 list
-/lcyf-知识管理 list --type=pattern    # 只列出模式
-/lcyf-知识管理 list --type=solution   # 只列出解决方案
-/lcyf-知识管理 list --type=convention # 只列出约定
+/lcyf-learn list
+/lcyf-learn list --type=pattern    # 只列出模式
+/lcyf-learn list --type=solution   # 只列出解决方案
+/lcyf-learn list --type=convention # 只列出约定
 ```
 
 ### search - 搜索知识
 
 ```
-/lcyf-知识管理 search MyBatis分页
-/lcyf-知识管理 search "用户认证"
+/lcyf-learn search MyBatis分页
+/lcyf-learn search "用户认证"
 ```
 
 ### add - 添加知识
 
 ```
-/lcyf-知识管理 add --type=pattern
-/lcyf-知识管理 add --type=solution
-/lcyf-知识管理 add --type=convention
+/lcyf-learn add --type=pattern
+/lcyf-learn add --type=solution
+/lcyf-learn add --type=convention
 ```
 
 ### export/import - 导出导入
 
 ```
-/lcyf-知识管理 export knowledge.json
-/lcyf-知识管理 import team-knowledge.json
+/lcyf-learn export knowledge.json
+/lcyf-learn import team-knowledge.json
 ```
 
 ## 知识类型
@@ -179,9 +183,9 @@ build-parent/doc/
 | --limit | 显示数量 | 20 |
 | --sort | 排序方式 | frequency |
 
-## 关联Agent
+## 关联Skill
 
-- 08-学习代理
+- continuous-learning
 
 ## 关联规则
 

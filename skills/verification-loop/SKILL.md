@@ -1,3 +1,8 @@
+---
+name: verification-loop
+description: 提供自动化的代码质量验证能力，确保代码符合质量标准。当执行 /lcyf-verify、/lcyf-checkpoint 命令或需要验证代码质量时激活。
+---
+
 # 验证循环技能
 
 ## 概述
@@ -154,7 +159,7 @@ mvn pmd:check
          │ 通过
          ▼
 ┌─────────────────┐
-│   验证通过 ✅   │
+│   验证通过      │
 └─────────────────┘
 ```
 
@@ -172,11 +177,11 @@ mvn pmd:check
 
 | 检查项 | 状态 | 详情 |
 |--------|------|------|
-| 构建 | ✅ 通过 | 编译成功 |
-| 测试 | ✅ 通过 | 156/156通过 |
-| 覆盖率 | ✅ 通过 | 85% (≥80%) |
-| 规范 | ⚠️ 警告 | 3个警告 |
-| 安全 | ✅ 通过 | 无高风险 |
+| 构建 | 通过 | 编译成功 |
+| 测试 | 通过 | 156/156通过 |
+| 覆盖率 | 通过 | 85% (≥80%) |
+| 规范 | 警告 | 3个警告 |
+| 安全 | 通过 | 无高风险 |
 
 ## 详细信息
 
@@ -191,7 +196,7 @@ mvn pmd:check
 3. ConfigService.java:18 - 魔法数字
 
 ## 总结
-✅ 验证通过，可以提交
+验证通过，可以提交
 ```
 
 ## 质量门禁
@@ -212,26 +217,26 @@ mvn pmd:check
 
 ```bash
 # 快速验证
-/lcyf-验证 quick
+/lcyf-verify quick
 
 # 完整验证
-/lcyf-验证 full
+/lcyf-verify full
 
 # 提交前验证
-/lcyf-验证 pre-commit
+/lcyf-verify pre-commit
 
 # PR前验证
-/lcyf-验证 pre-pr
+/lcyf-verify pre-pr
 ```
 
 ## 关联Agent
 
-- 05-代码审查专家
-- 06-安全审查专家
-- 07-测试专家
+- code-reviewer
+- security-reviewer
+- tdd-guide
 
 ## 关联命令
 
-- `/lcyf-验证` - 执行验证
-- `/lcyf-代码审查` - 代码审查
-- `/lcyf-安全扫描` - 安全扫描
+- `/lcyf-verify` - 执行验证
+- `/lcyf-code-review` - 代码审查
+- `/lcyf-security-scan` - 安全扫描

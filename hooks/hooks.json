@@ -14,21 +14,21 @@
       },
       {
         "matcher": "tool == \"Edit\" && tool_input.file_path matches \"pom\\.xml|build\\.gradle\"",
-        "hooks": [{"type": "command", "command": "node -e \"console.error('[Hook] 提示: 修改构建文件后建议运行 /lcyf-模块检查')\""}],
+        "hooks": [{"type": "command", "command": "node -e \"console.error('[Hook] 提示: 修改构建文件后建议运行 /lcyf-module-check')\""}],
         "description": "修改构建文件后提醒检查模块依赖"
       }
     ],
     "PostToolUse": [
       {
         "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\\.java$\"",
-        "hooks": [{"type": "command", "command": "node -e \"const fs=require('fs');let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{const i=JSON.parse(d);const p=i.tool_input?.file_path;if(p&&fs.existsSync(p)){const c=fs.readFileSync(p,'utf8');if(/System\.out\.println/.test(c)){console.error('[Hook] 警告: 发现System.out.println')}}console.log(d)})\""}],
+        "hooks": [{"type": "command", "command": "node -e \"const fs=require('fs');let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{const i=JSON.parse(d);const p=i.tool_input?.file_path;if(p&&fs.existsSync(p)){const c=fs.readFileSync(p,'utf8');if(/System\\.out\\.println/.test(c)){console.error('[Hook] 警告: 发现System.out.println')}}console.log(d)})\""}],
         "description": "Java文件编辑后检查常见问题"
       }
     ],
     "Stop": [
       {
         "matcher": "*",
-        "hooks": [{"type": "command", "command": "node -e \"console.error('[Hook] 会话结束，建议运行 /lcyf-代码审查')\""}],
+        "hooks": [{"type": "command", "command": "node -e \"console.error('[Hook] 会话结束，建议运行 /lcyf-code-review')\""}],
         "description": "会话结束前提醒"
       }
     ],

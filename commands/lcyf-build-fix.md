@@ -1,7 +1,11 @@
-# /lcyf-构建修复
+---
+description: 增量修复Maven/Gradle构建错误和编译错误。适合构建失败、编译错误或依赖问题时使用。
+---
+
+# /lcyf-build-fix
 
 ## 元数据
-- **使用 Agents:** 03-Java开发专家
+- **使用 Agents:** java-developer
 - **遵循 Rules:** 06-Java编码规范, 07-SpringBoot最佳实践, 08-MyBatis规范
 
 ## 命令说明
@@ -26,7 +30,7 @@
 ### 3. 修复每个错误
 对每个错误执行：
 
-a) **显示��误上下文**
+a) **显示错误上下文**
    - 显示错误代码前后5行
    - 高亮错误位置
    - 显示错误信息
@@ -67,20 +71,20 @@ e) **验证修复**
 
 修复统计
 --------
-✓ 已修复: 8个错误
-✗ 剩余: 2个错误
-⚠ 新增: 0个错误
+已修复: 8个错误
+剩余: 2个错误
+新增: 0个错误
 
 详细列表
 --------
-1. ✓ UserController.java:45 - 缺少@Valid注解
-2. ✓ OrderServiceImpl.java:120 - 返回类型不匹配
-3. ✓ ProductMapper.xml:30 - SQL语法错误
-4. ✗ PaymentService.java:88 - 循环依赖（需要架构调整）
+1. 已修复 UserController.java:45 - 缺少@Valid注解
+2. 已修复 OrderServiceImpl.java:120 - 返回类型不匹配
+3. 已修复 ProductMapper.xml:30 - SQL语法错误
+4. 未修复 PaymentService.java:88 - 循环依赖（需要架构调整）
 
 建议
 ----
-- 剩余错误需要模块重构，建议使用 /lcyf-规划
+- 剩余错误需要模块重构，建议使用 /lcyf-refactor
 ```
 
 ## 常见错误类型及修复策略
@@ -93,7 +97,7 @@ e) **验证修复**
 ### 依赖问题
 - **ClassNotFoundException**: 检查pom.xml依赖
 - **版本冲突**: 使用dependencyManagement统一版本
-- **循环依赖**: 需要架构调整，使用 /lcyf-模块检查
+- **循环依赖**: 需要架构调整，使用 /lcyf-module-check
 
 ### 注解处理错误
 - **Lombok编译失败**: 检查IDE插件、Maven插件配置
@@ -112,7 +116,7 @@ e) **验证修复**
 ## 示例用法
 
 ```
-用户: /lcyf-构建修复
+用户: /lcyf-build-fix
 
 Claude:
 正在运行构建...
@@ -124,13 +128,21 @@ mvn clean compile -U
    错误: @RequestBody参数缺少验证注解
    修复: 添加@Valid注解
    应用修复...
-   ✓ 修复成功
+   已修复
 
 2. OrderServiceImpl.java:120 - 返回类型不匹配
    ...
 ```
 
-## 相关命令
-- `/lcyf-模块检查` - 检查模块依赖问题
-- `/lcyf-规划` - 需要架构调整时使用
-- `/lcyf-代码审查` - 修复完成后进行审查
+## 关联命令
+- `/lcyf-module-check` - 检查模块依赖问题
+- `/lcyf-refactor` - 需要架构调整时使用
+- `/lcyf-code-review` - 修复完成后进行审查
+
+## 关联Agent
+
+- java-developer
+
+## 关联Skill
+
+- java-full-stack

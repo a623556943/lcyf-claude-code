@@ -1,7 +1,11 @@
-# /lcyf-检查点
+---
+description: 在开发流程中创建、验证或列出检查点，用于追踪开发进度和质量。适合功能开发过程中的阶段性记录。
+---
+
+# /lcyf-checkpoint
 
 ## 元数据
-- **使用 Agents:** 07-测试专家, 05-代码审查专家
+- **使用 Agents:** tdd-guide, code-reviewer
 - **遵循 Rules:** 00-总则, 03-测试要求, 04-Git工作流
 
 ## 命令说明
@@ -10,10 +14,10 @@
 ## 使用方式
 
 ```
-/lcyf-检查点 create <名称>    # 创建检查点
-/lcyf-检查点 verify <名称>    # 验证检查点
-/lcyf-检查点 list              # 列出所有检查点
-/lcyf-检查点 clear             # 清理旧检查点
+/lcyf-checkpoint create <名称>    # 创建检查点
+/lcyf-checkpoint verify <名称>    # 验证检查点
+/lcyf-checkpoint list              # 列出所有检查点
+/lcyf-checkpoint clear             # 清理旧检查点
 ```
 
 ## 创建检查点 (create)
@@ -44,7 +48,7 @@
 
 4. **报告检查点信息**
    ```
-   ✓ 检查点已创建: 功能开始
+   检查点已创建: 功能开始
    时间: 2025-01-26 10:30
    Git SHA: abc123f
    测试状态: 23/23 通过
@@ -87,19 +91,19 @@
    --------
    检查点: 23/23 通过 (85% 覆盖率)
    当前:   28/28 通过 (87% 覆盖率)
-   变化:   +5 测试, +2% 覆盖率 ✓
+   变化:   +5 测试, +2% 覆盖率
 
    构建状态
    --------
    检查点: PASS
-   当前:   PASS ✓
+   当前:   PASS
 
    代码质量
    --------
-   Checkstyle: 无新增警告 ✓
-   PMD: 无新增问题 ✓
+   Checkstyle: 无新增警告
+   PMD: 无新增问题
 
-   结论: 进展良好 ✓
+   结论: 进展良好
    ```
 
 ## 列出检查点 (list)
@@ -142,7 +146,7 @@ cp .lcyf/checkpoints.log .lcyf/checkpoints.log.bak
 tail -n 5 .lcyf/checkpoints.log > .lcyf/checkpoints.log.tmp
 mv .lcyf/checkpoints.log.tmp .lcyf/checkpoints.log
 
-echo "✓ 已清理旧检查点，保留最近5个"
+echo "已清理旧检查点，保留最近5个"
 ```
 
 ## 典型工作流
@@ -152,23 +156,23 @@ echo "✓ 已清理旧检查点，保留最近5个"
 ```
 [开始]
   ↓
-/lcyf-检查点 create "功能开始"
+/lcyf-checkpoint create "功能开始"
   ↓
 [实现核心逻辑]
   ↓
-/lcyf-检查点 create "核心完成"
+/lcyf-checkpoint create "核心完成"
   ↓
-/lcyf-检查点 verify "核心完成"  # 验证质量
+/lcyf-checkpoint verify "核心完成"  # 验证质量
   ↓
 [重构优化]
   ↓
-/lcyf-检查点 create "重构完成"
+/lcyf-checkpoint create "重构完成"
   ↓
 [编写测试]
   ↓
-/lcyf-检查点 create "测试完成"
+/lcyf-checkpoint create "测试完成"
   ↓
-/lcyf-检查点 verify "功能开始"  # 对比起点
+/lcyf-checkpoint verify "功能开始"  # 对比起点
   ↓
 [创建PR]
 ```
@@ -178,15 +182,15 @@ echo "✓ 已清理旧检查点，保留最近5个"
 ```
 [发现Bug]
   ↓
-/lcyf-检查点 create "修复前"
+/lcyf-checkpoint create "修复前"
   ↓
 [修复Bug]
   ↓
-/lcyf-检查点 verify "修复前"  # 确认改进
+/lcyf-checkpoint verify "修复前"  # 确认改进
   ↓
 [回归测试]
   ↓
-/lcyf-检查点 create "修复完成"
+/lcyf-checkpoint create "修复完成"
 ```
 
 ## 检查点目录结构
@@ -208,39 +212,17 @@ echo "✓ 已清理旧检查点，保留最近5个"
 - **不要过度使用**: 太多检查点会增加管理复杂度
 - **结合Git使用**: 检查点不替代Git提交，而是补充
 
-## 与其他命令配合
+## 关联命令
 
-- `/lcyf-验证` - 创建检查点前运行验证
-- `/lcyf-测试覆盖` - 检查测试覆盖率变化
-- `/lcyf-代码审查` - 检查点之间的代码质量对比
+- `/lcyf-verify` - 创建检查点前运行验证
+- `/lcyf-tdd` - 检查测试覆盖率变化
+- `/lcyf-code-review` - 检查点之间的代码质量对比
 
-## 示例输出
+## 关联Agent
 
-```
-用户: /lcyf-检查点 create "核心功能完成"
+- tdd-guide
+- code-reviewer
 
-Claude:
-正在创建检查点...
+## 关联Skill
 
-1. 运行快速验证
-   ✓ 构建成功
-   ✓ 测试通过 (28/28)
-   ✓ 覆盖率 87%
-
-2. 创建Git提交
-   ✓ 已暂存: 8个文件
-   ✓ 提交: checkpoint: 核心功能完成 (def456a)
-
-3. 记录检查点
-   ✓ 已记录到 .lcyf/checkpoints.log
-
-检查点已创建成功
-==================
-名称: 核心功能完成
-时间: 2025-01-26 10:30:45
-SHA:  def456a
-测试: 28/28 通过
-覆盖率: 87%
-
-建议: 下一步可使用 /lcyf-代码审查 确保代码质量
-```
+- verification-loop

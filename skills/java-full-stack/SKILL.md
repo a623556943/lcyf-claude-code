@@ -1,3 +1,8 @@
+---
+name: java-full-stack
+description: 在实现 lcyf-cloud Java/Spring Boot 功能时使用。提供 Controller、Service、Gateway、Assembler 层的代码模板。当执行 /lcyf-new-feature、/lcyf-tdd 命令或 java-developer agent 需要模板时激活。
+---
+
 # Java全栈开发技能
 
 ## 概述
@@ -50,151 +55,425 @@
 
 ## 代码模板
 
-### Controller模板
+### 1. Controller 模板
 
 ```java
-@Tag(name = "{{description}}")
+package com.lcyf.cloud.module.{{moduleName}}.adapter.web.{{domainName}};
+
+import com.lcyf.cloud.framework.common.pojo.CommonResult;
+import com.lcyf.cloud.framework.common.pojo.PageResult;
+import com.lcyf.cloud.framework.common.util.MapUtils;
+import com.lcyf.cloud.module.{{moduleName}}.biz.service.I{{EntityName}}Service;
+import com.lcyf.cloud.module.{{moduleName}}.api.pojo.dto.{{EntityName}}Dto;
+import com.lcyf.cloud.module.{{moduleName}}.api.pojo.cmd.{{EntityName}}AddCmd;
+import com.lcyf.cloud.module.{{moduleName}}.api.pojo.cmd.{{EntityName}}UpdateCmd;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
 @RestController
-@RequestMapping("/{{moduleName}}/{{urlPath}}")
+@RequestMapping("/api/v1/{{moduleName}}/auth/{{urlPath}}")
+@Tag(name = "{{description}}")
 @RequiredArgsConstructor
+@Validated
 public class {{EntityName}}Controller {
 
     private final I{{EntityName}}Service {{entityName}}Service;
 
-    @Operation(summary = "分页查询")
     @GetMapping("/page")
-    public CommonResult<PageResult<{{EntityName}}DTO>> page(
-            @Valid {{EntityName}}PageQuery query) {
-        return success({{entityName}}Service.page(query));
+    @Operation(summary = "分页查询{{description}}")
+    public CommonResult<PageResult<{{EntityName}}Dto>> page(HttpServletRequest request) {
+        return CommonResult.success({{entityName}}Service.get{{EntityName}}Page(MapUtils.flat(request.getParameterMap())));
     }
 
-    @Operation(summary = "获取详情")
     @GetMapping("/{id}")
-    public CommonResult<{{EntityName}}DTO> get(@PathVariable Long id) {
-        return success({{entityName}}Service.getById(id));
+    @Operation(summary = "获取{{description}}详情")
+    public CommonResult<{{EntityName}}Dto> get(@PathVariable Long id) {
+        return CommonResult.success({{entityName}}Service.get(id));
     }
 
-    @Operation(summary = "创建")
-    @PostMapping
-    public CommonResult<Long> create(
-            @Valid @RequestBody {{EntityName}}CreateCmd cmd) {
-        return success({{entityName}}Service.create(cmd));
+    @PostMapping("/add")
+    @Operation(summary = "新增{{description}}")
+    public CommonResult<Object> add(@RequestBody @Valid {{EntityName}}AddCmd cmd) {
+        {{entityName}}Service.create(cmd);
+        return CommonResult.success();
     }
 
-    @Operation(summary = "更新")
-    @PutMapping
-    public CommonResult<Boolean> update(
-            @Valid @RequestBody {{EntityName}}UpdateCmd cmd) {
-        {{entityName}}Service.update(cmd);
-        return success(true);
+    @PutMapping("/update")
+    @Operation(summary = "更新{{description}}")
+    public CommonResult<Object> update(@RequestBody @Valid {{EntityName}}UpdateCmd cmd) {
+        {{entityName}}Service.modify(cmd);
+        return CommonResult.success();
     }
 
-    @Operation(summary = "删除")
-    @DeleteMapping("/{id}")
-    public CommonResult<Boolean> delete(@PathVariable Long id) {
+    @DeleteMapping("/delete/{id}")
+    @Operation(summary = "删除{{description}}")
+    public CommonResult<Object> delete(@PathVariable Long id) {
         {{entityName}}Service.delete(id);
-        return success(true);
+        return CommonResult.success();
     }
 }
 ```
 
-### Service接口模板
+### 2. Service 接口模板
 
 ```java
+package com.lcyf.cloud.module.{{moduleName}}.biz.service;
+
+import com.lcyf.cloud.framework.common.pojo.PageResult;
+import com.lcyf.cloud.module.{{moduleName}}.api.pojo.dto.{{EntityName}}Dto;
+import com.lcyf.cloud.module.{{moduleName}}.api.pojo.cmd.{{EntityName}}AddCmd;
+import com.lcyf.cloud.module.{{moduleName}}.api.pojo.cmd.{{EntityName}}UpdateCmd;
+
+import java.util.Map;
+
+/**
+ * {{description}}Service接口
+ */
 public interface I{{EntityName}}Service {
 
-    PageResult<{{EntityName}}DTO> page({{EntityName}}PageQuery query);
+    /**
+     * 分页查询{{description}}
+     */
+    PageResult<{{EntityName}}Dto> get{{EntityName}}Page(Map<String, Object> paraMap);
 
-    {{EntityName}}DTO getById(Long id);
+    /**
+     * 根据ID获取{{description}}
+     */
+    {{EntityName}}Dto get(Long id);
 
-    Long create({{EntityName}}CreateCmd cmd);
+    /**
+     * 新增{{description}}
+     */
+    Long create({{EntityName}}AddCmd addCmd);
 
-    void update({{EntityName}}UpdateCmd cmd);
+    /**
+     * 修改{{description}}
+     */
+    void modify({{EntityName}}UpdateCmd updateCmd);
 
+    /**
+     * 删除{{description}}
+     */
     void delete(Long id);
 }
 ```
 
-### ServiceImpl模板
+### 3. Service 实现模板
 
 ```java
+package com.lcyf.cloud.module.{{moduleName}}.biz.service.impl;
+
+import com.lcyf.cloud.framework.common.pojo.PageResult;
+import com.lcyf.cloud.module.{{moduleName}}.biz.service.I{{EntityName}}Service;
+import com.lcyf.cloud.module.{{moduleName}}.biz.infrastructure.gateway.{{EntityName}}Gateway;
+import com.lcyf.cloud.module.{{moduleName}}.api.pojo.dto.{{EntityName}}Dto;
+import com.lcyf.cloud.module.{{moduleName}}.api.pojo.cmd.{{EntityName}}AddCmd;
+import com.lcyf.cloud.module.{{moduleName}}.api.pojo.cmd.{{EntityName}}UpdateCmd;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.util.Map;
+
+/**
+ * {{description}}Service实现
+ */
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class {{EntityName}}ServiceImpl implements I{{EntityName}}Service {
 
-    private final {{EntityName}}Mapper {{entityName}}Mapper;
+    private final {{EntityName}}Gateway {{entityName}}Gateway;
 
     @Override
-    public PageResult<{{EntityName}}DTO> page({{EntityName}}PageQuery query) {
-        return {{entityName}}Mapper.selectPage(query,
-            new LambdaQueryWrapperX<{{EntityName}}DO>()
-                .likeIfPresent({{EntityName}}DO::getName, query.getName())
-                .orderByDesc({{EntityName}}DO::getCreateTime));
+    public PageResult<{{EntityName}}Dto> get{{EntityName}}Page(Map<String, Object> paraMap) {
+        log.info("分页查询{{description}}, params: {}", paraMap);
+        return {{entityName}}Gateway.selectPage(paraMap);
     }
 
     @Override
-    public {{EntityName}}DTO getById(Long id) {
-        {{EntityName}}DO entity = {{entityName}}Mapper.selectById(id);
-        if (entity == null) {
-            throw new NotFoundException("记录不存在");
-        }
-        return convert(entity);
+    public {{EntityName}}Dto get(Long id) {
+        log.info("获取{{description}}详情, id: {}", id);
+        return {{entityName}}Gateway.selectById(id);
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
-    public Long create({{EntityName}}CreateCmd cmd) {
-        {{EntityName}}DO entity = new {{EntityName}}DO();
-        BeanUtils.copyProperties(cmd, entity);
-        {{entityName}}Mapper.insert(entity);
+    public Long create({{EntityName}}AddCmd addCmd) {
+        log.info("新增{{description}}, cmd: {}", addCmd);
+        return {{entityName}}Gateway.save(addCmd);
+    }
+
+    @Override
+    public void modify({{EntityName}}UpdateCmd updateCmd) {
+        log.info("修改{{description}}, cmd: {}", updateCmd);
+        {{entityName}}Gateway.updateById(updateCmd);
+    }
+
+    @Override
+    public void delete(Long id) {
+        log.info("删除{{description}}, id: {}", id);
+        {{entityName}}Gateway.removeById(id);
+    }
+}
+```
+
+### 4. Gateway 模板
+
+```java
+package com.lcyf.cloud.module.{{moduleName}}.biz.infrastructure.gateway;
+
+import com.ejlchina.searcher.BeanSearcher;
+import com.ejlchina.searcher.SearchResult;
+import com.lcyf.cloud.framework.common.pojo.PageResult;
+import com.lcyf.cloud.framework.mybatis.core.base.CrudRepository;
+import com.lcyf.cloud.module.{{moduleName}}.biz.infrastructure.mapper.{{EntityName}}Mapper;
+import com.lcyf.cloud.module.{{moduleName}}.biz.infrastructure.entity.{{EntityName}}Do;
+import com.lcyf.cloud.module.{{moduleName}}.biz.infrastructure.assembler.{{EntityName}}Assembler;
+import com.lcyf.cloud.module.{{moduleName}}.api.pojo.dto.{{EntityName}}Dto;
+import com.lcyf.cloud.module.{{moduleName}}.api.pojo.cmd.{{EntityName}}AddCmd;
+import com.lcyf.cloud.module.{{moduleName}}.api.pojo.cmd.{{EntityName}}UpdateCmd;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.Map;
+
+/**
+ * {{description}}Gateway
+ * 数据访问层，负责与数据库交互
+ */
+@Service
+@RequiredArgsConstructor
+public class {{EntityName}}Gateway extends CrudRepository<{{EntityName}}Mapper, {{EntityName}}Do> {
+
+    private final {{EntityName}}Assembler {{entityName}}Assembler;
+    private final BeanSearcher beanSearcher;
+
+    /**
+     * 分页查询
+     */
+    public PageResult<{{EntityName}}Dto> selectPage(Map<String, Object> paraMap) {
+        SearchResult<{{EntityName}}Do> search = beanSearcher.search({{EntityName}}Do.class, paraMap);
+        return {{entityName}}Assembler.convertPage(
+            new PageResult<>(search.getDataList(), search.getTotalCount().longValue())
+        );
+    }
+
+    /**
+     * 根据ID查询
+     */
+    public {{EntityName}}Dto selectById(Long id) {
+        return {{entityName}}Assembler.convert(super.getById(id));
+    }
+
+    /**
+     * 新增
+     */
+    public Long save({{EntityName}}AddCmd addCmd) {
+        {{EntityName}}Do entity = {{entityName}}Assembler.convert(addCmd);
+        super.save(entity);
         return entity.getId();
     }
 
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public void update({{EntityName}}UpdateCmd cmd) {
-        {{EntityName}}DO entity = {{entityName}}Mapper.selectById(cmd.getId());
-        if (entity == null) {
-            throw new NotFoundException("记录不存在");
-        }
-        BeanUtils.copyProperties(cmd, entity);
-        {{entityName}}Mapper.updateById(entity);
-    }
-
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public void delete(Long id) {
-        {{entityName}}Mapper.deleteById(id);
-    }
-
-    private {{EntityName}}DTO convert({{EntityName}}DO entity) {
-        {{EntityName}}DTO dto = new {{EntityName}}DTO();
-        BeanUtils.copyProperties(entity, dto);
-        return dto;
+    /**
+     * 修改
+     */
+    public void updateById({{EntityName}}UpdateCmd updateCmd) {
+        this.updateById({{entityName}}Assembler.convert(updateCmd));
     }
 }
 ```
 
-### Entity模板
+### 5. Assembler 模板
 
 ```java
-@TableName("{{tableName}}")
+package com.lcyf.cloud.module.{{moduleName}}.biz.infrastructure.assembler;
+
+import com.lcyf.cloud.framework.common.pojo.PageResult;
+import com.lcyf.cloud.module.{{moduleName}}.biz.infrastructure.entity.{{EntityName}}Do;
+import com.lcyf.cloud.module.{{moduleName}}.api.pojo.dto.{{EntityName}}Dto;
+import com.lcyf.cloud.module.{{moduleName}}.api.pojo.cmd.{{EntityName}}AddCmd;
+import com.lcyf.cloud.module.{{moduleName}}.api.pojo.cmd.{{EntityName}}UpdateCmd;
+import org.mapstruct.*;
+import org.mapstruct.factory.Mappers;
+
+import java.util.List;
+
+/**
+ * {{description}}对象转换器
+ * 使用 MapStruct 进行对象转换
+ */
+@Mapper(componentModel = "spring",
+        nullValueIterableMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT,
+        nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS,
+        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+public interface {{EntityName}}Assembler {
+
+    {{EntityName}}Assembler INSTANCE = Mappers.getMapper({{EntityName}}Assembler.class);
+
+    /**
+     * AddCmd -> DO
+     */
+    {{EntityName}}Do convert({{EntityName}}AddCmd addCmd);
+
+    /**
+     * UpdateCmd -> DO
+     */
+    {{EntityName}}Do convert({{EntityName}}UpdateCmd updateCmd);
+
+    /**
+     * DO -> DTO
+     */
+    {{EntityName}}Dto convert({{EntityName}}Do entity);
+
+    /**
+     * DO List -> DTO List
+     */
+    List<{{EntityName}}Dto> convertList(List<{{EntityName}}Do> list);
+
+    /**
+     * DO PageResult -> DTO PageResult
+     */
+    PageResult<{{EntityName}}Dto> convertPage(PageResult<{{EntityName}}Do> page);
+}
+```
+
+### 6. Mapper 模板
+
+```java
+package com.lcyf.cloud.module.{{moduleName}}.biz.infrastructure.mapper;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.lcyf.cloud.module.{{moduleName}}.biz.infrastructure.entity.{{EntityName}}Do;
+
+/**
+ * {{description}}Mapper
+ */
+public interface {{EntityName}}Mapper extends BaseMapper<{{EntityName}}Do> {
+}
+```
+
+### 7. Entity (DO) 模板
+
+```java
+package com.lcyf.cloud.module.{{moduleName}}.biz.infrastructure.entity;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.ejlchina.searcher.bean.DbField;
+import com.ejlchina.searcher.bean.SearchBean;
+import com.lcyf.cloud.framework.tenant.core.db.TenantBaseDO;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+/**
+ * {{description}}实体
+ */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class {{EntityName}}DO extends BaseDO {
+@TableName("{{tableName}}")
+@SearchBean(tables = "{{tableName}}")
+@Schema(description = "{{description}}实体")
+public class {{EntityName}}Do extends TenantBaseDO {
 
-    @TableId(type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
+    @DbField("id")
+    @Schema(description = "主键ID")
     private Long id;
 
-    // 业务字段
+    // TODO: 添加业务字段
+    // @DbField("field_name")
+    // @Schema(description = "字段描述")
+    // private String fieldName;
 }
 ```
 
-### Mapper模板
+### 8. DTO 模板
 
 ```java
-@Mapper
-public interface {{EntityName}}Mapper extends BaseMapperX<{{EntityName}}DO> {
+package com.lcyf.cloud.module.{{moduleName}}.api.pojo.dto;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
+
+import java.io.Serializable;
+
+/**
+ * {{description}}DTO
+ */
+@Data
+@Schema(description = "{{description}}DTO")
+public class {{EntityName}}Dto implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @Schema(description = "主键ID")
+    private Long id;
+
+    // TODO: 添加业务字段
+}
+```
+
+### 9. AddCmd 模板
+
+```java
+package com.lcyf.cloud.module.{{moduleName}}.api.pojo.cmd;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+
+import java.io.Serializable;
+
+/**
+ * {{description}}新增命令
+ */
+@Data
+@Schema(description = "{{description}}新增命令")
+public class {{EntityName}}AddCmd implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    // TODO: 添加业务字段和校验注解
+    // @NotBlank(message = "字段不能为空")
+    // @Schema(description = "字段描述")
+    // private String fieldName;
+}
+```
+
+### 10. UpdateCmd 模板
+
+```java
+package com.lcyf.cloud.module.{{moduleName}}.api.pojo.cmd;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+
+import java.io.Serializable;
+
+/**
+ * {{description}}更新命令
+ */
+@Data
+@Schema(description = "{{description}}更新命令")
+public class {{EntityName}}UpdateCmd implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @NotNull(message = "ID不能为空")
+    @Schema(description = "主键ID")
+    private Long id;
+
+    // TODO: 添加业务字段和校验注解
 }
 ```
 
@@ -241,7 +520,7 @@ public void update(UserDTO dto) {
 
 ## 关联Agent
 
-- 03-Java开发专家
+- java-developer
 
 ## 关联规则
 

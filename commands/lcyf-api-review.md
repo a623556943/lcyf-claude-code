@@ -1,4 +1,8 @@
-# /lcyf-API审查
+---
+description: 审查REST API设计的规范性、一致性和安全性。适合新增API接口或API重构时使用。
+---
+
+# /lcyf-api-review
 
 ## 概述
 
@@ -7,9 +11,9 @@
 ## 用法
 
 ```
-/lcyf-API审查
-/lcyf-API审查 --module=system
-/lcyf-API审查 --file=UserController.java
+/lcyf-api-review
+/lcyf-api-review --module=system
+/lcyf-api-review --file=UserController.java
 ```
 
 ## 审查内容
@@ -130,13 +134,17 @@ public CommonResult<PageResult<UserDTO>> page(
 
 ## 关联命令
 
-- `/lcyf-代码审查` - 综合代码审查
-- `/lcyf-新功能` - 新功能开发
+- `/lcyf-code-review` - 综合代码审查
+- `/lcyf-new-feature` - 新功能开发
 
 ## 关联Agent
 
-- 03-Java开发专家
-- 05-代码审查专家
+- java-developer
+- code-reviewer
+
+## 关联Skill
+
+- java-full-stack
 
 ## 关联规则
 

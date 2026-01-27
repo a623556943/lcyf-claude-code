@@ -1,4 +1,8 @@
-# /lcyf-数据库审查
+---
+description: 审查数据库设计和SQL操作的规范性、性能和安全性。适合数据库变更、SQL优化或性能问题排查。
+---
+
+# /lcyf-db-review
 
 ## 概述
 
@@ -7,10 +11,10 @@
 ## 用法
 
 ```
-/lcyf-数据库审查
-/lcyf-数据库审查 --module=system
-/lcyf-数据库审查 --check-sql       # 检查SQL性能
-/lcyf-数据库审查 --check-schema    # 检查表结构
+/lcyf-db-review
+/lcyf-db-review --module=system
+/lcyf-db-review --check-sql       # 检查SQL性能
+/lcyf-db-review --check-schema    # 检查表结构
 ```
 
 ## 审查内容
@@ -93,14 +97,14 @@ Map<Long, Dept> deptMap = deptMapper.selectBatchIds(deptIds)
 
 | 类型 | 数量 | 严重性 |
 |------|------|--------|
-| 表结构 | 3 | 🟠 中 |
-| 索引 | 2 | 🟡 低 |
-| SQL性能 | 5 | 🟠 中 |
-| 安全性 | 1 | 🔴 高 |
+| 表结构 | 3 | 中 |
+| 索引 | 2 | 低 |
+| SQL性能 | 5 | 中 |
+| 安全性 | 1 | 高 |
 
 ## 详细问题
 
-### 🔴 安全性问题
+### 安全性问题
 
 #### 1. SQL注入风险
 - **位置**: UserMapper.xml:45
@@ -108,7 +112,7 @@ Map<Long, Dept> deptMap = deptMapper.selectBatchIds(deptIds)
 - **SQL**: `SELECT * FROM user WHERE name = '${name}'`
 - **修复**: 改为 `#{name}`
 
-### 🟠 SQL性能问题
+### SQL性能问题
 
 #### 1. N+1查询
 - **位置**: OrderService.java:30
@@ -122,7 +126,7 @@ Map<Long, Dept> deptMap = deptMapper.selectBatchIds(deptIds)
 - **影响**: 大数据量时OOM风险
 - **修复**: 添加分页参数
 
-### 🟡 索引问题
+### 索引问题
 
 #### 1. 缺少索引
 - **表**: system_user
@@ -148,12 +152,16 @@ Map<Long, Dept> deptMap = deptMapper.selectBatchIds(deptIds)
 
 ## 关联命令
 
-- `/lcyf-代码审查` - 综合代码审查
-- `/lcyf-新功能` - 新功能开发
+- `/lcyf-code-review` - 综合代码审查
+- `/lcyf-new-feature` - 新功能开发
 
 ## 关联Agent
 
-- 03-Java开发专家
+- java-developer
+
+## 关联Skill
+
+- java-full-stack
 
 ## 关联规则
 

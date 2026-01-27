@@ -1,7 +1,11 @@
-# /lcyf-验证
+---
+description: 对当前代码库状态进行全面验证，确保代码质量和可发布性。适合提交前检查或PR前验证。
+---
+
+# /lcyf-verify
 
 ## 元数据
-- **使用 Agents:** 07-测试专家, 05-代码审查专家, 06-安全审查专家
+- **使用 Agents:** tdd-guide, code-reviewer, security-reviewer
 - **遵循 Rules:** 00-总则, 01-安全规范, 03-测试要求
 
 ## 命令说明
@@ -10,10 +14,10 @@
 ## 使用方式
 
 ```
-/lcyf-验证           # 完整验证（默认）
-/lcyf-验证 quick     # 快速验证（构建+编译）
-/lcyf-验证 pre-commit # 提交前验证
-/lcyf-验证 pre-pr    # PR前完整验证（含安全扫描）
+/lcyf-verify           # 完整验证（默认）
+/lcyf-verify quick     # 快速验证（构建+编译）
+/lcyf-verify pre-commit # 提交前验证
+/lcyf-verify pre-pr    # PR前完整验证（含安全扫描）
 ```
 
 ## 验证流程
@@ -84,7 +88,7 @@ grep -r "String.*sql.*=.*\+.*" --include="*.java"
 #### 7. 日志审计
 ```bash
 # 检查System.out.println
-grep -rn "System\\.out\\.println\\|System\\.err\\.println" --include="*.java"
+grep -rn "System\.out\.println\|System\.err\.println" --include="*.java"
 
 # 检查e.printStackTrace()
 grep -rn "printStackTrace" --include="*.java"
@@ -130,20 +134,20 @@ git diff --stat HEAD
 ### 成功示例
 
 ```
-验证报告: PASS ✓
+验证报告: PASS
 ==================
 验证时间: 2025-01-26 10:30:45
 验证模式: full
 
 检查结果
 --------
-✓ 构建:      成功
-✓ 编译:      无错误
-✓ 代码规范:  通过 (0个警告)
-✓ 测试:      28/28 通过
-✓ 覆盖率:    87% (≥80% ✓)
-✓ 安全:      无问题
-✓ 日志:      干净 (0个System.out)
+构建:      成功
+编译:      无错误
+代码规范:  通过 (0个警告)
+测试:      28/28 通过
+覆盖率:    87% (≥80% 通过)
+安全:      无问题
+日志:      干净 (0个System.out)
 
 Git状态
 -------
@@ -152,7 +156,7 @@ Git状态
   M src/test/java/UserServiceTest.java
   M pom.xml
 
-准备发布: YES ✓
+准备发布: YES
 
 建议: 代码质量良好，可以提交
 ```
@@ -160,20 +164,20 @@ Git状态
 ### 失败示例
 
 ```
-验证报告: FAIL ✗
+验证报告: FAIL
 ==================
 验证时间: 2025-01-26 10:30:45
 验证模式: full
 
 检查结果
 --------
-✓ 构建:      成功
-✓ 编译:      无错误
-✗ 代码规范:  3个Checkstyle警告
-✓ 测试:      25/28 通过
-✗ 覆盖率:    72% (< 80% ✗)
-✗ 安全:      发现2个问题
-✗ 日志:      发现5个System.out.println
+构建:      成功
+编译:      无错误
+代码规范:  3个Checkstyle警告
+测试:      25/28 通过
+覆盖率:    72% (< 80% 失败)
+安全:      发现2个问题
+日志:      发现5个System.out.println
 
 详细问题
 --------
@@ -184,9 +188,9 @@ Git状态
 3. PaymentService.java:120 - 空行过多
 
 测试失败:
-1. ✗ UserServiceTest.testCreateUser - NullPointerException
-2. ✗ OrderServiceTest.testCancelOrder - AssertionError
-3. ✗ PaymentServiceTest.testRefund - Timeout
+1. UserServiceTest.testCreateUser - NullPointerException
+2. OrderServiceTest.testCancelOrder - AssertionError
+3. PaymentServiceTest.testRefund - Timeout
 
 覆盖率不足:
 - 目标: 80%
@@ -213,7 +217,7 @@ Git状态
   * ProductService.java:200
   * InventoryService.java:66
 
-准备发布: NO ✗
+准备发布: NO
 
 必须修复项:
 -----------
@@ -234,9 +238,9 @@ Git状态
 ## 验证结果说明
 
 ### 状态标识
-- ✓ - 通过
-- ✗ - 失败
-- ⚠ - 警告
+- 通过
+- 失败
+- 警告
 
 ### 严重程度
 - **严重** - 必须修复，阻止发布
@@ -250,10 +254,10 @@ Git状态
 ```
 自动修复建议
 ============
-1. 修复代码规范: /lcyf-重构清理
-2. 修复安全问题: /lcyf-安全审查
+1. 修复代码规范: /lcyf-refactor
+2. 修复安全问题: /lcyf-security-scan
 3. 补充测试: /lcyf-tdd
-4. 修复构建错误: /lcyf-构建修复
+4. 修复构建错误: /lcyf-build-fix
 ```
 
 ## 与CI/CD集成
@@ -282,25 +286,20 @@ jobs:
 - **修复后重新验证**: 确保修复有效
 - **PR前必须验证**: 使用 pre-pr 模式
 
-## 相关命令
+## 关联命令
 
-- `/lcyf-测试覆盖` - 详细的覆盖率分析
-- `/lcyf-安全审查` - 专门的安全检查
-- `/lcyf-代码审查` - 代码质量审查
-- `/lcyf-构建修复` - 修复构建错误
-- `/lcyf-检查点` - 创建验证检查点
+- `/lcyf-tdd` - TDD开发
+- `/lcyf-security-scan` - 专门的安全检查
+- `/lcyf-code-review` - 代码质量审查
+- `/lcyf-build-fix` - 修复构建错误
+- `/lcyf-checkpoint` - 创建验证检查点
 
-## 示例用法
+## 关联Agent
 
-```bash
-# 开发中快速检查
-/lcyf-验证 quick
+- tdd-guide
+- code-reviewer
+- security-reviewer
 
-# 提交前验证
-git add .
-/lcyf-验证 pre-commit
-git commit -m "feature: add user service"
+## 关联Skill
 
-# PR前完整验证
-/lcyf-验证 pre-pr
-```
+- verification-loop

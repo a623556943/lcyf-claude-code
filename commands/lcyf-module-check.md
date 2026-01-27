@@ -1,4 +1,8 @@
-# /lcyf-模块检查
+---
+description: 检查模块间依赖关系，确保模块边界清晰、无循环依赖。适合新增跨模块功能或pom.xml变更时使用。
+---
+
+# /lcyf-module-check
 
 ## 概述
 
@@ -7,10 +11,10 @@
 ## 用法
 
 ```
-/lcyf-模块检查
-/lcyf-模块检查 --module=policy     # 检查指定模块
-/lcyf-模块检查 --graph             # 生成依赖图
-/lcyf-模块检查 --strict            # 严格模式
+/lcyf-module-check
+/lcyf-module-check --module=policy     # 检查指定模块
+/lcyf-module-check --graph             # 生成依赖图
+/lcyf-module-check --strict            # 严格模式
 ```
 
 ## 检查内容
@@ -98,21 +102,21 @@ finance ────────────────────────
 
 ## 问题发现
 
-### 🔴 循环依赖
+### 循环依赖
 
 #### 1. sales ↔ policy
 - **详情**: sales依赖policy，policy依赖sales
 - **影响**: 编译顺序问题，模块耦合
 - **建议**: 提取公共接口到base模块
 
-### 🟠 依赖方向错误
+### 依赖方向错误
 
 #### 1. system → sales
 - **位置**: lcyf-module-system/pom.xml
 - **问题**: system模块依赖了sales模块
 - **建议**: 通过事件或消息解耦
 
-### 🟡 跨层调用
+### 跨层调用
 
 #### 1. PolicyController → UserMapper
 - **位置**: PolicyController.java:35
@@ -147,13 +151,16 @@ finance ────────────────────────
 
 ## 关联命令
 
-- `/lcyf-代码审查` - 综合代码审查
-- `/lcyf-新功能` - 新功能开发
+- `/lcyf-code-review` - 综合代码审查
+- `/lcyf-new-feature` - 新功能开发
 
 ## 关联Agent
 
-- 04-模块协调专家
-- 02-架构专家
+- architect
+
+## 关联Skill
+
+- modular-monolith
 
 ## 关联规则
 

@@ -1,3 +1,7 @@
+---
+description: 测试驱动开发命令，强制执行红-绿-重构的TDD工作流。适合编写新功能、修复bug或重构代码时使用，确保80%以上测试覆盖率。
+---
+
 # /lcyf-tdd
 
 ## 概述
@@ -39,7 +43,7 @@
 
 ### 步骤1: 理解需求
 
-**执行Agent**: 07-测试专家
+**执行Agent**: tdd-guide
 
 ```markdown
 ## 需求分析
@@ -51,7 +55,7 @@
 
 ### 步骤2: 编写测试
 
-**执行Agent**: 07-测试专家
+**执行Agent**: tdd-guide
 
 ```java
 @Test
@@ -106,7 +110,7 @@ mvn test -Dtest=AuthServiceTest
 
 ### 步骤4: 实现代码
 
-**执行Agent**: 03-Java开发专家
+**执行Agent**: java-developer
 
 ```java
 @Service
@@ -193,13 +197,18 @@ mvn test jacoco:report
 
 ## 关联命令
 
-- `/lcyf-新功能` - 完整功能开发流程
-- `/lcyf-验证` - 执行验证
+- `/lcyf-new-feature` - 完整功能开发流程
+- `/lcyf-verify` - 执行验证
 
 ## 关联Agent
 
-- 07-测试专家
-- 03-Java开发专家
+- tdd-guide
+- java-developer
+
+## 关联Skill
+
+- tdd-workflow
+- java-full-stack
 
 ## 关联规则
 

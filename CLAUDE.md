@@ -22,7 +22,7 @@
 ┌─────────────────────────────────────────┐
 │              adapter（适配层）            │
 │  ┌─────────┐ ┌─────────┐ ┌─────────┐   │
-│  │   web   │ │   rpc   │ │   mq    │   │
+│  │   web   │ │   rpc   │ ���   mq    │   │
 │  └─────────┘ └─────────┘ └─────────┘   │
 └─────────────────────────────────────────┘
                     │
@@ -57,29 +57,29 @@
 
 | 命令 | 用途 |
 |------|------|
-| `/lcyf-新功能` | 完整的新功能开发工作流 |
+| `/lcyf-new-feature` | 完整的新功能开发工作流 |
 | `/lcyf-tdd` | 测试驱动开发流程 |
-| `/lcyf-重构` | 代码重构流程 |
-| `/lcyf-构建修复` | 修复构建错误 |
+| `/lcyf-refactor` | 代码重构流程 |
+| `/lcyf-build-fix` | 修复构建错误 |
 
 ### 代码审查命令
 
 | 命令 | 用途 |
 |------|------|
-| `/lcyf-代码审查` | 全面代码审查 |
-| `/lcyf-安全扫描` | 安全漏洞扫描 |
-| `/lcyf-API审查` | API 设计审查 |
-| `/lcyf-数据库审查` | 数据库设计审查 |
-| `/lcyf-模块检查` | 模块依赖检查 |
+| `/lcyf-code-review` | 全面代码审查 |
+| `/lcyf-security-scan` | 安全漏洞扫描 |
+| `/lcyf-api-review` | API 设计审查 |
+| `/lcyf-db-review` | 数据库设计审查 |
+| `/lcyf-module-check` | 模块依赖检查 |
 
 ### 管理命令
 
 | 命令 | 用途 |
 |------|------|
-| `/lcyf-验证` | 执行质量验证 |
-| `/lcyf-检查点` | 创建/恢复检查点 |
-| `/lcyf-知识管理` | 知识库管理 |
-| `/lcyf-自动` | 智能命令选择 |
+| `/lcyf-verify` | 执行质量验证 |
+| `/lcyf-checkpoint` | 创建/恢复检查点 |
+| `/lcyf-learn` | 知识库管理 |
+| `/lcyf-auto` | 智能命令选择 |
 
 ---
 
@@ -168,7 +168,7 @@ base ← 所有模块可依赖
 
 ```bash
 # 在 Claude Code 中输入
-/lcyf-新功能
+/lcyf-new-feature
 
 # 输入功能描述
 我想开发用户登录功能
@@ -178,20 +178,20 @@ base ← 所有模块可依赖
 
 ```bash
 # 代码审查
-/lcyf-代码审查
+/lcyf-code-review
 
 # 安全扫描
-/lcyf-安全扫描
+/lcyf-security-scan
 ```
 
 ### 3. 验证代码
 
 ```bash
 # 快速验证
-/lcyf-验证 quick
+/lcyf-verify quick
 
 # 完整验证
-/lcyf-验证 full
+/lcyf-verify full
 ```
 
 ---
@@ -200,14 +200,24 @@ base ← 所有模块可依赖
 
 | Agent | 职责 |
 |-------|------|
-| 01-规划专家 | 任务分解、执行计划 |
-| 02-架构专家 | 系统设计、技术决策 |
-| 03-Java开发专家 | 功能实现、代码模板 |
-| 04-模块协调专家 | 模块依赖、跨模块通信 |
-| 05-代码审查专家 | 代码质量检查 |
-| 06-安全审查专家 | 安全漏洞检测 |
-| 07-测试专家 | TDD、测试覆盖率 |
-| 08-学习代理 | 模式提取、知识积累 |
+| planner | 任务分解、执行计划 |
+| architect | 系统设计、技术决策 |
+| java-developer | 功能实现、代码编写 |
+| code-reviewer | 代码质量检查 |
+| security-reviewer | 安全漏洞检测 |
+| tdd-guide | TDD、测试覆盖率 |
+
+## Skill 列表
+
+| Skill | 用途 |
+|-------|------|
+| java-full-stack | Java/Spring Boot 代码模板 |
+| modular-monolith | 模块化架构设计原则 |
+| continuous-learning | 知识积累和模式提取 |
+| verification-loop | 代码质量验证 |
+| workflows | 标准化开发工作流 |
+| security-review | 安全检查清单和模式 |
+| tdd-workflow | TDD 测试模板和覆盖率 |
 
 ---
 

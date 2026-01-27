@@ -1,3 +1,8 @@
+---
+name: modular-monolith
+description: 提供模块化单体架构的设计原则、依赖管理和最佳实践。当执行 /lcyf-module-check 命令、architect agent 设计架构或新增跨模块功能时激活。包含循环依赖检测、依赖方向验证、跨模块通信规范。
+---
+
 # 模块化单体架构技能
 
 ## 概述
@@ -97,6 +102,35 @@ lcyf-module-{name}/
 </dependency> -->
 ```
 
+## 循环依赖检测
+
+### 检测方法
+
+```bash
+# 分析Maven依赖树
+mvn dependency:tree -Dincludes=com.lcyf.cloud
+
+# 检查循环依赖
+mvn org.apache.maven.plugins:maven-dependency-plugin:analyze-dep-mgt
+
+# 可视化依赖图
+mvn com.github.ferstl:depgraph-maven-plugin:graph
+```
+
+### 代码分析
+
+```java
+// 检查import语句
+// 正确: 依赖base模块
+import com.lcyf.cloud.base.util.DateUtils;
+
+// 错误: 业务模块不应依赖system的impl
+import com.lcyf.cloud.system.biz.service.impl.UserServiceImpl;
+
+// 正确: 通过RPC接口调用
+import com.lcyf.cloud.system.api.user.UserApi;
+```
+
 ## 跨模块通信
 
 ### 方式1: Dubbo RPC（推荐）
@@ -153,9 +187,9 @@ public class FinanceEventListener {
 }
 ```
 
-## 模块边界检查
+## 模块边界检查清单
 
-### 检查清单
+### 检查项
 
 - [ ] 无循环依赖
 - [ ] 依赖方向正确
@@ -166,15 +200,46 @@ public class FinanceEventListener {
 ### 常见违规
 
 ```java
-// ❌ 违规: 直接依赖实现类
+// 违规: 直接依赖实现类
 import com.lcyf.cloud.system.biz.service.impl.UserServiceImpl;
 
-// ❌ 违规: Controller直接调用Mapper
+// 违规: Controller直接调用Mapper
 @Resource
 private UserMapper userMapper; // 应该通过Service
 
-// ❌ 违规: 依赖biz模块
+// 违规: 依赖biz模块
 import com.lcyf.cloud.sales.biz.infrastructure.entity.OrderDO;
+```
+
+## 变更影响分析
+
+### 变更影响报告模板
+
+```markdown
+# 变更影响分析
+
+## 变更内容
+- 模块: {模块名}
+- 变更类型: {接口变更/实体变更/删除}
+- 变更描述: {描述}
+
+## 影响范围
+
+### 直接影响
+| 模块 | 影响文件 | 影响程度 |
+|------|----------|----------|
+| {模块} | {文件} | 高/中/低 |
+
+### 间接影响
+- {描述}
+
+## 修复建议
+1. {步骤1}
+2. {步骤2}
+
+## 兼容性说明
+- 是否需要版本升级: 是/否
+- 是否需要数据迁移: 是/否
 ```
 
 ## 新增模块流程
@@ -200,8 +265,7 @@ import com.lcyf.cloud.sales.biz.infrastructure.entity.OrderDO;
 
 ## 关联Agent
 
-- 04-模块协调专家
-- 02-架构专家
+- architect
 
 ## 关联规则
 
@@ -209,4 +273,4 @@ import com.lcyf.cloud.sales.biz.infrastructure.entity.OrderDO;
 
 ## 关联命令
 
-- `/lcyf-模块检查` - 检查模块依赖
+- `/lcyf-module-check` - 检查模块依赖
