@@ -48,16 +48,11 @@
    └── 理解当前代码结构
    └── 识别代码坏味道
 
-2. 测试准备
-   └── 确保测试覆盖率≥80%
-   └── 所有测试通过
-
-3. 小步重构
+2. 小步重构
    └── 每次只做一个小改动
-   └── 改动后运行测试
+   └── 改动后验证功能
 
-4. 验证阶段
-   └── 所有测试仍然通过
+3. 验证阶段
    └── 功能行为不变
 ```
 
@@ -78,18 +73,7 @@
 
 ## 安全重构原则
 
-### 1. 测试先行
-
-```bash
-# 重构前确保测试通过
-mvn test
-
-# 检查覆盖率
-mvn jacoco:report
-# 确保 ≥ 80%
-```
-
-### 2. 小步前进
+### 1. 小步前进
 
 ```java
 // ❌ 一次性大改
@@ -99,21 +83,14 @@ mvn jacoco:report
 // 第1步: 提取validateOrder方法
 // 第2步: 提取calculatePrice方法
 // 第3步: 提取applyDiscount方法
-// 每步都运行测试
+// 每步都验证功能
 ```
 
-### 3. 保持行为
+### 2. 保持行为
 
 ```java
-// 重构前的测试用例
-@Test
-void processOrder_shouldCalculateCorrectTotal() {
-    Order order = createTestOrder();
-    orderService.process(order);
-    assertThat(order.getTotal()).isEqualTo(100);
-}
-
-// 重构后测试必须仍然通过
+// 重构前后功能行为必须保持一致
+// 使用相同输入应该得到相同输出
 ```
 
 ## 输出格式
@@ -136,7 +113,7 @@ void processOrder_shouldCalculateCorrectTotal() {
 ### 步骤1: 提取验证方法
 - **变更**: 提取validateUserInput方法
 - **影响文件**: UserServiceImpl.java
-- **测试**: ✅ 通过
+- **验证**: ✅ 功能正常
 
 ### 步骤2: 引入参数对象
 - **变更**: 创建UserUpdateCmd替代8个参数
@@ -144,12 +121,12 @@ void processOrder_shouldCalculateCorrectTotal() {
   - UserServiceImpl.java
   - UserController.java
   - UserUpdateCmd.java (新)
-- **测试**: ✅ 通过
+- **验证**: ✅ 功能正常
 
 ### 步骤3: 拆分长方法
 - **变更**: createUser拆分为5个私有方法
 - **影响文件**: UserServiceImpl.java
-- **测试**: ✅ 通过
+- **验证**: ✅ 功能正常
 
 ## 重构结果
 
@@ -158,10 +135,8 @@ void processOrder_shouldCalculateCorrectTotal() {
 | 最长方法行数 | 120 | 35 |
 | 重复代码块 | 3 | 0 |
 | 平均方法行数 | 45 | 20 |
-| 测试覆盖率 | 82% | 85% |
 
 ## 验证结果
-✅ 所有测试通过
 ✅ 功能行为不变
 ✅ 代码质量提升
 ```
@@ -176,13 +151,11 @@ void processOrder_shouldCalculateCorrectTotal() {
 ## 关联命令
 
 - `/lcyf-代码审查` - 代码审查
-- `/lcyf-tdd` - 测试驱动开发
 
 ## 关联Agent
 
 - 01-规划专家
 - 03-Java开发专家
-- 07-测试专家
 
 ## 关联规则
 
