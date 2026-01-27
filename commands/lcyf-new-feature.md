@@ -29,7 +29,7 @@ description: 完整的新功能开发流程，从需求分析、架构设计到�
    └── java-developer: 实现代码
 
 4. 知识沉淀
-   └── continuous-learning skill: 提取可复用模式
+   └── knowledge-manager: 知识沉淀
 ```
 
 ## 阶段详情
@@ -99,14 +99,10 @@ description: 完整的新功能开发流程，从需求分析、架构设计到�
 ## 关联命令
 
 - `/lcyf-code-review` - 代码审查
-- `/lcyf-learn` - 知识沉淀
 
 ## 关联Agent
 
 - planner
-- architect
-- java-developer
-- knowledge-manager
 
 ## 关联规则
 

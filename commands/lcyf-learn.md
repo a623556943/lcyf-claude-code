@@ -183,10 +183,6 @@ build-parent/doc/
 | --limit | 显示数量 | 20 |
 | --sort | 排序方式 | frequency |
 
-## 关联命令
-
-- `/lcyf-new-feature` - 新功能开发后进行知识沉淀
-
 ## 关联Agent
 
 - knowledge-manager
