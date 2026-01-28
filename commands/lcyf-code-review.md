@@ -10,10 +10,12 @@ description: 执行代码质量审查，包括规范检查、架构合规性分�
 
 ## 用法
 
-```
+```bash
 /lcyf-code-review
-/lcyf-code-review --scope=changed    # 只审查变更的文件
+/lcyf-code-review --scope=changed    # 只审查变更的文件（推荐）
 /lcyf-code-review --scope=module --module=system  # 审查指定模块
+/lcyf-code-review --scope=all        # 审查整个项目（耗时）
+/lcyf-code-review --help             # 显示帮助信息
 ```
 
 ## 审查范围
@@ -108,11 +110,99 @@ description: 执行代码质量审查，包括规范检查、架构合规性分�
 
 ## 参数
 
-| 参数 | 说明 | 默认值 |
-|------|------|--------|
-| --scope | 审查范围 | changed |
-| --module | 指定模块 | 全部 |
-| --fix | 自动修复简单问题 | false |
+| 参数 | 说明 | 可选值 | 默认值 | 必需 |
+|------|------|--------|--------|------|
+| --scope | 审查范围 | changed \| module \| all | changed | 否 |
+| --module | 指定模块（scope=module时需要） | system \| sales \| finance 等 | - | 条件必需 |
+| --fix | 自动修复简单问题 | true \| false | false | 否 |
+| --severity | 最低严重程度过滤 | critical \| high \| medium \| low | low | 否 |
+
+### 参数校验规则
+
+**--scope 参数**:
+```bash
+# ✓ 正确
+/lcyf-code-review --scope=changed
+/lcyf-code-review --scope=module --module=system
+/lcyf-code-review --scope=all
+
+# ✗ 错误示例
+/lcyf-code-review --scope=invalid
+# 错误提示: 参数错误: scope 值无效
+#           期望: changed | module | all
+#           实际: invalid
+#           提示: 查看帮助 /lcyf-code-review --help
+
+/lcyf-code-review --scope=module
+# 错误提示: 参数缺失: scope=module 时必须指定 --module 参数
+#           示例: /lcyf-code-review --scope=module --module=system
+#           可用模块: system, sales, finance, product-factory
+```
+
+**--module 参数**:
+```bash
+# ✓ 正确
+/lcyf-code-review --scope=module --module=system
+
+# ✗ 错误示例
+/lcyf-code-review --scope=module --module=unknown
+# 错误提示: 模块不存在: unknown
+#           可用模块:
+#             • system (基础系统服务)
+#             • sales (销售模块)
+#             • finance (财务模块)
+#             • product-factory (产品工厂)
+#           提示: 检查拼写或运行 /lcyf-learn modules 查看所有模块
+```
+
+**--fix 参数**:
+```bash
+# ✓ 正确
+/lcyf-code-review --fix
+/lcyf-code-review --fix=true
+/lcyf-code-review --fix=false
+
+# ✗ 错误示例
+/lcyf-code-review --fix=yes
+# 错误提示: 参数错误: --fix 值无效
+#           期望: true | false (或省略值默认为true)
+#           实际: yes
+```
+
+### 智能提示
+
+执行命令时，系统会自动提示：
+
+```bash
+/lcyf-code-review --scope=
+
+💡 智能提示:
+  可用选项:
+  • changed  - 只审查变更的文件（推荐，快速）
+  • module   - 审查指定模块（需要 --module=xxx）
+  • all      - 审查整个项目（耗时较长）
+
+  当前Git状态:
+  • 已修改: 5个文件
+  • 涉及模块: system, sales
+
+  建议: 使用 --scope=changed
+```
+
+```bash
+/lcyf-code-review --scope=module --module=
+
+💡 智能提示:
+  可用模块:
+  • system           - 基础系统服务 (23个文件)
+  • sales            - 销售模块 (45个文件)
+  • finance          - 财务模块 (31个文件)
+  • product-factory  - 产品工厂 (18个文件)
+
+  最近修改的模块:
+  • system (5个文件变更)
+  • sales (2个文件变更)
+```
 
 ## 关联命令
 
