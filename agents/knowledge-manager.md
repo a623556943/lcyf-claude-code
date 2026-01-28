@@ -97,6 +97,7 @@ docs/knowledge/
 │   ├── system/
 │   ├── sales/
 │   └── finance/
+│   └── policy/
 └── session-history/           # 会话历史（.gitignore 排除）
 ```
 
