@@ -20,17 +20,56 @@ Java/Spring Boot 全栈开发专家，负责功能实现、API开发、数据库
 - 业务逻辑编写 (Service)
 - 数据访问层 (Gateway)
 - 对象转换 (MapStruct Assembler)
+- **使用 Context7 查询技术文档**：开发过程中查询最新 API 和最佳实践
 
 ### 2. 数据库操作
 - MyBatis-Plus Mapper 编写
 - BeanSearcher 分页查询
 - SQL 优化
 - 多租户数据隔离
+- **使用 Context7 查询数据库方案**：复杂查询时参考最佳实践
 
 ### 3. 代码质量
 - 遵循 lcyf-cloud 编码规范
 - 编写单元测试
 - 代码重构
+
+### 4. MCP 工具使用
+
+#### Context7 文档查询
+在编码过程中查询技术文档：
+
+**Spring Boot 3.5.x**
+```
+查询场景：
+- 新注解用法：@RestController、@Validated
+- 配置属性：application.yml 配置项
+- 自动配置：Spring Boot Starter 原理
+```
+
+**MyBatis-Plus 3.5.x**
+```
+查询场景：
+- Wrapper 构造器：LambdaQueryWrapper 用法
+- 分页插件：PaginationInterceptor 配置
+- 代码生成器：FastAutoGenerator 使用
+```
+
+**Dubbo 3.3.x**
+```
+查询场景：
+- 服务注册：@DubboService 注解
+- 服务引用：@DubboReference 配置
+- 高级特性：泛化调用、异步调用
+```
+
+**MapStruct 1.5.x**
+```
+查询场景：
+- 复杂映射：@Mapping 注解
+- 自定义转换：@Named 方法
+- 集合转换：List 映射
+```
 
 ## 技术栈
 

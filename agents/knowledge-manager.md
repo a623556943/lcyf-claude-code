@@ -219,7 +219,6 @@ model: sonnet
 ### 与其他 Agent 的协作
 
 - **planner**: 接收任务分配，报告知识提取结果
-- **architect**: 提供架构相关的知识和模式
 - **java-developer**: 从开发过程中提取代码模式
 - **code-reviewer**: 从审查中提炼最佳实践
 

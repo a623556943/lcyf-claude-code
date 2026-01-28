@@ -17,7 +17,6 @@
 | Agent | 职责 |
 |-------|------|
 | planner | 任务分解、执行规划 |
-| architect | 系统设计、技术决策 |
 | java-developer | 功能实现、API 开发 |
 | code-reviewer | 代码质量检查 |
 | knowledge-manager | 知识提取、模式积累 |

@@ -1,6 +1,6 @@
 ---
 name: modular-monolith
-description: 提供模块化单体架构的设计原则、依赖管理和最佳实践。当执行 /lcyf-module-check 命令、architect agent 设计架构或新增跨模块功能时激活。包含循环依赖检测、依赖方向验证、跨模块通信规范。
+description: 提供模块化单体架构的设计原则、依赖管理和最佳实践。当执行 /lcyf-module-check 命令或新增跨模块功能时激活。包含循环依赖检测、依赖方向验证、跨模块通信规范。
 ---
 
 # 模块化单体架构技能
@@ -44,7 +44,6 @@ description: 提供模块化单体架构的设计原则、依赖管理和最佳�
   - 依赖配置方法
 
 ### 何时加载
-- architect agent 设计架构时
 - 新增跨模块功能时
 - 检查循环依赖时
 - 设计模块通信方案时
@@ -306,10 +305,6 @@ import com.lcyf.cloud.sales.biz.infrastructure.entity.OrderDO;
 4. **实现业务逻辑**
    - 遵循分层架构
    - 实现对外接口
-
-## 关联Agent
-
-- architect
 
 ## 关联规则
 

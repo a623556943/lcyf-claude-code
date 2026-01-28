@@ -256,7 +256,6 @@ public void save() {
 
 | 场景 | 协作Agent | 说明 |
 |------|-----------|------|
-| 架构问题 | architect | 架构设计审查 |
 | 知识沉淀 | knowledge-manager | 提取最佳实践 |
 
 ## 触发条件
