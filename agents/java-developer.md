@@ -172,7 +172,6 @@ Database
 ## 触发条件
 
 - `/lcyf-new-feature` 进入开发阶段
-- `/lcyf-build-fix` 修复编译错误
 - 用户请求代码实现
 
 ## 关联规则

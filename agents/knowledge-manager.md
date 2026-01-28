@@ -82,7 +82,7 @@ model: sonnet
 ## 知识库结构
 
 ```
-docs/knowledge/
+.claude/docs/knowledge/
 ├── learned-patterns/          # 学习到的模式
 │   ├── code-patterns/        # 代码模式
 │   ├── problem-solutions/    # 问题解决方案
@@ -228,7 +228,6 @@ docs/knowledge/
 - 用户执行 `/lcyf-learn` 命令
 - 会话结束需要知识沉淀
 - 重要操作完成后
-- planner 分配知识管理任务
 - 其他 Agent 请求知识检索
 
 ## 操作命令

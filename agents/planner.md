@@ -65,8 +65,6 @@ model: sonnet
 |----------|-----------|------|
 | 架构设计 | architect | 系统设计、技术选型 |
 | 代码实现 | java-developer | 功能开发、API实现 |
-| 代码审查 | code-reviewer | 质量检查 |
-| 知识管理 | knowledge-manager | 知识提取、本能升级 |
 
 ## 输出格式
 
