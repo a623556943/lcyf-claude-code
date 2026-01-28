@@ -38,3 +38,6 @@ Thumbs.db
 # Project specific
 *.bak
 .claude/local/
+
+# Knowledge base session history (not shared)
+build-parent/doc/knowledge/session-history/

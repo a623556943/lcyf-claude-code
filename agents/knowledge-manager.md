@@ -82,7 +82,7 @@ model: sonnet
 ## 知识库结构
 
 ```
-.lcyf/
+build-parent/doc/knowledge/
 ├── learned-patterns/          # 学习到的模式
 │   ├── code-patterns/        # 代码模式
 │   ├── problem-solutions/    # 问题解决方案
@@ -93,8 +93,14 @@ model: sonnet
 │   └── git-workflow.json
 ├── instincts/                 # 本能规则
 │   └── auto-patterns.json
-└── module-knowledge/          # 模块专属知识
+├── module-knowledge/          # 模块专属知识
+│   ├── system/
+│   ├── sales/
+│   └── finance/
+└── session-history/           # 会话历史（.gitignore 排除）
 ```
+
+> **注意**: 如果目录不存在，使用前应自动创建。
 
 ## 评估标准
 
