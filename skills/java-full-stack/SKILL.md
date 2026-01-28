@@ -1,6 +1,6 @@
 ---
 name: java-full-stack
-description: 在实现 lcyf-cloud Java/Spring Boot 功能时使用。提供 Controller、Service、Gateway、Assembler 层的代码模板。当执行 /lcyf-new-feature、/lcyf-tdd 命令或 java-developer agent 需要模板时激活。
+description: 在实现 lcyf-cloud Java/Spring Boot 功能时使用。提供 Controller、Service、Gateway、Assembler 层的代码模板。当执行 agent[java-developer.md] 需要模板时激活。
 ---
 
 # Java全栈开发技能
