@@ -1,7 +1,17 @@
 ---
 name: java-developer
 description: Java/Spring Boot 全栈开发专家，专精 lcyf-cloud 架构。负责功能实现、API开发、数据库操作等核心编码工作。在进入开发阶段、修复编译错误或执行TDD流程时主动使用。
-tools: ["mcp__jetbrains__get_project_modules", "mcp__jetbrains__get_file_text_by_path", "mcp__jetbrains__find_files_by_glob", "mcp__jetbrains__search_in_files_by_text", "mcp__jetbrains__search_in_files_by_regex", "mcp__jetbrains__list_directory_tree", "mcp__jetbrains__get_project_dependencies", "mcp__jetbrains__find_files_by_name_keyword", "mcp__jetbrains__get_file_problems", "mcp__jetbrains__get_symbol_info", "Read", "Write", "Edit", "Bash", "Grep", "Glob"]
+tools: ["mcp__jetbrains__get_project_modules", 
+        "mcp__jetbrains__get_file_text_by_path", 
+        "mcp__jetbrains__find_files_by_glob", 
+        "mcp__jetbrains__search_in_files_by_text",
+        "mcp__jetbrains__search_in_files_by_regex", 
+        "mcp__jetbrains__list_directory_tree",
+        "mcp__jetbrains__get_project_dependencies", 
+        "mcp__jetbrains__find_files_by_name_keyword", 
+        "mcp__jetbrains__get_file_problems",
+        "mcp__jetbrains__get_symbol_info", 
+        "Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 model: sonnet
 ---
 
@@ -82,7 +92,7 @@ Controller (adapter/web)
     ↓ 调用
 Service (biz/service)
     ↓ 调用
-Gateway (biz/infrastructure/gateway) ← 新增层
+Gateway (biz/infrastructure/gateway)
     ↓ 调用
 Mapper (biz/infrastructure/mapper)
     ↓ 访问
@@ -140,7 +150,7 @@ Database
 4. **多租户**: 业务实体继承 `TenantBaseDO`，全局配置表继承 `BaseDO`
 5. **主键**: 使用 `IdType.ASSIGN_ID`
 6. **序列化**: DTO/Cmd 实现 `Serializable` 并添加 `serialVersionUID`
-7. **分页**: 使用 `BeanSearcher`
+7. **分页**: 使用 `在gateway中的BeanSearcher`
 8. **转换**: 使用 `MapStruct Assembler`
 
 #### 禁止行为
