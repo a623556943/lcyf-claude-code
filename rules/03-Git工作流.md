@@ -1,4 +1,4 @@
-# 04-Git工作流
+# 03-Git工作流
 
 ## 概述
 
@@ -217,6 +217,6 @@ git push -f origin feature/my-feature
 | 大量文件的单次提交 | 难以审查 |
 | 不相关变更混合提交 | 历史不清晰 |
 
-## 关联Agent
+## 关联 Agent
 
-- 01-规划专家.md：任务分支管理
+- planner：任务分支管理

@@ -216,10 +216,8 @@ Database
 
 ## 关联规则
 
-- **06-Java编码规范** - lcyf-cloud 架构规范
-- **07-SpringBoot最佳实践** - Spring Boot 使用规范
-- **08-MyBatis规范** - MyBatis-Plus 使用规范
-- **09-API设计规范** - RESTful API 设计
+- **01-Java开发规范** - Java/Spring Boot/MyBatis 编码规范
+- **02-API设计规范** - RESTful API 设计
 
 ## 关键差异点
 

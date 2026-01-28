@@ -151,10 +151,8 @@ LCYF Claude Code - Java团队智能开发系统 v${VERSION}
 
     // 删除 rules
     const ruleFiles = [
-      '00-总则.md', '01-安全规范.md', '02-编码风格.md', '03-测试要求.md',
-      '04-Git工作流.md', '05-性能优化.md', '06-Java编码规范.md',
-      '07-SpringBoot最佳实践.md', '08-MyBatis规范.md', '09-API设计规范.md',
-      '10-数据库设计规范.md', '11-模块依赖规范.md'
+      '00-总则.md', '01-Java开发规范.md', '02-API设计规范.md',
+      '03-Git工作流.md', '04-性能优化.md'
     ];
     deleteFiles(path.join(CLAUDE_DIR, 'rules'), ruleFiles);
 

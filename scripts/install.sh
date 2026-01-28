@@ -78,10 +78,8 @@ if [ "$UNINSTALL" = true ]; then
 
     # 删除 rules
     RULE_FILES=(
-        "00-总则.md" "01-安全规范.md" "02-编码风格.md" "03-测试要求.md"
-        "04-Git工作流.md" "05-性能优化.md" "06-Java编码规范.md"
-        "07-SpringBoot最佳实践.md" "08-MyBatis规范.md" "09-API设计规范.md"
-        "10-数据库设计规范.md" "11-模块依赖规范.md"
+        "00-总则.md" "01-Java开发规范.md" "02-API设计规范.md"
+        "03-Git工作流.md" "04-性能优化.md"
     )
     for file in "${RULE_FILES[@]}"; do
         if [ -f "$CLAUDE_DIR/rules/$file" ]; then
@@ -124,7 +122,7 @@ success "Commands 复制完成 (13个)"
 # 复制 rules
 info "复制 Rules..."
 cp "$PROJECT_ROOT/rules/"*.md "$CLAUDE_DIR/rules/"
-success "Rules 复制完成 (12个)"
+success "Rules 复制完成 (5个)"
 
 # 复制 skills
 info "复制 Skills..."
@@ -149,7 +147,7 @@ echo ""
 info "已安装组件:"
 info "  - 8 个 Agents"
 info "  - 13 个 Commands"
-info "  - 12 个 Rules"
+info "  - 5 个 Rules"
 info "  - 5 个 Skills"
 echo ""
 info "使用方法:"

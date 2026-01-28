@@ -182,9 +182,7 @@ model: sonnet
 ## 相关资源
 
 📚 参考规则:
-   • 02-编码风格
-   • 06-Java编码规范
-   • 07-SpringBoot最佳实践
+   • 01-Java开发规范
 
 🔗 相关命令:
    • 知识查询: `/lcyf-learn search "问题关键词"`
@@ -267,6 +265,4 @@ public void save() {
 
 ## 关联规则
 
-- 02-编码风格
-- 06-Java编码规范
-- 07-SpringBoot最佳实践
+- 01-Java开发规范

@@ -561,6 +561,4 @@ public void update(UserDTO dto) {
 
 ## 关联规则
 
-- 06-Java编码规范
-- 07-SpringBoot最佳实践
-- 08-MyBatis规范
+- 01-Java开发规范

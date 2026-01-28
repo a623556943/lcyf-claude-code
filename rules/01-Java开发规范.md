@@ -1,4 +1,4 @@
-# 06-Java编码规范 (lcyf-cloud 架构)
+# 01-Java开发规范 (lcyf-cloud 架构)
 
 > **Tech Stack**: Java 21 + Spring Boot 3.5.x + Dubbo 3.3.3 + MyBatis-Plus 3.5.x + DDD+COLA
 
@@ -418,6 +418,158 @@ private {Domain}Api {domain}Api;
 | Cmd | `{Entity}AddCmd` / `{Entity}UpdateCmd` | `FeeAuditAddCmd` |
 | Enum | `{Name}Enum` | `EnableStatusEnum` |
 
+### 变量命名
+
+```java
+// ✅ 有意义的名称
+User currentUser;
+List<Order> pendingOrders;
+int maxRetryCount;
+
+// ❌ 避免无意义的名称
+User u;
+List<Order> list;
+int n;
+
+// ✅ 布尔变量使用is/has/can前缀
+boolean isActive;
+boolean hasPermission;
+boolean canEdit;
+
+// ✅ 常量使用全大写+下划线
+private static final int MAX_RETRY_COUNT = 3;
+private static final String DEFAULT_CHARSET = "UTF-8";
+```
+
+---
+
+## 📝 代码格式
+
+### 缩进与空格
+
+```java
+// ✅ 使用4个空格缩进
+public class UserService {
+    private UserMapper userMapper;
+}
+
+// ✅ 运算符两侧加空格
+int result = a + b;
+String name = user != null ? user.getName() : "unknown";
+
+// ✅ 逗号后加空格
+public void method(String a, String b, String c) {}
+```
+
+### 大括号
+
+```java
+// ✅ 大括号同行（K&R风格）
+if (condition) {
+    // code
+} else {
+    // code
+}
+
+// ✅ 单行语句也使用大括号
+if (condition) {
+    return true;
+}
+
+// ❌ 避免省略大括号
+if (condition)
+    return true;
+```
+
+### 行长度与换行
+
+- 最大行长度：120字符
+- 超长时合理换行
+
+```java
+// ✅ 方法调用换行
+String result = someService
+    .methodWithLongName()
+    .anotherMethod()
+    .finalMethod();
+
+// ✅ 参数过多时换行
+public void methodWithManyParams(
+        String param1,
+        String param2,
+        String param3) {
+    // ...
+}
+```
+
+### 方法长度
+
+- 单个方法不超过50行
+- 超过时考虑拆分
+
+```java
+// ❌ 过长的方法
+public void processOrder(Order order) {
+    // 100+ 行代码...
+}
+
+// ✅ 拆分为小方法
+public void processOrder(Order order) {
+    validateOrder(order);
+    calculatePrice(order);
+    applyDiscount(order);
+    saveOrder(order);
+    sendNotification(order);
+}
+```
+
+---
+
+## 📖 注释规范
+
+### 类注释
+
+```java
+/**
+ * 用户服务实现类
+ *
+ * <p>处理用户相关的业务逻辑，包括用户的增删改查、
+ * 权限验证、状态管理等功能。</p>
+ *
+ * @author 张三
+ * @since 2025-01-01
+ */
+public class UserServiceImpl implements IUserService {
+}
+```
+
+### 方法注释
+
+```java
+/**
+ * 根据ID获取用户信息
+ *
+ * @param id 用户ID，不能为空
+ * @return 用户信息，如果不存在返回null
+ * @throws IllegalArgumentException 如果id为null
+ */
+public User getById(Long id) {
+}
+```
+
+### 代码注释
+
+```java
+// ✅ 解释"为什么"，而不是"是什么"
+// 使用乐观锁防止并发更新冲突
+@Version
+private Integer version;
+
+// ❌ 避免无意义的注释
+// 获取用户
+User user = userService.getById(id);
+```
+
 ---
 
 ## ⚠️ 异常 & 日志
@@ -434,6 +586,32 @@ throw new ServerException(ErrorCode.SYSTEM_ERROR);
 ```
 
 **规则**: Controller 不捕获异常(交给全局处理) | Service 必须 catch 并打日志
+
+### 异常捕获
+
+```java
+// ✅ 捕获具体异常
+try {
+    userService.save(user);
+} catch (DuplicateKeyException e) {
+    throw new BusinessException("用户名已存在", e);
+}
+
+// ❌ 避免捕获 Exception
+try {
+    userService.save(user);
+} catch (Exception e) {
+    // 太宽泛
+}
+
+// ✅ 不要吞掉异常
+try {
+    // ...
+} catch (IOException e) {
+    log.error("文件操作失败", e);
+    throw new BusinessException("操作失败", e);
+}
+```
 
 ### 日志规范
 
@@ -571,13 +749,11 @@ ServiceExceptionUtil.exception(ErrorCode.XXX_ERROR)
 
 ---
 
-## 关联Agent
+## 关联 Agent
 
-- 03-Java开发专家.md：Java代码实现
-- 05-代码审查专家.md：代码审查
-- 07-SpringBoot最佳实践.md：Spring Boot规范
-- 08-MyBatis规范.md：MyBatis-Plus规范
+- java-developer：Java 代码实现
+- code-reviewer：代码审查
 
 ---
 
-**Last Updated**: 2026-01-27 | **Applies To**: lcyf-cloud All Microservices
+**Last Updated**: 2026-01-28 | **Applies To**: lcyf-cloud All Microservices

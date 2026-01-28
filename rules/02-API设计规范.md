@@ -1,4 +1,4 @@
-# 09-API设计规范
+# 02-API设计规范
 
 ## 概述
 
@@ -334,7 +334,7 @@ public class UserController {
 }
 ```
 
-## 关联Agent
+## 关联 Agent
 
-- 03-Java开发专家.md：API实现
-- 05-代码审查专家.md：API审查
+- java-developer：API 实现
+- code-reviewer：API 审查

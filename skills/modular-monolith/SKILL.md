@@ -308,5 +308,5 @@ import com.lcyf.cloud.sales.biz.infrastructure.entity.OrderDO;
 
 ## 关联规则
 
-- 05-性能优化
-- 07-SpringBoot最佳实践
+- 01-Java开发规范
+- 04-性能优化

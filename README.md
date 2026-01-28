@@ -29,18 +29,15 @@
 | `/lcyf-code-review` | 全面质量审查 |
 | `/lcyf-learn` | 知识库管理 |
 
-### 8 条编码规范
+### 5 条编码规范
 
 | 规则 | 说明 |
 |------|------|
 | 00-总则 | 基本原则和强制要求 |
-| 02-编码风格 | 代码格式、命名规范 |
-| 04-Git工作流 | 分支策略、提交规范 |
-| 05-性能优化 | 数据库、缓存、并发优化 |
-| 06-Java编码规范 | Java 特定编码标准 |
-| 07-SpringBoot最佳实践 | Spring Boot 使用规范 |
-| 08-MyBatis规范 | MyBatis-Plus 使用规范 |
-| 09-API设计规范 | RESTful API 设计 |
+| 01-Java开发规范 | Java/Spring Boot/MyBatis 编码规范 |
+| 02-API设计规范 | RESTful API 设计 |
+| 03-Git工作流 | 分支策略、提交规范 |
+| 04-性能优化 | 数据库、缓存、并发优化 |
 
 ---
 
@@ -67,7 +64,7 @@ git clone https://github.com/a623556943/lcyf-claude-code.git .claude
 lcyf-claude-code/
 ├── agents/              # 5 个专家 Agent
 ├── commands/            # 3 个智能命令
-├── rules/               # 8 条编码规范
+├── rules/               # 5 条编码规范
 ├── skills/              # 2 个领域技能
 │   ├── java-full-stack/
 │   └── modular-monolith/

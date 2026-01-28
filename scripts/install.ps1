@@ -69,10 +69,8 @@ if ($Uninstall) {
 
     # 删除 rules
     $RuleFiles = @(
-        "00-总则.md", "01-安全规范.md", "02-编码风格.md", "03-测试要求.md",
-        "04-Git工作流.md", "05-性能优化.md", "06-Java编码规范.md",
-        "07-SpringBoot最佳实践.md", "08-MyBatis规范.md", "09-API设计规范.md",
-        "10-数据库设计规范.md", "11-模块依赖规范.md"
+        "00-总则.md", "01-Java开发规范.md", "02-API设计规范.md",
+        "03-Git工作流.md", "04-性能优化.md"
     )
     foreach ($file in $RuleFiles) {
         $path = Join-Path $ClaudeDir "rules\$file"
@@ -137,7 +135,7 @@ Get-ChildItem -Path $SourceRules -Filter "*.md" | ForEach-Object {
     Copy-Item $_.FullName $dest -Force
     Write-Info "  $($_.Name)"
 }
-Write-Success "Rules 复制完成 (12个)"
+Write-Success "Rules 复制完成 (5个)"
 
 # 复制 skills
 Write-Info "复制 Skills..."
@@ -165,7 +163,7 @@ Write-Host ""
 Write-Info "已安装组件:"
 Write-Info "  - 8 个 Agents"
 Write-Info "  - 13 个 Commands"
-Write-Info "  - 12 个 Rules"
+Write-Info "  - 5 个 Rules"
 Write-Info "  - 5 个 Skills"
 Write-Host ""
 Write-Info "使用方法:"
