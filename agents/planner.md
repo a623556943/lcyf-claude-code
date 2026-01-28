@@ -1,7 +1,7 @@
 ---
 name: planner
 description: 任务分解和执行规划的核心协调者。当用户请求复杂功能实现、重构或需要多阶段任务分解时主动使用。负责将复杂需求拆分为可执行的子任务并分配给合适的专家Agent。
-tools: [ "Read", "Grep", "Glob" ]
+tools: [ "Read", "Grep", "Glob", "mcp__jetbrains__*" ]
 model: sonnet
 ---
 
