@@ -1,4 +1,4 @@
-# LCYF Claude Code - Java团队智能开发系统 v2.1
+# LCYF Claude Code - Java 团队智能开发系统
 
 > 面向 Java/Spring Boot 团队的轻量级智能开发伙伴系统
 
@@ -48,17 +48,6 @@
 │  └───────┘ └───────┘ └───────┘ └─────┘ │
 └─────────────────────────────────────────┘
 ```
-
----
-
-## 可用命令
-
-| 命令 | 用途 |
-|------|------|
-| `/lcyf-new-feature` | 完整的新功能开发工作流 |
-| `/lcyf-code-review` | 全面代码质量审查 |
-| `/lcyf-build-fix` | 修复构建错误 |
-| `/lcyf-learn` | 知识库管理 |
 
 ---
 
@@ -133,69 +122,20 @@ base ← 所有模块可依赖
 ### 1. 开发新功能
 
 ```bash
-# 在 Claude Code 中输入
-/lcyf-new-feature
-
-# 输入功能描述
-我想开发用户导出功能
+/lcyf-new-feature 添加用户导出功能
 ```
 
 ### 2. 代码审查
 
 ```bash
-# 代码审查
 /lcyf-code-review
 ```
 
-### 3. 修复构建错误
+### 3. 知识管理
 
 ```bash
-# 修复构建
-/lcyf-build-fix
-```
-
-### 4. 知识管理
-
-```bash
-# 知识库管理
 /lcyf-learn list
 ```
-
----
-
-## Agent 列表
-
-| Agent | 职责 |
-|-------|------|
-| planner | 任务分解、执行计划 |
-| architect | 系统设计、技术决策 |
-| java-developer | 功能实现、代码编写 |
-| code-reviewer | 代码质量检查 |
-| knowledge-manager | 知识提取、本能升级 |
-
-## Skill 列表
-
-| Skill | 用途 |
-|-------|------|
-| java-full-stack | Java/Spring Boot 代码模板 |
-| modular-monolith | 模块化架构设计原则 |
-| continuous-learning | 知识积累和模式提取 |
-| workflows | 标准化开发工作流 |
-
----
-
-## 规则列表
-
-| 规则 | 说明 |
-|------|------|
-| 00-总则 | 基本原则和强制要求 |
-| 02-编码风格 | 代码格式、命名规范 |
-| 04-Git工作流 | 分支策略、提交规范 |
-| 05-性能优化 | 数据库、缓存、并发优化 |
-| 06-Java编码规范 | Java特定编码标准 |
-| 07-SpringBoot最佳实践 | Spring Boot使用规范 |
-| 08-MyBatis规范 | MyBatis-Plus使用规范 |
-| 09-API设计规范 | RESTful API设计 |
 
 ---
 
@@ -203,11 +143,8 @@ base ← 所有模块可依赖
 
 - [快速开始](docs/快速开始.md)
 - [安装指南](docs/安装指南.md)
-- [CLI使用指南](docs/CLI使用指南.md)
-- [模板变量格式规范](docs/模板变量格式规范.md)
 - [知识库架构说明](docs/知识库架构说明.md)
 
 ---
 
-**版本**: 2.1.0
 **仓库**: https://github.com/a623556943/lcyf-claude-code

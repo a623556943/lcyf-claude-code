@@ -116,12 +116,7 @@ description: 执行代码质量审查，包括规范检查、架构合规性分�
 
 ## 关联命令
 
-- `/lcyf-build-fix` - 修复构建错误
 - `/lcyf-new-feature` - 新功能开发
-
-## 关联Agent
-
-- code-reviewer
 
 ## 关联规则
 
