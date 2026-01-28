@@ -31,18 +31,6 @@ public class UserServiceImpl implements IUserService {
 }
 ```
 
-### 字段注入（仅测试）
-
-```java
-// ⚠️ 仅在测试中使用
-@SpringBootTest
-class UserServiceTest {
-
-    @Autowired
-    private UserService userService;
-}
-```
-
 ### @Resource vs @Autowired
 
 ```java
