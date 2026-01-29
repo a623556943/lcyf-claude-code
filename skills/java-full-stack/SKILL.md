@@ -38,7 +38,7 @@ description: 在实现 lcyf-cloud Java/Spring Boot 功能时使用。提供 Cont
   - Redis, MySQL 版本信息
 
 ### 何时加载
-- 执行 `/lcyf-new-feature` 命令时
+- 执行 `/lcyf-java-developer` 命令时
 - java-developer agent 需要代码模板时
 - 用户请求 Java/Spring Boot 代码实现时
 
