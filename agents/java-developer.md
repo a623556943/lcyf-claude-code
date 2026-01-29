@@ -12,12 +12,6 @@ tools: ["mcp__jetbrains__get_project_modules",
         "mcp__jetbrains__get_file_problems",
         "mcp__jetbrains__get_symbol_info",
         "Read", "Write", "Edit", "Bash", "Grep", "Glob"]
-skills: ["java-full-stack", "system-mga-business", "system-risk-management", "system-common-operations",
-         "system-config-management", "system-org-supplement", "system-external-systems",
-         "system-auth-permission", "system-internal-api", "risk-whitelist", "risk-product",
-         "risk-blacklist", "config-jz", "config-channel-banner", "config-system", "config-dict",
-         "external-contract-sign", "external-sms", "external-wechat", "auth-menu",
-         "auth-data-permission", "auth-data-masking", "auth-user", "auth-organization"]
 model: sonnet
 ---
 
