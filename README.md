@@ -12,20 +12,21 @@
 
 ## 核心特性
 
-### 5 个专家 Agent
+### 4 个专家 Agent
 
 | Agent | 职责 |
 |-------|------|
-| planner | 任务分解、执行规划 |
-| java-developer | 功能实现、API 开发 |
-| code-reviewer | 代码质量检查 |
-| knowledge-manager | 知识提取、模式积累 |
+| planner | 复杂功能和重构的专业规划专家 |
+| java-developer | 功能实现、API 开发、代码生成 |
+| code-reviewer | 代码质量检查、安全审查 |
+| knowledge-manager | 知识提取、模式积累、知识库管理 |
 
-### 3 个智能命令
+### 4 个智能命令
 
 | 命令 | 用途 |
 |------|------|
-| `/lcyf-new-feature` | 完整功能开发流程 |
+| `/lcyf-plan` | 需求规划、风险评估、实施步骤 |
+| `/lcyf-java-developer` | 完整功能开发流程 |
 | `/lcyf-code-review` | 全面质量审查 |
 | `/lcyf-learn` | 知识库管理 |
 
@@ -39,6 +40,15 @@
 | 03-Git工作流 | 分支策略、提交规范 |
 | 04-性能优化 | 数据库、缓存、并发优化 |
 
+### 20+ 个业务领域 Skill
+
+- **基础技能**: java-full-stack、modular-monolith
+- **系统模块**: 账号用户权限、组织架构、菜单管理、数据权限、脱敏管理
+- **配置管理**: 字典、系统配置、即展、渠道 banner
+- **风控管理**: 产品风控、黑名单、白名单
+- **外部系统**: 微信、短信、代理人签署合同
+- **核心业务**: MGA 业务、中介核心接口、公共运营
+
 ---
 
 ## 快速开始
@@ -51,10 +61,10 @@ cd /path/to/your/java/project
 git clone https://github.com/a623556943/lcyf-claude-code.git .claude
 
 # 3. 开始使用
-/lcyf-new-feature 添加用户导出功能
+/lcyf-plan 为 XX 模块添加用户导出功能
 ```
 
-> 详细说明请参考 [CLAUDE.md](CLAUDE.md)
+> 详细说明请参考 [CLAUDE.md](CLAUDE.md) 和 [快速开始](docs/快速开始.md)
 
 ---
 
@@ -62,15 +72,35 @@ git clone https://github.com/a623556943/lcyf-claude-code.git .claude
 
 ```
 lcyf-claude-code/
-├── agents/              # 5 个专家 Agent
-├── commands/            # 3 个智能命令
-├── rules/               # 5 条编码规范
-├── skills/              # 2 个领域技能
+├── agents/                  # 4 个专家 Agent
+│   ├── planner.md
+│   ├── java-developer.md
+│   ├── code-reviewer.md
+│   └── knowledge-manager.md
+├── commands/                # 4 个智能命令
+│   ├── lcyf-plan.md
+│   ├── lcyf-java-developer.md
+│   ├── lcyf-code-review.md
+│   └── lcyf-learn.md
+├── rules/                   # 5 条编码规范
+│   ├── 00-总则.md
+│   ├── 01-Java开发规范.md
+│   ├── 02-API设计规范.md
+│   ├── 03-Git工作流.md
+│   └── 04-性能优化.md
+├── skills/                  # 20+ 个业务领域技能
 │   ├── java-full-stack/
-│   └── modular-monolith/
-├── hooks/               # 自动化钩子
-├── docs/                # 文档
-└── CLAUDE.md            # 完整配置参考
+│   ├── modular-monolith/
+│   └── system-*/            # 系统各模块业务技能
+├── docs/                    # 文档和知识库
+│   ├── 快速开始.md
+│   ├── 安装指南.md
+│   ├── 知识库架构说明.md
+│   ├── 项目级配置说明.md
+│   └── knowledge/           # 业务模块知识库
+├── hooks/                   # 自动化钩子
+├── CLAUDE.md                # 完整配置参考
+└── README.md                # 本文件
 ```
 
 ---
@@ -87,14 +117,44 @@ lcyf-claude-code/
 
 ---
 
-## 文档
+## 技术栈支持
 
-### 核心文档
+| 技术 | 版本 | 说明 |
+|------|------|------|
+| Java | 17 / 21 | 推荐 Java 21 |
+| Spring Boot | 3.x | 最新生产版本 |
+| MyBatis-Plus | 3.5.x | ORM 框架 |
+| MySQL | 8.x | 关系型数据库 |
+| Redis | 7.x | 缓存方案 |
+| Dubbo | 3.x | RPC 框架（可选） |
+
+---
+
+## 文档导航
+
+### 快速上手
 | 文档 | 说明 |
 |------|------|
-| [CLAUDE.md](CLAUDE.md) | 完整配置和使用说明 |
-| [快速开始](docs/快速开始.md) | 3 步上手 |
+| [CLAUDE.md](CLAUDE.md) | 完整配置和分层架构 |
+| [快速开始](docs/快速开始.md) | 3 步快速集成 |
 | [安装指南](docs/安装指南.md) | 详细安装说明 |
+
+### 进阶指南
+| 文档 | 说明 |
+|------|------|
+| [项目级配置说明](docs/项目级配置说明.md) | 多项目集成配置 |
+| [知识库架构说明](docs/知识库架构说明.md) | 知识库组织方式 |
+| [模板变量格式规范](docs/模板变量格式规范.md) | Skill 开发指南 |
+
+### 编码规范
+- [00-总则](rules/00-总则.md) - 基本原则和强制要求
+- [01-Java开发规范](rules/01-Java开发规范.md) - Java/Spring Boot/MyBatis 编码规范
+- [02-API设计规范](rules/02-API设计规范.md) - RESTful API 设计规范
+- [03-Git工作流](rules/03-Git工作流.md) - 分支策略、提交规范
+- [04-性能优化](rules/04-性能优化.md) - 数据库、缓存、并发优化
+
+### 知识库
+- [docs/knowledge](docs/knowledge/) - 系统各模块完整业务文档
 
 ---
 
