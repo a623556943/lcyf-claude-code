@@ -2,6 +2,11 @@
 
 > 面向 Java/Spring Boot 团队的轻量级智能开发伙伴系统
 
+## 概览
+
+- 这是一个“多仓库聚合”的 Java 21 微服务工作区：当前目录本身不是 git 仓库，但每个子目录（如 `lcyf-module-*` / `lcyf-server-*` / `lcyf-framework`）各自是独立仓库（都有自己的 `.git/`）。
+- 技术栈核心：Spring Boot（3.5.x）+ Spring Cloud（2025.0.x）+ Spring Cloud Alibaba（Nacos）+ Dubbo + MyBatis-Plus + BeanSearcher + Sa-Token。
+- 架构落地：DDD/COLA 风格分层，典型拆分为 `adapter`（接入）/ `biz`（业务）/ `starter`（自动装配/启动配置）；API 定义集中在 `lcyf-module-base`。
 ---
 
 ## 技术栈
@@ -16,72 +21,59 @@
 
 ---
 
-## 分层架构
+## 目录结构（顶层）
 
 ```
-┌─────────────────────────────────────────┐
-│              adapter（适配层）            │
-│  ┌─────────┐ ┌─────────┐ ┌─────────┐   │
-│  │   web   │ │   rpc   │ │   mq    │   │
-│  └─────────┘ └─────────┘ └─────────┘   │
-└─────────────────────────────────────────┘
-                    │
-                    ▼
-┌─────────────────────────────────────────┐
-│               biz（业务层）              │
-│  ┌─────────────────────────────────┐   │
-│  │           service               │   │
-│  └─────────────────────────────────┘   │
-│  ┌─────────────────────────────────┐   │
-│  │        infrastructure           │   │
-│  │  ┌─────────┐ ┌─────────┐       │   │
-│  │  │ entity  │ │ mapper  │       │   │
-│  │  └─────────┘ └─────────┘       │   │
-│  └─────────────────────────────────┘   │
-└─────────────────────────────────────────┘
-                    │
-                    ▼
-┌─────────────────────────────────────────┐
-│               api（接口层）              │
-│  ┌───────┐ ┌───────┐ ┌───────┐ ┌─────┐ │
-│  │  cmd  │ │  dto  │ │ query │ │view │ │
-│  └───────┘ └───────┘ └───────┘ └─────┘ │
-└─────────────────────────────────────────┘
+./
+├── build-parent/               # Maven parent + 编码规则/脚本模板
+├── lcyf-dependencies/          # 依赖版本 BOM（统一管理版本）
+├── lcyf-framework/             # 自研框架与 starter（commons/web/tenant/security/...）
+├── lcyf-module-base/           # 所有业务模块的 API 层（DTO/Cmd/Query/Enum/RPC）
+├── lcyf-module-system/         # 系统域（biz+adapter+starter）
+├── lcyf-module-finance/        # 财务域（biz+adapter+starter）
+├── lcyf-module-policy/         # 保单域（biz+adapter+starter）
+├── lcyf-module-product-factory/# 产品工厂域（注意子模块命名为 lcyf-module-product-*）
+├── lcyf-module-sales/          # 销售域（biz+adapter+starter）
+├── lcyf-server-system-all/     # 聚合服务入口（依赖多个 module-*-starter）
+├── lcyf-server-gateway/        # 网关服务入口（Spring Cloud Gateway/WebFlux）
+├── lcyf-server-tools/          # 工具服务入口（多模块，main 在 starter）
+└── logs/                       # 运行日志（不参与开发）
 ```
 
----
+## 去哪找（按任务）
 
-## 编码规范
+- 新增/修改 DTO、Cmd、Query、Enum、RPC 接口：`lcyf-module-base/`
+- 新增/修改业务逻辑（Service/Gateway/Mapper/DO/Assembler）：对应 `lcyf-module-*/lcyf-module-*-biz/`
+- 新增/修改 HTTP 接口（Controller）：对应 `lcyf-module-*/lcyf-module-*-adapter/src/main/java/.../adapter/web/`
+- 新增/修改 Dubbo RPC 实现：对应 `*/-adapter/src/main/java/.../adapter/rpc/`；接口在 `lcyf-module-base/**/rpc/`（部分历史模块在 `api/` 包）
+- 统一异常/返回体/日志 TraceId/通用工具：`lcyf-framework/lcyf-commons/`
+- 多租户（tenant_code 注入、租户过滤）：`lcyf-framework/lcyf-framework-starter-tenant/` + `lcyf-framework-starter-dal/`
+- 安全/登录上下文（Sa-Token、LoginUtil）：`lcyf-framework/lcyf-framework-starter-security/`
+- 依赖版本 / 新三方库版本：`lcyf-dependencies/pom.xml`
+- Maven parent / 编码规范：`build-parent/pom.xml`、`build-parent/rules/AGENT_CODING_RULES.md`、`build-parent/rules/QODER_RULES.md`
+- 构建/发版：各 `lcyf-server-*/Jenkinsfile-*` + `restart-*.sh`
 
-### Java 命名规范
+## 项目约定（只写“非默认/强约束”）
 
-- **类名**: PascalCase (`UserService`, `OrderController`)
-- **方法/变量**: camelCase (`getUserById`, `totalAmount`)
-- **常量**: UPPER_SNAKE_CASE (`MAX_RETRY_COUNT`)
-- **包名**: 全小写 (`com.lcyf.cloud.system`)
+- API 层统一仓库：业务模块自己的仓库通常没有 `*-api` 子模块；API 都在 `lcyf-module-base/`。
+- 查询与软删：大量分页/检索走 BeanSearcher；Controller 常用 `MapUtils.flat(request.getParameterMap())`（会自动补 `deleted=0`）。
+- 多租户：查询参数常用 `TenantMapUtils.flat(...)` 自动补 `tenantCode` + `deleted`；不要在业务代码里手动设置 `tenant_code`。
+- 对象转换：优先 MapStruct Assembler（`biz/infrastructure/assembler/`）。
+- 依赖注入：手写代码避免 `@Autowired`，优先 `@RequiredArgsConstructor`。
+- TraceId：`MDCUtil` 维护 `traceId/appName`；MQ/定时任务里常见 `MDCUtil.putTraceId()`。
+- 依赖版本：子模块一般不写 `<version>`，版本集中在 BOM/parent 管。
 
-### Spring Boot 最佳实践
+## 常用命令（按仓库执行）
 
-- 使用构造函数注入，避免字段注入
-- `@Transactional` 放在 Service 方法上
-- 使用全局异常处理器 (`@ControllerAdvice`)
-- 分页查询必须使用 `PageResult<T>`
+- Maven 构建（本目录没有根 pom，需进入具体仓库）：`mvn clean package -DskipTests`
+- 运行网关：在 `lcyf-server-gateway/` 里 `java -jar target/*.jar --spring.profiles.active=dev`
+- 运行 system-all：在 `lcyf-server-system-all/` 里 `java -jar target/*.jar --spring.profiles.active=dev`
+- 运行 tools：在 `lcyf-server-tools/` 里 `java -jar lcyf-server-tools-starter/target/*.jar --spring.profiles.active=dev`
 
-### 数据库设计
+## 注意事项
 
-- 表名: 模块前缀 + 小写下划线 (`sys_user`, `sales_order`)
-- 必备字段: `id`, `creator`, `create_time`, `updater`, `update_time`, `deleted`
-- 主键: `BIGINT AUTO_INCREMENT`
-- 外键列必须有索引
-
-### API 设计
-
-- 使用 RESTful 规范
-- URL 使用复数名词 (`/api/v1/users`)
-- 统一返回 `CommonResult<T>` 格式
-- 始终验证输入参数 (`@Valid`)
-
----
+- 配置中心：各服务通过 `bootstrap.yml` 使用 Nacos `spring.config.import=nacos:...` 拉取配置；不要把 Nacos 账号/密码等敏感信息写进文档或日志示例。
+- Java LSP：本环境未安装 `jdtls`，IDE/LSP 导航不可用时优先用 `rg` 全文搜索。
 
 ## 质量要求
 
@@ -94,22 +86,6 @@
 
 ---
 
-## 模块依赖规则
-
-```
-base ← 所有模块可依赖
-  │
-  ├─ system ← 基础系统服务
-  │
-  ├─ sales ← 销售模块
-  │     │
-  │     └─ policy ← 保单模块
-  │           │
-  │           └─ finance ← 财务模块
-  │
-  └─ product-factory ← 产品工厂（独立）
-```
-
 **规则**:
 - 只依赖 `-api` 模块，不依赖 `-biz` 模块
 - 使用 Dubbo RPC 进行跨模块通信
@@ -119,19 +95,13 @@ base ← 所有模块可依赖
 
 ## 快速开始
 
-### 1. 开发新功能
+### 1. 规划新功能
 
 ```bash
-/lcyf-new-feature 添加用户导出功能
+/lcyf-plan 添加用户导出功能
 ```
 
-### 2. 代码审查
-
-```bash
-/lcyf-code-review
-```
-
-### 3. 知识管理
+### 2. 知识管理
 
 ```bash
 /lcyf-learn list
