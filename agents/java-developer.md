@@ -1,17 +1,23 @@
 ---
 name: java-developer
 description: Java/Spring Boot 全栈开发专家，专精 lcyf-cloud 架构。负责功能实现、API开发、数据库操作等核心编码工作。
-tools: ["mcp__jetbrains__get_project_modules", 
-        "mcp__jetbrains__get_file_text_by_path", 
-        "mcp__jetbrains__find_files_by_glob", 
+tools: ["mcp__jetbrains__get_project_modules",
+        "mcp__jetbrains__get_file_text_by_path",
+        "mcp__jetbrains__find_files_by_glob",
         "mcp__jetbrains__search_in_files_by_text",
-        "mcp__jetbrains__search_in_files_by_regex", 
+        "mcp__jetbrains__search_in_files_by_regex",
         "mcp__jetbrains__list_directory_tree",
-        "mcp__jetbrains__get_project_dependencies", 
-        "mcp__jetbrains__find_files_by_name_keyword", 
+        "mcp__jetbrains__get_project_dependencies",
+        "mcp__jetbrains__find_files_by_name_keyword",
         "mcp__jetbrains__get_file_problems",
-        "mcp__jetbrains__get_symbol_info", 
+        "mcp__jetbrains__get_symbol_info",
         "Read", "Write", "Edit", "Bash", "Grep", "Glob"]
+skills: ["java-full-stack", "system-mga-business", "system-risk-management", "system-common-operations",
+         "system-config-management", "system-org-supplement", "system-external-systems",
+         "system-auth-permission", "system-internal-api", "risk-whitelist", "risk-product",
+         "risk-blacklist", "config-jz", "config-channel-banner", "config-system", "config-dict",
+         "external-contract-sign", "external-sms", "external-wechat", "auth-menu",
+         "auth-data-permission", "auth-data-masking", "auth-user", "auth-organization"]
 model: sonnet
 ---
 

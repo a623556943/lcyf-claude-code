@@ -1,224 +1,130 @@
----
-description: 管理项目知识库，包括学习到的模式、团队约定、问题解决方案。适合知识沉淀、模式提取或团队经验分享。
----
+# /lcyf-learn 提取和管理技能知识库
 
-# /lcyf-learn
+从当前会话提取可复用的模式，保存为项目技能或更新现有技能。
 
-## 概述
+## 触发
 
-管理项目知识库，包括学习到的模式、团队约定、问题解决方案。
+在会话中的任何时刻运行 `/lcyf-learn`，当您发现值得团队复用的知识时。
 
-## 用法
+## 支持的操作
 
-```
-/lcyf-learn list              # 列出知识库内容
-/lcyf-learn search <关键词>   # 搜索知识
-/lcyf-learn add               # 添加知识
-/lcyf-learn export            # 导出知识库
-/lcyf-learn import <文件>     # 导入知识库
-/lcyf-learn cleanup           # 清理过期知识
-```
+### 1. 保存新技能
 
-## 子命令
+在 `skills/system` 或 `skills/policy` 下创建新技能文件。
 
-### list - 列出知识
+### 2. 修改现有技能
 
-```
-/lcyf-learn list
-/lcyf-learn list --type=pattern    # 只列出模式
-/lcyf-learn list --type=solution   # 只列出解决方案
-/lcyf-learn list --type=convention # 只列出约定
-```
+更新 `skills/system` 或 `skills/policy` 下的现有技能内容。
 
-### search - 搜索知识
+## 要提取的内容
 
-```
-/lcyf-learn search MyBatis分页
-/lcyf-learn search "用户认证"
-```
+寻找值得记录为团队知识的内容：
 
-### add - 添加知识
+1. **业务流程和规则**
+   - 复杂的业务规则和约束
+   - 多步骤的业务流程
+   - 数据模型和关系设计
 
-```
-/lcyf-learn add --type=pattern
-/lcyf-learn add --type=solution
-/lcyf-learn add --type=convention
-```
+2. **技术架构和模式**
+   - 模块间的交互方式
+   - API 设计规范
+   - 数据权限管理方案
 
-### export/import - 导出导入
+3. **错误解决和调试**
+   - 常见问题及解决方案
+   - 调试技巧和工具
+   - 版本特定的修复
 
-```
-/lcyf-learn export knowledge.json
-/lcyf-learn import team-knowledge.json
-```
+4. **集成和外部系统**
+   - 与外部系统的对接方式
+   - 第三方库的使用模式
+   - 配置和初始化流程
 
-## 知识类型
+## 文件模板
 
-### 1. 代码模式 (pattern)
-
-可复用的代码模式和最佳实践。
-
-```json
-{
-  "id": "pattern-001",
-  "type": "pattern",
-  "name": "MyBatis-Plus分页查询",
-  "description": "使用LambdaQueryWrapper实现分页查询",
-  "code": "...",
-  "tags": ["mybatis", "分页"],
-  "frequency": 15
-}
-```
-
-### 2. 问题解决方案 (solution)
-
-遇到的问题及其解决方案。
-
-```json
-{
-  "id": "solution-001",
-  "type": "solution",
-  "problem": "MyBatis查询返回null但数据库有数据",
-  "symptoms": ["selectById返回null", "数据确认存在"],
-  "solutions": [
-    "检查@TableName注解",
-    "检查字段映射",
-    "检查逻辑删除配置"
-  ],
-  "tags": ["mybatis", "troubleshooting"]
-}
-```
-
-### 3. 团队约定 (convention)
-
-团队的编码约定和规范。
-
-```json
-{
-  "id": "convention-001",
-  "type": "convention",
-  "category": "naming",
-  "rule": "Service接口使用I前缀",
-  "example": "IUserService",
-  "rationale": "区分接口和实现类"
-}
-```
-
-## 知识库结构
-
-```
-docs/
-├── knowledge/                     # 知识库根目录
-│   ├── learned-patterns/          # 学习到的模式
-│   │   ├── code-patterns/
-│   │   ├── problem-solutions/
-│   │   └── best-practices/
-│   ├── team-conventions/          # 团队约定
-│   │   ├── naming-rules.json
-│   │   ├── coding-standards.json
-│   │   └── git-workflow.json
-│   ├── instincts/                 # 本能规则
-│   │   └── auto-patterns.json
-│   └── module-knowledge/          # 模块专属知识
-│       ├── system/
-│       ├── sales/
-│       └── finance/
-```
-
-## 输出格式
-
-### 知识列表
+所有技能遵循统一格式：
 
 ```markdown
-# 知识库概览
+---
+name: lcyf-module-skillname
+description: 简要描述。当需要了解此内容时激活
+---
 
-## 统计
-- 代码模式: 25
-- 问题解决方案: 18
-- 团队约定: 12
-- 本能规则: 8
+# 标题
 
-## 最近添加
-
-| 类型 | 名称 | 添加时间 | 使用次数 |
-|------|------|----------|----------|
-| pattern | 分页查询模式 | 2025-01-26 | 15 |
-| solution | MyBatis返回null | 2025-01-25 | 8 |
-| convention | Service命名规范 | 2025-01-20 | 5 |
-
-## 高频使用
-
-1. **分页查询模式** (15次)
-2. **统一返回格式** (12次)
-3. **异常处理模式** (10次)
-```
-
-### 搜索结果
-
-```markdown
-# 搜索结果: "分页"
-
-## 找到 3 条相关知识
-
-### 1. MyBatis-Plus分页查询 (pattern)
-- **相关度**: 95%
-- **使用次数**: 15
-- **摘要**: 使用LambdaQueryWrapper实现分页查询
-
-### 2. 分页参数验证 (convention)
-- **相关度**: 78%
-- **描述**: pageNo最小为1，pageSize最大为100
-
-### 3. 深度分页优化 (solution)
-- **相关度**: 65%
-- **问题**: LIMIT offset过大导致性能问题
-- **解决**: 使用游标分页
-```
-
-## 参数
-
-| 参数 | 说明 | 默认值 |
-|------|------|--------|
-| --type | 知识类型 | 全部 |
-| --limit | 显示数量 | 20 |
-| --sort | 排序方式 | frequency |
-
-## 关联命令
-
-- `/lcyf-new-feature` - 新功能开发
-
-## 关联规则
-
-- 00-总则
-- 01-Java开发规范
+**路径/位置信息**（如适用）
 
 ---
 
-## 执行指令
+## 正文内容
 
-当用户执行此命令时，立即启动 **knowledge-manager** agent 来执行知识管理任务。
+详细说明、规则、流程、示例等
 
-### knowledge-manager agent 职责
+---
 
-1. 根据子命令执行相应操作:
-   - `list`: 读取并展示知识库内容
-   - `search`: 搜索匹配的知识条目
-   - `add`: 引导用户添加新知识
-   - `export`: 导出知识库为 JSON/Markdown
-   - `cleanup`: 清理过期知识
+**文档版本**: V1.0
+**更新时间**: YYYY-MM-DD
+```
 
-2. 自动维护知识库:
-   - 更新使用频率
-   - 评估本能升级条件
-   - 合并相似模式
+**必填字段**：
+- `name`: 小写字母、数字、连字符，格式 `lcyf-module-skillname`
+- `description`: 单行简介，说明使用场景或激活条件
 
-### 执行要求
+**文件名称**: `SKILL.md`（放在对应的功能文件夹内）
 
-**必须做**:
-- 立即启动 knowledge-manager agent
-- 根据子命令执行相应操作
-- 操作完成后输出清晰的结果报告
+## 过程
 
-**禁止做**:
-- 手动操作知识库文件（应通过 agent 操作）
-- 跳过知识质量评估
+### 新增技能
+
+1. 确定技能所属模块（system / policy）
+2. 起草技能内容（参考现有 SKILL.md 格式）
+3. 建议创建新的功能文件夹来组织技能
+4. 文件结构：`skills/{module}/{skill-folder}/SKILL.md`
+5. 更新对应模块的 `README.md` 技能列表
+
+### 修改现有技能
+
+1. 定位现有技能文件
+2. 修改前置元数据（name、description）
+3. 更新技能内容
+4. 如需要，更新模块 README 中的描述
+
+## 示例
+
+**新增技能位置**：
+```
+skills/
+├── system/
+│   ├── my-new-skill/
+│   │   ├── SKILL.md
+│   │   └── examples/
+│   └── README.md
+└── policy/
+    └── ...
+```
+
+**SKILL.md 示例**：
+```markdown
+---
+name: lcyf-system-my-new-skill
+description: 新增功能的详细说明。当开发此模块时激活
+---
+
+# 模块名称
+
+**相关路径**: `src/main/java/com/lcyf/...`
+
+---
+
+## 内容正文
+
+...
+```
+
+## 约定
+
+- 不提取琐碎修复（拼写、简单语法错误）
+- 不提取一次性问题（特定 API 故障）
+- 关注能为团队节省时间的复用知识
+- 保持技能聚焦 - 一个文件一个主题
+- 技能名称遵循命名规范：`lcyf-{module}-{skillname}`
