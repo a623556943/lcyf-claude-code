@@ -1,6 +1,6 @@
 ---
 name: lcyf-external-contract-sign
-description: 代理人签署合同外部系统对接，提供电子合同签署功能。当执行 java-developer 或 planner agent 需要了解此模块时激活
+description: 外部合同签署集成。java-developer 在集成电子签章时使用；planner 在规划合同签署流程时使用。
 ---
 
 # 外部系统-代理人签署合同 模块文档

@@ -1,6 +1,6 @@
 ---
 name: lcyf-system-config-management
-description: 配置管理业务模块，包括系统配置、字典、即展配置、渠道banner等。当执行 java-developer 或 planner agent 需要了解此模块时激活
+description: 系统通用配置管理。java-developer 在获取/维护系统配置时使用；planner 在规划配置管理体系时使用。
 ---
 
 # System模块 配置管理业务文档

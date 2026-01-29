@@ -1,6 +1,6 @@
 ---
 name: lcyf-system-external-systems
-description: 外部系统集成模块，包括微信、短信、签署合同等外部系统对接。当执行 java-developer 或 planner agent 需要了解此模块时激活
+description: 外部系统集成管理。java-developer 在集成第三方系统时使用；planner 在规划系统集成方案时使用。
 ---
 
 # System模块 业务逻辑详细文档（外部系统）

@@ -1,6 +1,6 @@
 ---
 name: lcyf-auth-menu
-description: 菜单权限管理，提供系统菜单的增删改查和��限控制。当执行 java-developer 或 planner agent 需要了解此模块时激活
+description: 菜单与前端权限管理。java-developer 在维护菜单权限配置时使用；planner 在规划前端权限体系时使用。
 ---
 
 # 系统账号用户、组织架构以及权限-菜单 模块文档

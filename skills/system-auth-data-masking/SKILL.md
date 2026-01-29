@@ -1,6 +1,6 @@
 ---
 name: lcyf-auth-data-masking
-description: 数据脱敏管理，提供敏感数据的脱敏处理功能。当执行 java-developer 或 planner agent 需要了解此模块时激活
+description: 数据脱敏配置与查询。java-developer 在实现字段脱敏逻辑时使用；planner 在规划数据保护方案时使用。
 ---
 
 # 系统账号用户、组织架构以及权限-脱敏 模块文档

@@ -1,6 +1,6 @@
 ---
 name: lcyf-config-channel-banner
-description: 渠道banner配置管理，提供渠道端banner的增删改查功能。当执行 java-developer 或 planner agent 需要了解此模块时激活
+description: 渠道与横幅配置管理。java-developer 在维护渠道配置时使用；planner 在规划渠道管理功能时使用。
 ---
 
 # 配置管理-渠道banner 模块文档

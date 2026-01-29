@@ -1,6 +1,6 @@
 ---
 name: lcyf-system-common-operations
-description: 公共运营业务模块，包括运营相关的通用功能和配置。当执行 java-developer 或 planner agent 需要了解此模块时激活
+description: 系统通用操作日志与审计。java-developer 在追踪操作记录时使用；planner 在规划审计日志方案时使用。
 ---
 
 # System模块 业务逻辑详细文档（公共运营）

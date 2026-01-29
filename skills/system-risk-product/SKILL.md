@@ -1,6 +1,6 @@
 ---
 name: lcyf-risk-product
-description: 产品风控管理功能，包括产品级别的风控规则配置和校验。当执行 java-developer 或 planner agent 需要了解此模块时激活
+description: 产品级风险配置管理。java-developer 在维护产品风险规则时使用；planner 在规划产品风险管理时使用。
 ---
 
 # 风控管理-产品风控 模块文档

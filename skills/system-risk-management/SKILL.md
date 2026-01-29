@@ -1,6 +1,6 @@
 ---
 name: lcyf-system-risk-management
-description: 风控管理业务模块，包括风控规则、白名单、黑名单等风控相关功能。当执行 java-developer 或 planner agent 需要了解此模块时激活
+description: 风险政策与管理体系。java-developer 在实现风险控制逻辑时使用；planner 在规划风险管理框架时使用。
 ---
 
 # 风控管理模块 业务文档

@@ -1,6 +1,6 @@
 ---
 name: lcyf-auth-user
-description: 账号用户管理，提供用户账号的增删改查和认证功能。当执行 java-developer 或 planner agent 需要了解此模块时激活
+description: 用户账号与认证管理。java-developer 在维护用户系统时使用；planner 在规划用户体系时使用。
 ---
 
 # 系统账号用户、组织架构以及权限-账号用户 模块文档

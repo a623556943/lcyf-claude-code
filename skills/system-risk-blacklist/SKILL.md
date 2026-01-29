@@ -1,6 +1,6 @@
 ---
 name: lcyf-risk-blacklist
-description: 黑名单管理功能，提供黑名单人员与生效场景的管理与校验能力。当执行 java-developer 或 planner agent 需要了解此模块时激活
+description: 黑名单管理与风险控制。java-developer 在实现黑名单检验时使用；planner 在规划风险防控策略时使用。
 ---
 
 # 风控管理-黑名单 模块文档

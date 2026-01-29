@@ -1,6 +1,6 @@
 ---
 name: lcyf-system-auth-permission
-description: 账号用户权限模块，包括用户管理、角色权限、菜单权限、数据权限等。当执行 java-developer 或 planner agent 需要了解此模块时激活
+description: 账号、用户、角色与权限体系。java-developer 在实现权限控制逻辑时使用；planner 在规划整体权限框架时使用。
 ---
 
 # System 模块 业务文档 - 账号、用户与权限管理

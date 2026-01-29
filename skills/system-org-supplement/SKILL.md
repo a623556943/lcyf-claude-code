@@ -1,6 +1,6 @@
 ---
 name: lcyf-system-org-supplement
-description: 人员和组织机构补充模块，包括组织架构和人员信息的补充说明。当执行 java-developer 或 planner agent 需要了解此模块时激活
+description: 组织架构补充信息与扩展。java-developer 在扩展组织信息时使用；planner 在规划组织架构扩展时使用。
 ---
 
 # System模块 业务逻辑详细文档补充（人员管理 & 组织机构）

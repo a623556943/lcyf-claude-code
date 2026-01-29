@@ -1,6 +1,6 @@
 ---
 name: lcyf-risk-whitelist
-description: 白名单管理功能，提供白名单人员与生效场景的管理与校验能力。当执行 java-developer 或 planner agent 需要了解此模块时激活
+description: 白名单管理与风险豁免。java-developer 在实现白名单检验时使用；planner 在规划风险豁免策略时使用。
 ---
 
 # 风控管理-白名单 模块文档

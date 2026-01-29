@@ -1,6 +1,6 @@
 ---
 name: lcyf-system-mga-business
-description: MGA代理人业务管理模块，包括MGA代理人管理、执业信息管理、经代供应商渠道关系管理。当执行 java-developer 或 planner agent 需要了解此模块时激活
+description: MGA 业务模块。java-developer 在维护 MGA 业务时使用；planner 在规划 MGA 功能时使用。
 ---
 
 # System模块 MGA业务详细文档

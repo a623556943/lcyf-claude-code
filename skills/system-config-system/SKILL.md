@@ -1,6 +1,6 @@
 ---
 name: lcyf-config-system
-description: 系统配置管理，提供系统级别的配置参数管理功能。当执行 java-developer 或 planner agent 需要了解此模块时激活
+description: 系统级参数与基础设置。java-developer 在维护系统参数时使用；planner 在规划系统级配置方案时使用。
 ---
 
 # 配置管理-系统 模块文档

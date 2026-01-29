@@ -1,6 +1,6 @@
 ---
 name: lcyf-external-wechat
-description: 微信外部系统对接，提供微信相关功能集成。当执行 java-developer 或 planner agent 需要了解此模块时激活
+description: 微信平台集成（公众号/小程序）。java-developer 在集成微信功能时使用；planner 在规划微信应用方案时使用。
 ---
 
 # 外部系统-微信 模块文档

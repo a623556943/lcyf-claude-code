@@ -1,6 +1,6 @@
 ---
 name: lcyf-external-sms
-description: 短信外部系统对接，提供短信发送和管理功能。当执行 java-developer 或 planner agent 需要了解此模块时激活
+description: 短信发送与模板管理。java-developer 在集成短信功能时使用；planner 在规划短信服务方案时使用。
 ---
 
 # 外部系统-短信 模块文档

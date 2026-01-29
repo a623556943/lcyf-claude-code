@@ -1,6 +1,6 @@
 ---
 name: lcyf-auth-organization
-description: 组织架构管理，提供组织结构的树形管理和维护功能。当执行 java-developer 或 planner agent 需要了解此模块时激活
+description: 部门与组织架构管理。java-developer 在维护组织体系时使用；planner 在规划多租户/组织隔离方案时使用。
 ---
 
 # 系统账号用户、组织架构以及权限-组织架构 模块文档

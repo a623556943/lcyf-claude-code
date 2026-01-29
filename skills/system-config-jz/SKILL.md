@@ -1,6 +1,6 @@
 ---
 name: lcyf-config-jz
-description: 即展端配置管理，包括即展首页模板管理、模板分配、品牌设置等。当执行 java-developer 或 planner agent 需要了解此模块时激活
+description: JZ 系统配置管理。java-developer 在集成 JZ 系统时使用；planner 在规划外部系统集成时使用。
 ---
 
 # 配置管理-即展 模块文档

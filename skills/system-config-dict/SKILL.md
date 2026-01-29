@@ -1,6 +1,6 @@
 ---
 name: lcyf-config-dict
-description: 字典管理功能，提供系统字典的增删改查和缓存管理。当执行 java-developer 或 planner agent 需要了解此模块时激活
+description: 数据字典与枚举值管理。java-developer 在获取字典值时使用；planner 在规划基础配置系统时使用。
 ---
 
 # 配置管理-字典 模块文档

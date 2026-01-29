@@ -1,6 +1,6 @@
 ---
 name: lcyf-system-internal-api
-description: 中介核心内部接口模块，提供给内部系统调用的API接口。当执行 java-developer 或 planner agent 需要了解此模块时激活
+description: 系统内部接口与网关。java-developer 在调用内部服务接口时使用；planner 在规划内部 API 网关时使用。
 ---
 
 # System模块 中介核心内部接口业务文档
