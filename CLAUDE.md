@@ -4,7 +4,7 @@
 
 ## 概览
 
-- 这是一个“多仓库聚合”的 Java 21 微服务工作区：当前目录本身不是 git 仓库，但每个子目录（如 `lcyf-module-*` / `lcyf-server-*` / `lcyf-framework`）各自是独立仓库（都有自己的 `.git/`）。
+- 这是一个"多仓库聚合"的 Java 21 微服务工作区：当前目录本身不是 git 仓库，但每个子目录（如 `lcyf-module-*` / `lcyf-server-*` / `lcyf-framework`）各自是独立仓库（都有自己的 `.git/`）。
 - 技术栈核心：Spring Boot（3.5.x）+ Spring Cloud（2025.0.x）+ Spring Cloud Alibaba（Nacos）+ Dubbo + MyBatis-Plus + BeanSearcher + Sa-Token。
 - 架构落地：DDD/COLA 风格分层，典型拆分为 `adapter`（接入）/ `biz`（业务）/ `starter`（自动装配/启动配置）；API 定义集中在 `lcyf-module-base`。
 ---
@@ -53,7 +53,7 @@
 - Maven parent / 编码规范：`build-parent/pom.xml`、`build-parent/rules/AGENT_CODING_RULES.md`、`build-parent/rules/QODER_RULES.md`
 - 构建/发版：各 `lcyf-server-*/Jenkinsfile-*` + `restart-*.sh`
 
-## 项目约定（只写“非默认/强约束”）
+## 项目约定（只写"非默认/强约束"）
 
 - API 层统一仓库：业务模块自己的仓库通常没有 `*-api` 子模块；API 都在 `lcyf-module-base/`。
 - 查询与软删：大量分页/检索走 BeanSearcher；Controller 常用 `MapUtils.flat(request.getParameterMap())`（会自动补 `deleted=0`）。
@@ -90,6 +90,93 @@
 - 只依赖 `-api` 模块，不依赖 `-biz` 模块
 - 使用 Dubbo RPC 进行跨模块通信
 - 禁止循环依赖
+
+---
+
+## 可用 Skills
+
+本项目提供以下业务领域 skills，当任务涉及相关业务时会自动加载对应的领域知识：
+
+### 架构与技术栈
+| Skill ID | 描述 | 触发词 |
+|----------|------|--------|
+| java-full-stack | Java 全栈开发规范与最佳实践 | Java、Spring Boot、全栈 |
+| modular-monolith | 模块化单体架构设计与实现 | 模块化、单体架构、模块拆分 |
+
+### 系统认证与权限
+| Skill ID | 描述 | 触发词 |
+|----------|------|--------|
+| system-auth-user | 用户账号与认证管理 | 用户、user、账号、认证、登录 |
+| system-auth-menu | 菜单与前端权限管理 | 菜单、menu、前端权限、权限控制 |
+| system-auth-permission | 后端权限与角色管理 | 权限、permission、角色、role |
+| system-auth-organization | 组织架构与部门管理 | 组织、organization、部门、岗位 |
+| system-auth-data-permission | 数据权限与数据范围控制 | 数据权限、数据范围、data permission |
+| system-auth-data-masking | 敏感数据脱敏与加密 | 脱敏、加密、敏感数据、data masking |
+
+### 系统配置管理
+| Skill ID | 描述 | 触发词 |
+|----------|------|--------|
+| system-config-management | 系统配置中心与参数管理 | 配置、config、参数、系统参数 |
+| system-config-system | 系统级配置与全局设置 | 系统配置、全局配置、system config |
+| system-config-dict | 数据字典与枚举管理 | 字典、dict、数据字典、枚举 |
+| system-config-jz | 记账配置与规则管理 | 记账、jz、记账规则 |
+| system-config-channel-banner | 渠道横幅与广告配置 | 渠道、banner、横幅、广告配置 |
+
+### 风险控制
+| Skill ID | 描述 | 触发词 |
+|----------|------|--------|
+| system-risk-whitelist | 白名单管理与风险豁免 | 白名单、whitelist、豁免、风险豁免 |
+| system-risk-blacklist | 黑名单管理与风险控制 | 黑名单、blacklist、风险、blocked |
+| system-risk-management | 风险策略与规则引擎 | 风险管理、risk、风险策略 |
+| system-risk-product | 产品风控与限制规则 | 产品风控、产品限制、product risk |
+
+### 外部系统集成
+| Skill ID | 描述 | 触发词 |
+|----------|------|--------|
+| system-external-wechat | 微信公众号与小程序集成 | 微信、wechat、小程序、公众号 |
+| system-external-sms | 短信发送与验证码服务 | 短信、sms、验证码 |
+| system-external-contract-sign | 电子合同与签章服务 | 合同、签章、电子签名、contract |
+| system-external-systems | 外部系统对接与适配 | 外部系统、对接、integration |
+
+### 其他业务模块
+| Skill ID | 描述 | 触发词 |
+|----------|------|--------|
+| system-internal-api | 内部 API 与服务调用 | 内部接口、internal api |
+| system-mga-business | MGA 业务管理 | mga、业务管理 |
+| system-org-supplement | 组织补充信息管理 | 组织补充、supplement |
+| system-common-operations | 通用操作与工具方法 | 通用操作、common、工具方法 |
+
+### 使用方式
+
+**1. 自动加载（推荐）**
+
+当任务描述包含触发词时，系统会自动识别并加载对应 skill：
+
+```
+用户: 添加白名单导出功能
+系统: 自动加载 system-risk-whitelist skill → java-developer 代理
+```
+
+**2. 显式调用**
+
+使用 `/skill-id` 语法明确指定要使用的 skill：
+
+```bash
+# 调用白名单管理 skill
+/system-risk-whitelist 添加白名单批量导出接口
+
+# 调用用户管理 skill
+/system-auth-user 实现用户密码重置功能
+```
+
+**3. 查看 Skill 详情**
+
+每个 skill 的完整文档位于 `skills/[skill-id]/SKILL.md`，包含：
+- 模块职责与边界
+- 目录结构与核心文件
+- 功能清单与入口
+- 核心流程与数据模型
+- 依赖关系与扩展指南
 
 ---
 
