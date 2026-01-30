@@ -21,10 +21,11 @@
 | code-reviewer | 代码质量检查、安全审查 |
 | knowledge-manager | 知识提取、模式积累、知识库管理 |
 
-### 4 个智能命令
+### 5 个智能命令
 
 | 命令 | 用途 |
 |------|------|
+| `/lcyf-auto` | 自动化工作流：需求分析 → 开发（推荐） |
 | `/lcyf-plan` | 需求规划、风险评估、实施步骤 |
 | `/lcyf-java-developer` | 完整功能开发流程 |
 | `/lcyf-code-review` | 全面质量审查 |
@@ -60,8 +61,12 @@ cd /path/to/your/java/project
 # 2. 克隆配置
 git clone https://github.com/a623556943/lcyf-claude-code.git .claude
 
-# 3. 开始使用
+# 3. 开始使用（自动化工作流）- 推荐
+/lcyf-auto 为 XX 模块添加用户导出功能
+
+# 或单独使用规划/开发命令
 /lcyf-plan 为 XX 模块添加用户导出功能
+/lcyf-java-developer 实现用户导出功能
 ```
 
 > 详细说明请参考 [CLAUDE.md](CLAUDE.md) 和 [快速开始](docs/快速开始.md)
@@ -77,7 +82,8 @@ lcyf-claude-code/
 │   ├── java-developer.md
 │   ├── code-reviewer.md
 │   └── knowledge-manager.md
-├── commands/                # 4 个智能命令
+├── commands/                # 5 个智能命令
+│   ├── lcyf-auto.md
 │   ├── lcyf-plan.md
 │   ├── lcyf-java-developer.md
 │   ├── lcyf-code-review.md
@@ -102,18 +108,6 @@ lcyf-claude-code/
 ├── CLAUDE.md                # 完整配置参考
 └── README.md                # 本文件
 ```
-
----
-
-## 技术栈支持
-
-| 技术 | 版本 |
-|------|------|
-| Java | 17 / 21 |
-| Spring Boot | 3.x |
-| MyBatis-Plus | 3.5.x |
-| MySQL | 8.x |
-| Redis | 7.x |
 
 ---
 
