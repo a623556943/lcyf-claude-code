@@ -76,7 +76,6 @@ description: 自动化工作流：需求分析 → 实施计划确认 → 代码
 │  │  ├─ 阶段1：DTO/Query 定义（lcyf-module-base）
 │  │  ├─ 阶段2：Service 实现导出逻辑
 │  │  ├─ 阶段3：Controller 添加导出接口
-│  │  ├─ 阶段4：前端集成导出按钮
 │  ├─ 评估风险：大文件处理、并发导出
 │  └─ 等待用户确认 ✋
 
@@ -86,28 +85,9 @@ description: 自动化工作流：需求分析 → 实施计划确认 → 代码
 │  ├─ 创建导出 Query 和 DTO（lcyf-module-base）
 │  ├─ 实现导出 Service（lcyf-module-policy-biz）
 │  ├─ 创建导出 Controller（lcyf-module-policy-adapter）
-│  ├─ 添加单元测试
-│  ├─ 代码审查和安全检查
-│  └─ 提交 Git Commit
 
-✅ 完成：新功能已开发并提交
+✅ 完成：新功能已开发
 ```
-
-## 输出结果
-
-### 阶段 1：计划文档
-
-保存在 `specs/{function_name}/` 目录下：
-- `requirements.md` - 需求文档（EARS 格式）
-- `design.md` - 技术方案
-- `tasks.md` - 任务清单
-
-### 阶段 2：代码提交
-
-- 新增文件和修改
-- 格式化并通过类型检查
-- Git 提交（含详细描述）
-- 可选：自动创建 PR
 
 ## 高级选项
 
