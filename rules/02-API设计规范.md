@@ -270,45 +270,6 @@ public interface ErrorCode {
 Accept: application/vnd.lcyf.v1+json
 ```
 
-## 安全规范
-
-### 认证
-
-```java
-// ✅ 使用Bearer Token
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-
-// Controller中获取当前用户
-Long userId = SecurityUtils.getCurrentUserId();
-```
-
-### 权限控制
-
-```java
-@PreAuthorize("@ss.hasPermission('system:user:create')")
-@PostMapping
-public CommonResult<Long> create(@RequestBody UserCreateCmd cmd) {
-    return success(userService.create(cmd));
-}
-```
-
-### 敏感数据脱敏
-
-```java
-// ✅ 响应脱敏
-@Data
-public class UserDTO {
-    private Long id;
-    private String username;
-
-    @JsonSerialize(using = MobileSerializer.class)
-    private String mobile;  // 输出: 138****1234
-
-    @JsonSerialize(using = EmailSerializer.class)
-    private String email;   // 输出: a***@example.com
-}
-```
-
 ## 接口文档
 
 ### Swagger注解
