@@ -16,11 +16,6 @@
         "matcher": "tool == \"Edit\" && tool_input.file_path matches \"pom\.xml$\"",
         "hooks": [{"type": "command", "command": "node -e \"console.error('[Hook] 修改 pom.xml 时，检查版本依赖是否在 lcyf-dependencies BOM 中统一管理')\""}],
         "description": "pom.xml 编辑提醒"
-      },
-      {
-        "matcher": "tool == \"Bash\" && tool_input.command matches \"git push\"",
-        "hooks": [{"type": "command", "command": "node -e \"console.error('[Hook] 多仓库聚合：每个子目录是独立的 git 仓库')\""}],
-        "description": "Git push 提醒"
       }
     ],
     "PostToolUse": [
@@ -28,11 +23,6 @@
         "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\.java$\"",
         "hooks": [{"type": "command", "command": "node -e \"console.error('[Hook] 已编辑 Java 文件')\""}],
         "description": "Java 文件编辑提醒"
-      },
-      {
-        "matcher": "tool == \"Edit\" && tool_input.file_path matches \"(Controller|Service|Mapper)\.java$\"",
-        "hooks": [{"type": "command", "command": "node -e \"console.error('[Hook] 已编辑核心业务文件，建议使用 code-reviewer agent 审查代码')\""}],
-        "description": "核心业务文件编辑提醒"
       }
     ],
     "Stop": [
