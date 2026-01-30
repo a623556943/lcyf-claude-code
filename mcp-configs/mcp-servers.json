@@ -1,0 +1,26 @@
+{
+  "mcpServers": {
+    "sequential-thinking": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@zengwenliang/mcp-server-sequential-thinking"
+      ]
+    },
+    "context7": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp",
+        "--api-key",
+        "ctx7sk-6db5c502-3863-44b8-9a3a-cda136c7d1b3"
+      ]
+    },
+    "jetbrains": {
+      "url": "http://localhost:64342/sse",
+      "type": "sse"
+    }
+  }
+}

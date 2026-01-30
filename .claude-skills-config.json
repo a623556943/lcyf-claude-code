@@ -9,8 +9,16 @@
       "path": "skills/java-full-stack/SKILL.md",
       "category": "架构与技术栈",
       "description": "Java 全栈开发规范与最佳实践",
-      "triggers": ["Java", "Spring Boot", "全栈"],
-      "supportedAgents": ["java-developer", "architect", "code-reviewer"],
+      "triggers": [
+        "Java",
+        "Spring Boot",
+        "全栈"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "architect",
+        "code-reviewer"
+      ],
       "enabled": true
     },
     {
@@ -19,8 +27,15 @@
       "path": "skills/modular-monolith/SKILL.md",
       "category": "架构与技术栈",
       "description": "模块化单体架构设计与实现",
-      "triggers": ["模块化", "单体架构", "模块拆分"],
-      "supportedAgents": ["architect", "planner"],
+      "triggers": [
+        "模块化",
+        "单体架构",
+        "模块拆分"
+      ],
+      "supportedAgents": [
+        "architect",
+        "planner"
+      ],
       "enabled": true
     },
     {
@@ -29,8 +44,19 @@
       "path": "skills/system-auth-user/SKILL.md",
       "category": "系统认证与权限",
       "description": "用户账号、认证管理、登录流程",
-      "triggers": ["用户", "user", "账号", "认证", "登录", "登出", "用户管理"],
-      "supportedAgents": ["java-developer", "planner"],
+      "triggers": [
+        "用户",
+        "user",
+        "账号",
+        "认证",
+        "登录",
+        "登出",
+        "用户管理"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
       "module": "lcyf-module-system",
       "enabled": true
     },
@@ -40,8 +66,16 @@
       "path": "skills/system-auth-menu/SKILL.md",
       "category": "系统认证与权限",
       "description": "菜单配置、前端权限控制、导航管理",
-      "triggers": ["菜单", "menu", "前端权限", "权限控制"],
-      "supportedAgents": ["java-developer", "planner"],
+      "triggers": [
+        "菜单",
+        "menu",
+        "前端权限",
+        "权限控制"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
       "module": "lcyf-module-system",
       "enabled": true
     },
@@ -51,8 +85,16 @@
       "path": "skills/system-auth-permission/SKILL.md",
       "category": "系统认证与权限",
       "description": "权限、角色、资源定义与管理",
-      "triggers": ["权限", "permission", "角色", "role"],
-      "supportedAgents": ["java-developer", "planner"],
+      "triggers": [
+        "权限",
+        "permission",
+        "角色",
+        "role"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
       "module": "lcyf-module-system",
       "enabled": true
     },
@@ -62,8 +104,16 @@
       "path": "skills/system-auth-organization/SKILL.md",
       "category": "系统认证与权限",
       "description": "组织、部门、岗位、团队管理",
-      "triggers": ["组织", "organization", "部门", "岗位"],
-      "supportedAgents": ["java-developer", "planner"],
+      "triggers": [
+        "组织",
+        "organization",
+        "部门",
+        "岗位"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
       "module": "lcyf-module-system",
       "enabled": true
     },
@@ -73,8 +123,15 @@
       "path": "skills/system-auth-data-permission/SKILL.md",
       "category": "系统认证与权限",
       "description": "数据权限、数据范围、数据隔离",
-      "triggers": ["数据权限", "数据范围", "data permission"],
-      "supportedAgents": ["java-developer", "planner"],
+      "triggers": [
+        "数据权限",
+        "数据范围",
+        "data permission"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
       "module": "lcyf-module-system",
       "enabled": true
     },
@@ -84,8 +141,16 @@
       "path": "skills/system-auth-data-masking/SKILL.md",
       "category": "系统认证与权限",
       "description": "数据脱敏、加密、敏感信息保护",
-      "triggers": ["脱敏", "加密", "敏感数据", "data masking"],
-      "supportedAgents": ["java-developer", "security-reviewer"],
+      "triggers": [
+        "脱敏",
+        "加密",
+        "敏感数据",
+        "data masking"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "security-reviewer"
+      ],
       "module": "lcyf-module-system",
       "enabled": true
     },
@@ -95,8 +160,16 @@
       "path": "skills/system-config-management/SKILL.md",
       "category": "系统配置管理",
       "description": "配置管理、参数管理、动态配置",
-      "triggers": ["配置", "config", "参数", "系统参数"],
-      "supportedAgents": ["java-developer", "planner"],
+      "triggers": [
+        "配置",
+        "config",
+        "参数",
+        "系统参数"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
       "module": "lcyf-module-system",
       "enabled": true
     },
@@ -106,8 +179,15 @@
       "path": "skills/system-config-system/SKILL.md",
       "category": "系统配置管理",
       "description": "系统配置、全局配置、系统初始化",
-      "triggers": ["系统配置", "全局配置", "system config"],
-      "supportedAgents": ["java-developer", "architect"],
+      "triggers": [
+        "系统配置",
+        "全局配置",
+        "system config"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "architect"
+      ],
       "module": "lcyf-module-system",
       "enabled": true
     },
@@ -117,8 +197,16 @@
       "path": "skills/system-config-dict/SKILL.md",
       "category": "系统配置管理",
       "description": "数据字典、枚举值、常量管理",
-      "triggers": ["字典", "dict", "数据字典", "枚举"],
-      "supportedAgents": ["java-developer", "planner"],
+      "triggers": [
+        "字典",
+        "dict",
+        "数据字典",
+        "枚举"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
       "module": "lcyf-module-system",
       "enabled": true
     },
@@ -128,8 +216,15 @@
       "path": "skills/system-config-jz/SKILL.md",
       "category": "系统配置管理",
       "description": "记账规则、账务配置、计算规则",
-      "triggers": ["记账", "jz", "记账规则"],
-      "supportedAgents": ["java-developer", "planner"],
+      "triggers": [
+        "记账",
+        "jz",
+        "记账规则"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
       "module": "lcyf-module-system",
       "enabled": true
     },
@@ -139,8 +234,15 @@
       "path": "skills/system-config-channel-banner/SKILL.md",
       "category": "系统配置管理",
       "description": "渠道配置、横幅管理、广告投放",
-      "triggers": ["渠道", "banner", "横幅", "广告配置"],
-      "supportedAgents": ["java-developer"],
+      "triggers": [
+        "渠道",
+        "banner",
+        "横幅",
+        "广告配置"
+      ],
+      "supportedAgents": [
+        "java-developer"
+      ],
       "module": "lcyf-module-system",
       "enabled": true
     },
@@ -150,8 +252,16 @@
       "path": "skills/system-risk-whitelist/SKILL.md",
       "category": "风险控制",
       "description": "白名单配置、风险豁免、策略管理",
-      "triggers": ["白名单", "whitelist", "豁免", "风险豁免"],
-      "supportedAgents": ["java-developer", "planner"],
+      "triggers": [
+        "白名单",
+        "whitelist",
+        "豁免",
+        "风险豁免"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
       "module": "lcyf-module-system",
       "enabled": true
     },
@@ -161,8 +271,16 @@
       "path": "skills/system-risk-blacklist/SKILL.md",
       "category": "风险控制",
       "description": "黑名单配置、风险拦截、策略管理",
-      "triggers": ["黑名单", "blacklist", "风险", "blocked"],
-      "supportedAgents": ["java-developer", "planner"],
+      "triggers": [
+        "黑名单",
+        "blacklist",
+        "风险",
+        "blocked"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
       "module": "lcyf-module-system",
       "enabled": true
     },
@@ -172,8 +290,15 @@
       "path": "skills/system-risk-management/SKILL.md",
       "category": "风险控制",
       "description": "风险评估、策略配置、规则引擎",
-      "triggers": ["风险管理", "risk", "风险策略"],
-      "supportedAgents": ["java-developer", "architect"],
+      "triggers": [
+        "风险管理",
+        "risk",
+        "风险策略"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "architect"
+      ],
       "module": "lcyf-module-system",
       "enabled": true
     },
@@ -183,8 +308,14 @@
       "path": "skills/system-risk-product/SKILL.md",
       "category": "风险控制",
       "description": "产品风控、限制规则、额度管理",
-      "triggers": ["产品风控", "产品限制", "product risk"],
-      "supportedAgents": ["java-developer"],
+      "triggers": [
+        "产品风控",
+        "产品限制",
+        "product risk"
+      ],
+      "supportedAgents": [
+        "java-developer"
+      ],
       "module": "lcyf-module-system",
       "enabled": true
     },
@@ -194,8 +325,16 @@
       "path": "skills/system-external-wechat/SKILL.md",
       "category": "外部系统集成",
       "description": "微信、小程序、公众号对接",
-      "triggers": ["微信", "wechat", "小程序", "公众号"],
-      "supportedAgents": ["java-developer", "planner"],
+      "triggers": [
+        "微信",
+        "wechat",
+        "小程序",
+        "公众号"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
       "module": "lcyf-module-system",
       "enabled": true
     },
@@ -205,8 +344,14 @@
       "path": "skills/system-external-sms/SKILL.md",
       "category": "外部系统集成",
       "description": "短信、验证码、消息服务",
-      "triggers": ["短信", "sms", "验证码"],
-      "supportedAgents": ["java-developer"],
+      "triggers": [
+        "短信",
+        "sms",
+        "验证码"
+      ],
+      "supportedAgents": [
+        "java-developer"
+      ],
       "module": "lcyf-module-system",
       "enabled": true
     },
@@ -216,8 +361,15 @@
       "path": "skills/system-external-contract-sign/SKILL.md",
       "category": "外部系统集成",
       "description": "电子合同、签章、签名",
-      "triggers": ["合同", "签章", "电子签名", "contract"],
-      "supportedAgents": ["java-developer"],
+      "triggers": [
+        "合同",
+        "签章",
+        "电子签名",
+        "contract"
+      ],
+      "supportedAgents": [
+        "java-developer"
+      ],
       "module": "lcyf-module-system",
       "enabled": true
     },
@@ -227,8 +379,15 @@
       "path": "skills/system-external-systems/SKILL.md",
       "category": "外部系统集成",
       "description": "系统集成、接口对接、数据同步",
-      "triggers": ["外部系统", "对接", "integration"],
-      "supportedAgents": ["java-developer", "architect"],
+      "triggers": [
+        "外部系统",
+        "对接",
+        "integration"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "architect"
+      ],
       "module": "lcyf-module-system",
       "enabled": true
     },
@@ -238,8 +397,13 @@
       "path": "skills/system-internal-api/SKILL.md",
       "category": "其他业务模块",
       "description": "内部接口、服务间通信",
-      "triggers": ["内部接口", "internal api"],
-      "supportedAgents": ["java-developer"],
+      "triggers": [
+        "内部接口",
+        "internal api"
+      ],
+      "supportedAgents": [
+        "java-developer"
+      ],
       "module": "lcyf-module-system",
       "enabled": true
     },
@@ -249,8 +413,13 @@
       "path": "skills/system-mga-business/SKILL.md",
       "category": "其他业务模块",
       "description": "MGA 业务、合作伙伴管理",
-      "triggers": ["mga", "业务管理"],
-      "supportedAgents": ["java-developer"],
+      "triggers": [
+        "mga",
+        "业务管理"
+      ],
+      "supportedAgents": [
+        "java-developer"
+      ],
       "module": "lcyf-module-system",
       "enabled": true
     },
@@ -260,8 +429,13 @@
       "path": "skills/system-org-supplement/SKILL.md",
       "category": "其他业务模块",
       "description": "组织补充、扩展信息",
-      "triggers": ["组织补充", "supplement"],
-      "supportedAgents": ["java-developer"],
+      "triggers": [
+        "组织补充",
+        "supplement"
+      ],
+      "supportedAgents": [
+        "java-developer"
+      ],
       "module": "lcyf-module-system",
       "enabled": true
     },
@@ -271,9 +445,913 @@
       "path": "skills/system-common-operations/SKILL.md",
       "category": "其他业务模块",
       "description": "工具方法、通用操作",
-      "triggers": ["通用操作", "common", "工具方法"],
-      "supportedAgents": ["java-developer"],
+      "triggers": [
+        "通用操作",
+        "common",
+        "工具方法"
+      ],
+      "supportedAgents": [
+        "java-developer"
+      ],
       "module": "lcyf-module-system",
+      "enabled": true
+    },
+    {
+      "id": "finance-rate-audit",
+      "name": "费率审核流程管理",
+      "path": "skills/finance-rate-audit/SKILL.md",
+      "category": "财务费率管理",
+      "description": "费率审核、审核流程、费率变更审批",
+      "triggers": [
+        "费率审核",
+        "审核",
+        "审核流程",
+        "费率变更审批",
+        "rate audit"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-finance",
+      "enabled": true
+    },
+    {
+      "id": "finance-channel-rate-template",
+      "name": "渠道费率模板管理",
+      "path": "skills/finance-channel-rate-template/SKILL.md",
+      "category": "财务费率管理",
+      "description": "渠道费率模板、多级模板、异步重算",
+      "triggers": [
+        "渠道费率模板",
+        "费率模板",
+        "channel rate",
+        "模板管理"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-finance",
+      "enabled": true
+    },
+    {
+      "id": "finance-channel-product-rate",
+      "name": "渠道产品费率查询",
+      "path": "skills/finance-channel-product-rate/SKILL.md",
+      "category": "财务费率管理",
+      "description": "渠道产品费率、费率查看、产品费率配置",
+      "triggers": [
+        "渠道产品费率",
+        "产品费率",
+        "channel product rate"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-finance",
+      "enabled": true
+    },
+    {
+      "id": "finance-rate-basic-management",
+      "name": "费率基础管理",
+      "path": "skills/finance-rate-basic-management/SKILL.md",
+      "category": "财务费率管理",
+      "description": "费率因子定义、等级分组、费率基础配置",
+      "triggers": [
+        "费率基础管理",
+        "费率因子",
+        "费率分组",
+        "rate basic"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-finance",
+      "enabled": true
+    },
+    {
+      "id": "finance-rate-level",
+      "name": "费率等级管理",
+      "path": "skills/finance-rate-level/SKILL.md",
+      "category": "财务费率管理",
+      "description": "费率等级、等级新增编辑删除、等级查询",
+      "triggers": [
+        "费率等级",
+        "等级管理",
+        "rate level"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-finance",
+      "enabled": true
+    },
+    {
+      "id": "finance-rate-sync",
+      "name": "费率同步与修复",
+      "path": "skills/finance-rate-sync/SKILL.md",
+      "category": "财务费率管理",
+      "description": "费率同步、历史费率修复、费率数据同步",
+      "triggers": [
+        "费率同步",
+        "费率修复",
+        "rate sync"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-finance",
+      "enabled": true
+    },
+    {
+      "id": "finance-basic-law-rank",
+      "name": "基本法与职级管理",
+      "path": "skills/finance-basic-law-rank/SKILL.md",
+      "category": "财务基本法与职级",
+      "description": "基本法配置、职级体系、职级管理",
+      "triggers": [
+        "基本法",
+        "职级",
+        "职级管理",
+        "basic law",
+        "rank"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-finance",
+      "enabled": true
+    },
+    {
+      "id": "finance-order-management",
+      "name": "财务订单管理",
+      "path": "skills/finance-order-management/SKILL.md",
+      "category": "财务订单管理",
+      "description": "财务订单、财务子订单、订单管理",
+      "triggers": [
+        "财务订单",
+        "订单管理",
+        "finance order"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-finance",
+      "enabled": true
+    },
+    {
+      "id": "finance-activity-supplier",
+      "name": "供应商活动管理",
+      "path": "skills/finance-activity-supplier/SKILL.md",
+      "category": "财务活动管理",
+      "description": "供应商活动、活动配置、活动查询维护",
+      "triggers": [
+        "供应商活动",
+        "活动管理",
+        "supplier activity"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-finance",
+      "enabled": true
+    },
+    {
+      "id": "finance-activity-operator-channel",
+      "name": "运营商渠道活动管理",
+      "path": "skills/finance-activity-operator-channel/SKILL.md",
+      "category": "财务活动管理",
+      "description": "运营商活动、渠道活动、活动配置查询",
+      "triggers": [
+        "运营商活动",
+        "渠道活动",
+        "operator activity",
+        "channel activity"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-finance",
+      "enabled": true
+    },
+    {
+      "id": "finance-settlement-process",
+      "name": "结算流程管理",
+      "path": "skills/finance-settlement-process/SKILL.md",
+      "category": "财务结算管理",
+      "description": "结算流程、责任链、MQ入口、费率匹配",
+      "triggers": [
+        "结算流程",
+        "settlement process",
+        "结算"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner",
+        "architect"
+      ],
+      "module": "lcyf-module-finance",
+      "enabled": true
+    },
+    {
+      "id": "finance-settlement-orange-core",
+      "name": "橙芯结算单管理",
+      "path": "skills/finance-settlement-orange-core/SKILL.md",
+      "category": "财务结算管理",
+      "description": "橙芯结算单、结算导出、结算确认导入",
+      "triggers": [
+        "橙芯结算",
+        "结算单",
+        "orange core settlement"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-finance",
+      "enabled": true
+    },
+    {
+      "id": "finance-settlement-difference",
+      "name": "差额管理",
+      "path": "skills/finance-settlement-difference/SKILL.md",
+      "category": "财务结算管理",
+      "description": "差额管理、补差结算单、差额计算",
+      "triggers": [
+        "差额管理",
+        "补差",
+        "difference management"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-finance",
+      "enabled": true
+    },
+    {
+      "id": "finance-settlement-channel-income",
+      "name": "渠道收入管理",
+      "path": "skills/finance-settlement-channel-income/SKILL.md",
+      "category": "财务结算管理",
+      "description": "渠道收入、收入查询、收入导出",
+      "triggers": [
+        "渠道收入",
+        "channel income",
+        "收入管理"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-finance",
+      "enabled": true
+    },
+    {
+      "id": "finance-settlement-team-income",
+      "name": "团队收入管理",
+      "path": "skills/finance-settlement-team-income/SKILL.md",
+      "category": "财务结算管理",
+      "description": "团队收入、即展团队收入、收入管理",
+      "triggers": [
+        "团队收入",
+        "team income"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-finance",
+      "enabled": true
+    },
+    {
+      "id": "finance-settlement-personal-commission",
+      "name": "个人收入与佣金结算",
+      "path": "skills/finance-settlement-personal-commission/SKILL.md",
+      "category": "财务结算管理",
+      "description": "个人收入、佣金结算单、收入管理",
+      "triggers": [
+        "个人收入",
+        "佣金结算",
+        "personal commission"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-finance",
+      "enabled": true
+    },
+    {
+      "id": "finance-settlement-agent-income",
+      "name": "代理人收入管理",
+      "path": "skills/finance-settlement-agent-income/SKILL.md",
+      "category": "财务结算管理",
+      "description": "代理人收入、代理人结算、收入管理",
+      "triggers": [
+        "代理人收入",
+        "agent income"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-finance",
+      "enabled": true
+    },
+    {
+      "id": "product-subitem-config",
+      "name": "产品子项配置",
+      "path": "skills/product-subitem-config/SKILL.md",
+      "category": "产品管理",
+      "description": "产品子项配置管理、子项新增编辑删除、子项关联",
+      "triggers": [
+        "子项配置",
+        "subitem config",
+        "产品子项"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-product-factory",
+      "enabled": true
+    },
+    {
+      "id": "product-single-recording-risk",
+      "name": "单录风控产品管理",
+      "path": "skills/product-single-recording-risk/SKILL.md",
+      "category": "产品管理",
+      "description": "单录风控、产品风控、风控规则配置",
+      "triggers": [
+        "单录风控",
+        "single recording risk",
+        "风控产品"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-product-factory",
+      "enabled": true
+    },
+    {
+      "id": "product-internal-rate-query",
+      "name": "内部系统费率查询接口",
+      "path": "skills/product-internal-rate-query/SKILL.md",
+      "category": "产品管理",
+      "description": "内部系统费率查询、费率API、费率接口",
+      "triggers": [
+        "费率查询",
+        "rate query",
+        "内部费率"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-product-factory",
+      "enabled": true
+    },
+    {
+      "id": "product-internal-api",
+      "name": "产品内部接口",
+      "path": "skills/product-internal-api/SKILL.md",
+      "category": "产品管理",
+      "description": "产品内部接口、内部服务调用、模块间通信",
+      "triggers": [
+        "产品内部接口",
+        "internal api",
+        "内部调用"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-product-factory",
+      "enabled": true
+    },
+    {
+      "id": "product-insurance-api",
+      "name": "产品投保接口",
+      "path": "skills/product-insurance-api/SKILL.md",
+      "category": "产品管理",
+      "description": "投保接口、保险投保、核保接口",
+      "triggers": [
+        "投保接口",
+        "insurance api",
+        "核保"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-product-factory",
+      "enabled": true
+    },
+    {
+      "id": "product-online-mall",
+      "name": "产品在线商城管理",
+      "path": "skills/product-online-mall/SKILL.md",
+      "category": "产品管理",
+      "description": "在线商城、商城产品配置、商城管理",
+      "triggers": [
+        "在线商城",
+        "online mall",
+        "商城"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-product-factory",
+      "enabled": true
+    },
+    {
+      "id": "product-external-mall",
+      "name": "外部系统在线商城接口",
+      "path": "skills/product-external-mall/SKILL.md",
+      "category": "产品管理",
+      "description": "外部系统商城、商城对接、外部商城接口",
+      "triggers": [
+        "外部商城",
+        "external mall",
+        "商城接口"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-product-factory",
+      "enabled": true
+    },
+    {
+      "id": "product-internal-mall",
+      "name": "内部系统在线商城接口",
+      "path": "skills/product-internal-mall/SKILL.md",
+      "category": "产品管理",
+      "description": "内部商城、商城管理、商城接口",
+      "triggers": [
+        "内部商城",
+        "internal mall"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-product-factory",
+      "enabled": true
+    },
+    {
+      "id": "product-team-sales",
+      "name": "团队产品销售管理",
+      "path": "skills/product-team-sales/SKILL.md",
+      "category": "产品管理",
+      "description": "团队产品、团队销售管理、团队产品配置",
+      "triggers": [
+        "团队产品",
+        "team sales",
+        "团队管理"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-product-factory",
+      "enabled": true
+    },
+    {
+      "id": "product-main-rate",
+      "name": "产品主费率管理",
+      "path": "skills/product-main-rate/SKILL.md",
+      "category": "产品管理",
+      "description": "主费率、产品费率、费率配置",
+      "triggers": [
+        "主费率",
+        "main rate",
+        "产品费率"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-product-factory",
+      "enabled": true
+    },
+    {
+      "id": "product-sub-rate",
+      "name": "产品子费率管理",
+      "path": "skills/product-sub-rate/SKILL.md",
+      "category": "产品管理",
+      "description": "子费率、费率分级、费率管理",
+      "triggers": [
+        "子费率",
+        "sub rate",
+        "费率分级"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-product-factory",
+      "enabled": true
+    },
+    {
+      "id": "product-instant-rate",
+      "name": "即展产品费率管理",
+      "path": "skills/product-instant-rate/SKILL.md",
+      "category": "产品管理",
+      "description": "即展费率、快速费率、实时费率",
+      "triggers": [
+        "即展",
+        "instant rate",
+        "快速费率"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-product-factory",
+      "enabled": true
+    },
+    {
+      "id": "product-rate-settlement",
+      "name": "产品费率结算说明配置",
+      "path": "skills/product-rate-settlement/SKILL.md",
+      "category": "产品管理",
+      "description": "费率结算说明、结算配置、结算规则",
+      "triggers": [
+        "费率结算",
+        "rate settlement",
+        "结算说明"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-product-factory",
+      "enabled": true
+    },
+    {
+      "id": "product-basic-config",
+      "name": "产品基础配置",
+      "path": "skills/product-basic-config/SKILL.md",
+      "category": "产品管理",
+      "description": "产品基础信息、产品编码、产品配置",
+      "triggers": [
+        "基础配置",
+        "basic config",
+        "产品配置"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-product-factory",
+      "enabled": true
+    },
+    {
+      "id": "product-config-audit",
+      "name": "产品配置审核",
+      "path": "skills/product-config-audit/SKILL.md",
+      "category": "产品管理",
+      "description": "配置审核、产品审核、审核流程",
+      "triggers": [
+        "配置审核",
+        "config audit",
+        "产品审核"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-product-factory",
+      "enabled": true
+    },
+    {
+      "id": "product-liability-config",
+      "name": "产品责任配置",
+      "path": "skills/product-liability-config/SKILL.md",
+      "category": "产品管理",
+      "description": "产品责任、保障责任、责任配置",
+      "triggers": [
+        "责任配置",
+        "liability",
+        "产品责任"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-product-factory",
+      "enabled": true
+    },
+    {
+      "id": "product-health-disclosure",
+      "name": "产品健康告知配置",
+      "path": "skills/product-health-disclosure/SKILL.md",
+      "category": "产品管理",
+      "description": "健康告知、告知问卷、健康问题",
+      "triggers": [
+        "健康告知",
+        "health disclosure",
+        "告知"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-product-factory",
+      "enabled": true
+    },
+    {
+      "id": "product-dictionary",
+      "name": "产品字典管理",
+      "path": "skills/product-dictionary/SKILL.md",
+      "category": "产品管理",
+      "description": "产品字典、字典配置、数据字典",
+      "triggers": [
+        "产品字典",
+        "dictionary",
+        "字典管理"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-product-factory",
+      "enabled": true
+    },
+    {
+      "id": "product-third-party-api",
+      "name": "产品第三方对接接口",
+      "path": "skills/product-third-party-api/SKILL.md",
+      "category": "产品管理",
+      "description": "第三方接口、对接接口、三方系统",
+      "triggers": [
+        "第三方",
+        "third party",
+        "对接接口"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-product-factory",
+      "enabled": true
+    },
+    {
+      "id": "product-state-machine",
+      "name": "产品投保状态机",
+      "path": "skills/product-state-machine/SKILL.md",
+      "category": "产品管理",
+      "description": "状态机、投保流程、状态转移",
+      "triggers": [
+        "状态机",
+        "state machine",
+        "投保流程"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-product-factory",
+      "enabled": true
+    },
+    {
+      "id": "product-risk-config",
+      "name": "产品险种配置",
+      "path": "skills/product-risk-config/SKILL.md",
+      "category": "产品管理",
+      "description": "险种配置、产品险种、险种管理",
+      "triggers": [
+        "险种配置",
+        "risk config",
+        "险种"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-product-factory",
+      "enabled": true
+    },
+    {
+      "id": "product-connector",
+      "name": "产品投保连接器",
+      "path": "skills/product-connector/SKILL.md",
+      "category": "产品管理",
+      "description": "连接器、适配器、扩展机制",
+      "triggers": [
+        "连接器",
+        "connector",
+        "适配器"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-product-factory",
+      "enabled": true
+    },
+    {
+      "id": "product-channel-sales",
+      "name": "渠道产品销售管理",
+      "path": "skills/product-channel-sales/SKILL.md",
+      "category": "产品管理",
+      "description": "渠道销售、产品销售、渠道产品",
+      "triggers": [
+        "渠道销售",
+        "channel sales",
+        "渠道产品"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-product-factory",
+      "enabled": true
+    },
+    {
+      "id": "product-insurance-rules",
+      "name": "产品投保规则配置",
+      "path": "skills/product-insurance-rules/SKILL.md",
+      "category": "产品管理",
+      "description": "投保规则、投保限制、规则引擎",
+      "triggers": [
+        "投保规则",
+        "insurance rules",
+        "规则"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-product-factory",
+      "enabled": true
+    },
+    {
+      "id": "policy-maintenance",
+      "name": "保全管理",
+      "path": "skills/policy-maintenance/SKILL.md",
+      "category": "保险单证管理",
+      "description": "保单生效后的各类变更操作管理（退保、批改、信息变更）",
+      "triggers": [
+        "保全",
+        "maintenance",
+        "退保",
+        "批改",
+        "保单变更"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-policy",
+      "enabled": true
+    },
+    {
+      "id": "policy-document",
+      "name": "保单管理",
+      "path": "skills/policy-document/SKILL.md",
+      "category": "保险单证管理",
+      "description": "保单全生命周期管理（寿险+非车险）",
+      "triggers": [
+        "保单",
+        "policy",
+        "policy document",
+        "保单查询",
+        "保单管理"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-policy",
+      "enabled": true
+    },
+    {
+      "id": "policy-renewal-transfer",
+      "name": "续保转保管理",
+      "path": "skills/policy-renewal-transfer/SKILL.md",
+      "category": "保险单证管理",
+      "description": "保单到期前的续保/转保计划生成与管理",
+      "triggers": [
+        "续保",
+        "转保",
+        "renewal transfer",
+        "续保转保",
+        "保单续保"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-policy",
+      "enabled": true
+    },
+    {
+      "id": "policy-master",
+      "name": "保单大师",
+      "path": "skills/policy-master/SKILL.md",
+      "category": "保险单证管理",
+      "description": "保单、保全、续期等综合查询能力（数据聚合）",
+      "triggers": [
+        "保单大师",
+        "policy master",
+        "综合查询",
+        "数据聚合"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-policy",
+      "enabled": true
+    },
+    {
+      "id": "policy-other",
+      "name": "保单其他业务",
+      "path": "skills/policy-other/SKILL.md",
+      "category": "保险单证管理",
+      "description": "对外订单查询、MQ通知、外部回调、数据同步",
+      "triggers": [
+        "订单查询",
+        "MQ通知",
+        "外部回调",
+        "数据同步"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-policy",
+      "enabled": true
+    },
+    {
+      "id": "policy-order",
+      "name": "订单管理",
+      "path": "skills/policy-order/SKILL.md",
+      "category": "保单订单管理",
+      "description": "订单全生命周期管理（创建、支付、承保、出单）",
+      "triggers": [
+        "订单",
+        "order",
+        "订单管理",
+        "订单生命周期"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-policy",
+      "enabled": true
+    },
+    {
+      "id": "policy-renewal",
+      "name": "续期管理",
+      "path": "skills/policy-renewal/SKILL.md",
+      "category": "保单订单管理",
+      "description": "多年期保单的续期缴费管理（计划、订单、催缴）",
+      "triggers": [
+        "续期",
+        "renewal",
+        "续期缴费",
+        "催缴"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-policy",
+      "enabled": true
+    },
+    {
+      "id": "policy-pre-order",
+      "name": "预订单管理",
+      "path": "skills/policy-pre-order/SKILL.md",
+      "category": "保单订单管理",
+      "description": "投保链接预生成管理（代理人、渠道信息预配置）",
+      "triggers": [
+        "预订单",
+        "pre-order",
+        "投保链接",
+        "预生成"
+      ],
+      "supportedAgents": [
+        "java-developer",
+        "planner"
+      ],
+      "module": "lcyf-module-policy",
       "enabled": true
     }
   ],
@@ -283,7 +1361,15 @@
     "系统配置管理": "Configuration and parameter management skills",
     "风险控制": "Risk management and control skills",
     "外部系统集成": "External system integration skills",
-    "其他业务模块": "Other business domain skills"
+    "其他业务模块": "Other business domain skills",
+    "财务费率管理": "Finance rate and commission management skills",
+    "财务基本法与职级": "Finance basic law and rank management skills",
+    "财务订单管理": "Finance order management skills",
+    "财务活动管理": "Finance activity management skills",
+    "财务结算管理": "Finance settlement management skills",
+    "产品管理": "Product management and configuration skills",
+    "保险单证管理": "Policy document management and maintenance skills",
+    "保单订单管理": "Policy order and renewal management skills"
   },
   "autoLoadRules": {
     "description": "Skills will be auto-loaded when user input contains trigger keywords",

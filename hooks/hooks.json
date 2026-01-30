@@ -3,39 +3,49 @@
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "tool == \"Bash\" && tool_input.command matches \"(mvn|gradle).*test\"",
-        "hooks": [{"type": "command", "command": "node -e \"console.error('[Hook] 提示: 长时间测试建议在 tmux 中运行')\""}],
-        "description": "提醒：长时间测试在tmux中运行"
+        "matcher": "tool == \"Bash\" && tool_input.command matches \"mvn.*test\"",
+        "hooks": [{"type": "command", "command": "node -e \"console.error('[Hook] 长时间测试建议在 tmux 中运行')\""}],
+        "description": "Maven 测试提醒"
+      },
+      {
+        "matcher": "tool == \"Bash\" && tool_input.command matches \"mvn.*clean.*package\"",
+        "hooks": [{"type": "command", "command": "node -e \"console.error('[Hook] 多仓库环境：确保在正确的子仓库目录执行构建')\""}],
+        "description": "多仓库构建提醒"
+      },
+      {
+        "matcher": "tool == \"Edit\" && tool_input.file_path matches \"pom\.xml$\"",
+        "hooks": [{"type": "command", "command": "node -e \"console.error('[Hook] 修改 pom.xml 时，检查版本依赖是否在 lcyf-dependencies BOM 中统一管理')\""}],
+        "description": "pom.xml 编辑提醒"
       },
       {
         "matcher": "tool == \"Bash\" && tool_input.command matches \"git push\"",
-        "hooks": [{"type": "command", "command": "node -e \"console.error('[Hook] 推送前检查...')\""}],
-        "description": "Git push前提醒运行验证"
-      },
-      {
-        "matcher": "tool == \"Edit\" && tool_input.file_path matches \"pom\\.xml|build\\.gradle\"",
-        "hooks": [{"type": "command", "command": "node -e \"console.error('[Hook] 提示: 修改构建文件后建议运行 /lcyf-build-fix 验证构建')\""}],
-        "description": "修改构建文件后提醒验证构建"
+        "hooks": [{"type": "command", "command": "node -e \"console.error('[Hook] 多仓库聚合：每个子目录是独立的 git 仓库')\""}],
+        "description": "Git push 提醒"
       }
     ],
     "PostToolUse": [
       {
-        "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\\.java$\"",
-        "hooks": [{"type": "command", "command": "node -e \"const fs=require('fs');let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{const i=JSON.parse(d);const p=i.tool_input?.file_path;if(p&&fs.existsSync(p)){const c=fs.readFileSync(p,'utf8');if(/System\\.out\\.println/.test(c)){console.error('[Hook] 警告: 发现System.out.println')}}console.log(d)})\""}],
-        "description": "Java文件编辑后检查常见问题"
+        "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\.java$\"",
+        "hooks": [{"type": "command", "command": "node -e \"console.error('[Hook] 已编辑 Java 文件')\""}],
+        "description": "Java 文件编辑提醒"
+      },
+      {
+        "matcher": "tool == \"Edit\" && tool_input.file_path matches \"(Controller|Service|Mapper)\.java$\"",
+        "hooks": [{"type": "command", "command": "node -e \"console.error('[Hook] 已编辑核心业务文件，建议使用 code-reviewer agent 审查代码')\""}],
+        "description": "核心业务文件编辑提醒"
       }
     ],
     "Stop": [
       {
         "matcher": "*",
-        "hooks": [{"type": "command", "command": "node -e \"console.error('[Hook] 会话结束，建议运行 /lcyf-code-review')\""}],
-        "description": "会话结束前提醒"
+        "hooks": [{"type": "command", "command": "node -e \"console.error('[Hook] 会话结束')\""}],
+        "description": "会话结束提醒"
       }
     ],
     "SessionStart": [
       {
         "matcher": "*",
-        "hooks": [{"type": "command", "command": "node -e \"console.error('[Hook] 欢迎使用 lcyf-claude-code v2.0')\""}],
+        "hooks": [{"type": "command", "command": "node -e \"console.error('[Hook] 欢迎使用 LCYF Claude Code - Java 团队智能开发系统')\""}],
         "description": "会话开始欢迎信息"
       }
     ]
