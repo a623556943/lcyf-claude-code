@@ -1,6 +1,18 @@
 ---
-name: lcyf-config-channel-banner
-description: 渠道与横幅配置管理。java-developer 在维护渠道配置时使用；planner 在规划渠道管理功能时使用。
+name: config-channel-banner
+description: |
+  【模块定位】渠道与横幅配置管理
+
+  【支持的代理】
+  - java-developer: 实现渠道和横幅管理
+  - planner: 规划渠道和横幅体系
+
+  【触发关键词】
+  渠道、banner、横幅、channel、渠道配置
+
+  【必须调用】
+  java-developer: 任务涉及"渠道"、"banner"、"横幅" → MUST
+  planner: 规划"渠道管理"、"横幅配置" → MUST
 ---
 
 # 配置管理-渠道banner 模块文档

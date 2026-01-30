@@ -1,6 +1,18 @@
 ---
-name: lcyf-system-auth-permission
-description: 账号、用户、角色与权限体系。java-developer 在实现权限控制逻辑时使用；planner 在规划整体权限框架时使用。
+name: auth-permission
+description: |
+  【模块定位】账号、用户、角色与权限体系
+
+  【支持的代理】
+  - java-developer: 实现权限控制逻辑
+  - planner: 规划整体权限框架
+
+  【触发关键词】
+  权限、permission、角色、role、权限配置、权限体系、访问控制
+
+  【必须调用】
+  java-developer: 任务涉及"权限"、"角色"、"权限管理" → MUST
+  planner: 规划"权限体系"、"访问控制设计" → MUST
 ---
 
 # System 模块 业务文档 - 账号、用户与权限管理

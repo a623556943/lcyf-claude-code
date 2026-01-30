@@ -1,6 +1,18 @@
 ---
-name: lcyf-config-jz
-description: JZ 系统配置管理。java-developer 在集成 JZ 系统时使用；planner 在规划外部系统集成时使用。
+name: config-jz
+description: |
+  【模块定位】JZ系统配置管理
+
+  【支持的代理】
+  - java-developer: 实现JZ系统配置
+  - planner: 规划JZ配置体系
+
+  【触发关键词】
+  jz、JZ系统、jz配置、jz参数
+
+  【必须调用】
+  java-developer: 任务涉及"JZ"、"jz配置"、"JZ参数" → MUST
+  planner: 规划"JZ集成"、"JZ配置方案" → MUST
 ---
 
 # 配置管理-即展 模块文档

@@ -1,6 +1,18 @@
 ---
-name: lcyf-system-risk-management
-description: 风险政策与管理体系。java-developer 在实现风险控制逻辑时使用；planner 在规划风险管理框架时使用。
+name: risk-management
+description: |
+  【模块定位】风险政策与管理体系
+
+  【支持的代理】
+  - java-developer: 实现风险管理功能
+  - planner: 规划风险体系
+
+  【触发关键词】
+  风险、risk、风险政策、风险管理、风险体系
+
+  【必须调用】
+  java-developer: 任务涉及"风险"、"风险政策"、"风险管理" → MUST
+  planner: 规划"风险政策"、"风险管理方案" → MUST
 ---
 
 # 风控管理模块 业务文档

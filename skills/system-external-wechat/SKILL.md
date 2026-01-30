@@ -1,6 +1,18 @@
 ---
-name: lcyf-external-wechat
-description: 微信平台集成（公众号/小程序）。java-developer 在集成微信功能时使用；planner 在规划微信应用方案时使用。
+name: external-wechat
+description: |
+  【模块定位】微信平台集成（公众号/小程序）
+
+  【支持的代理】
+  - java-developer: 实现微信集成功能
+  - planner: 规划微信体系
+
+  【触发关键词】
+  微信、wechat、公众号、小程序、微信集成
+
+  【必须调用】
+  java-developer: 任务涉及"微信"、"公众号"、"小程序" → MUST
+  planner: 规划"微信集成"、"公众号方案" → MUST
 ---
 
 # 外部系统-微信 模块文档

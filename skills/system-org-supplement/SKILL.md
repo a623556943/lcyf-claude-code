@@ -1,6 +1,18 @@
 ---
-name: lcyf-system-org-supplement
-description: 组织架构补充信息与扩展。java-developer 在扩展组织信息时使用；planner 在规划组织架构扩展时使用。
+name: org-supplement
+description: |
+  【模块定位】组织架构补充信息与扩展
+
+  【支持的代理】
+  - java-developer: 实现组织扩展功能
+  - planner: 规划组织体系
+
+  【触发关键词】
+  组织、补充、supplement、扩展、组织扩展
+
+  【必须调用】
+  java-developer: 任务涉及"组织"、"补充"、"扩展" → MUST
+  planner: 规划"组织扩展"、"补充信息" → MUST
 ---
 
 # System模块 业务逻辑详细文档补充（人员管理 & 组织机构）

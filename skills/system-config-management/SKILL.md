@@ -1,6 +1,18 @@
 ---
-name: lcyf-system-config-management
-description: 系统通用配置管理。java-developer 在获取/维护系统配置时使用；planner 在规划配置管理体系时使用。
+name: config-management
+description: |
+  【模块定位】系统通用配置管理
+
+  【支持的代理】
+  - java-developer: 实现配置管理功能
+  - planner: 规划配置体系
+
+  【触发关键词】
+  配置、config、配置管理、系统配置、参数管理
+
+  【必须调用】
+  java-developer: 任务涉及"配置管理"、"系统配置"、"参数设置" → MUST
+  planner: 规划"配置框架"、"参数管理方案" → MUST
 ---
 
 # System模块 配置管理业务文档

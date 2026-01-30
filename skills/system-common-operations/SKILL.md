@@ -1,6 +1,18 @@
 ---
-name: lcyf-system-common-operations
-description: 系统通用操作日志与审计。java-developer 在追踪操作记录时使用；planner 在规划审计日志方案时使用。
+name: common-operations
+description: |
+  【模块定位】系统通用操作日志与审计
+
+  【支持的代理】
+  - java-developer: 实现操作日志记录
+  - planner: 规划审计体系
+
+  【触发关键词】
+  操作日志、审计、audit、日志、操作记录、通用操作
+
+  【必须调用】
+  java-developer: 任务涉及"操作日志"、"审计"、"记录" → MUST
+  planner: 规划"日志审计"、"操作追溯" → MUST
 ---
 
 # System模块 业务逻辑详细文档（公共运营）

@@ -1,6 +1,18 @@
 ---
-name: lcyf-auth-user
-description: 用户账号与认证管理。java-developer 在维护用户系统时使用；planner 在规划用户体系时使用。
+name: auth-user
+description: |
+  【模块定位】用户账号与认证管理
+
+  【支持的代理】
+  - java-developer: 实现用户管理功能
+  - planner: 规划用户体系
+
+  【触发关键词】
+  用户、user、账号、认证、登录、登出、用户管理
+
+  【必须调用】
+  java-developer: 任务涉及"用户管理"、"认证"、"账号" → MUST
+  planner: 规划"用户认证"、"账号管理体系" → MUST
 ---
 
 # 系统账号用户、组织架构以及权限-账号用户 模块文档

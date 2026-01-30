@@ -1,6 +1,18 @@
 ---
-name: lcyf-system-internal-api
-description: 系统内部接口与网关。java-developer 在调用内部服务接口时使用；planner 在规划内部 API 网关时使用。
+name: internal-api
+description: |
+  【模块定位】系统内部接口与网关
+
+  【支持的代理】
+  - java-developer: 实现内部接口
+  - planner: 规划接口体系
+
+  【触发关键词】
+  API、接口、gateway、网关、内部接口
+
+  【必须调用】
+  java-developer: 任务涉及"内部接口"、"网关"、"API" → MUST
+  planner: 规划"API网关"、"接口设计" → MUST
 ---
 
 # System模块 中介核心内部接口业务文档

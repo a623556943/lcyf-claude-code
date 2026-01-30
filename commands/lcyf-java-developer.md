@@ -66,11 +66,11 @@ Java/Spring Boot 开发专家，基于 lcyf-cloud 架构（Spring Boot 3.5.x + D
 
 ## 参数
 
-| 参数 | 说明 | 示例 |
-|------|------|------|
-| 需求描述 | 要实现的功能 | "实现用户管理 CRUD" |
-| --module | 指定模块 | system, sales, finance |
-| --dry-run | 只生成方案 | true/false |
+| 参数 | 说明 | 示例                             |
+|------|------|--------------------------------|
+| 需求描述 | 要实现的功能 | "实现用户管理 CRUD"                  |
+| --module | 指定模块 | system, sales, finance, policy |
+| --dry-run | 只生成方案 | true/false                     |
 
 ## 工作流
 

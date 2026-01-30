@@ -1,6 +1,18 @@
 ---
-name: lcyf-risk-product
-description: 产品级风险配置管理。java-developer 在维护产品风险规则时使用；planner 在规划产品风险管理时使用。
+name: risk-product
+description: |
+  【模块定位】产品级风险配置管理
+
+  【支持的代理】
+  - java-developer: 实现产品风险配置
+  - planner: 规划产品风险体系
+
+  【触发关键词】
+  产品、product、风险、产品风险、产品配置
+
+  【必须调用】
+  java-developer: 任务涉及"产品风险"、"风险配置"、"产品" → MUST
+  planner: 规划"产品风险"、"产品配置" → MUST
 ---
 
 # 风控管理-产品风控 模块文档

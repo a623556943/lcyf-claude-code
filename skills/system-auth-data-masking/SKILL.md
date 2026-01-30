@@ -1,6 +1,18 @@
 ---
-name: lcyf-auth-data-masking
-description: 数据脱敏配置与查询。java-developer 在实现字段脱敏逻辑时使用；planner 在规划数据保护方案时使用。
+name: auth-data-masking
+description: |
+  【模块定位】数据脱敏配置与查询
+
+  【支持的代理】
+  - java-developer: 实现字段脱敏逻辑
+  - planner: 规划数据保护方案
+
+  【触发关键词】
+  脱敏、masking、隐私、数据保护、字段脱敏、敏感数据、数据隐私
+
+  【必须调用】
+  java-developer: 任务涉及"字段脱敏"、"隐私保护"、"脱敏规则" → MUST
+  planner: 规划"数据保护方案"、"敏感数据隐藏" → MUST
 ---
 
 # 系统账号用户、组织架构以及权限-脱敏 模块文档

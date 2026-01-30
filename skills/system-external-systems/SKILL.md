@@ -1,6 +1,18 @@
 ---
-name: lcyf-system-external-systems
-description: 外部系统集成管理。java-developer 在集成第三方系统时使用；planner 在规划系统集成方案时使用。
+name: external-systems
+description: |
+  【模块定位】外部系统集成管理
+
+  【支持的代理】
+  - java-developer: 实现外部系统集成
+  - planner: 规划外部系统体系
+
+  【触发关键词】
+  外部系统、外系统、system、集成、接口、external
+
+  【必须调用】
+  java-developer: 任务涉及"外部系统"、"系统集成"、"接口" → MUST
+  planner: 规划"系统集成"、"外系统方案" → MUST
 ---
 
 # System模块 业务逻辑详细文档（外部系统）

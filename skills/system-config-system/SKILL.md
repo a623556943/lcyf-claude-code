@@ -1,6 +1,18 @@
 ---
-name: lcyf-config-system
-description: 系统级参数与基础设置。java-developer 在维护系统参数时使用；planner 在规划系统级配置方案时使用。
+name: config-system
+description: |
+  【模块定位】系统级参数与基础设置
+
+  【支持的代理】
+  - java-developer: 实现系统配置管理
+  - planner: 规划配置体系
+
+  【触发关键词】
+  系统配置、config、参数、系统参数、基础设置
+
+  【必须调用】
+  java-developer: 任务涉及"系统参数"、"系统配置"、"基础设置" → MUST
+  planner: 规划"参数管理"、"配置框架" → MUST
 ---
 
 # 配置管理-系统 模块文档

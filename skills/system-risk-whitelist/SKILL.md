@@ -1,6 +1,18 @@
 ---
-name: lcyf-risk-whitelist
-description: 白名单管理与风险豁免。java-developer 在实现白名单检验时使用；planner 在规划风险豁免策略时使用。
+name: risk-whitelist
+description: |
+  【模块定位】白名单管理与风险豁免
+
+  【支持的代理】
+  - java-developer: 实现白名单管理
+  - planner: 规划白名单体系
+
+  【触发关键词】
+  白名单、whitelist、豁免、风险豁免
+
+  【必须调用】
+  java-developer: 任务涉及"白名单"、"豁免"、"whitelist" → MUST
+  planner: 规划"白名单"、"风险豁免" → MUST
 ---
 
 # 风控管理-白名单 模块文档

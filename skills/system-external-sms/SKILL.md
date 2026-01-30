@@ -1,6 +1,18 @@
 ---
-name: lcyf-external-sms
-description: 短信发送与模板管理。java-developer 在集成短信功能时使用；planner 在规划短信服务方案时使用。
+name: external-sms
+description: |
+  【模块定位】短信发送与模板管理
+
+  【支持的代理】
+  - java-developer: 实现短信功能
+  - planner: 规划短信体系
+
+  【触发关键词】
+  短信、sms、SMS、短信模板、短信发送、验证码
+
+  【必须调用】
+  java-developer: 任务涉及"短信"、"SMS"、"验证码" → MUST
+  planner: 规划"短信集成"、"短信发送方案" → MUST
 ---
 
 # 外部系统-短信 模块文档

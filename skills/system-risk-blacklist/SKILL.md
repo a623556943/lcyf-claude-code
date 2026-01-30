@@ -1,6 +1,18 @@
 ---
-name: lcyf-risk-blacklist
-description: 黑名单管理与风险控制。java-developer 在实现黑名单检验时使用；planner 在规划风险防控策略时使用。
+name: risk-blacklist
+description: |
+  【模块定位】黑名单管理与风险控制
+
+  【支持的代理】
+  - java-developer: 实现黑名单管理
+  - planner: 规划风险体系
+
+  【触发关键词】
+  黑名单、blacklist、风险、风险控制、blocked
+
+  【必须调用】
+  java-developer: 任务涉及"黑名单"、"风险控制"、"blocked" → MUST
+  planner: 规划"黑名单体系"、"风险管理" → MUST
 ---
 
 # 风控管理-黑名单 模块文档

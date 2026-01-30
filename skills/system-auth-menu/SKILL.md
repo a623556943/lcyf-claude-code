@@ -1,6 +1,18 @@
 ---
-name: lcyf-auth-menu
-description: 菜单与前端权限管理。java-developer 在维护菜单权限配置时使用；planner 在规划前端权限体系时使用。
+name: auth-menu
+description: |
+  【模块定位】菜单与前端权限管理
+
+  【支持的代理】
+  - java-developer: 实现菜单权限配置
+  - planner: 规划前端权限体系
+
+  【触发关键词】
+  菜单、menu、前端权限、菜单权限、菜单配置、权限控制、权限管理
+
+  【必须调用】
+  java-developer: 任务涉及"菜单管理"、"菜单权限"、"权限配置" → MUST
+  planner: 规划"前端权限体系"、"菜单权限设计" → MUST
 ---
 
 # 系统账号用户、组织架构以及权限-菜单 模块文档

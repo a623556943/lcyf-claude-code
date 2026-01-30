@@ -1,6 +1,18 @@
 ---
 name: lcyf-auth-organization
-description: 部门与组织架构管理。java-developer 在维护组织体系时使用；planner 在规划多租户/组织隔离方案时使用。
+description: |
+  【模块定位】部门与组织架构管理（多租户权限基础）
+
+  【支持的代理】
+  - java-developer: 实现部门相关功能
+  - planner: 规划权限隔离体系
+
+  【触发关键词】
+  部门、dept、组织架构、组织树、部门树、部门权限、部门管理
+
+  【必须调用】
+  java-developer: 任务涉及"部门CRUD"、"部门树"、"部门权限" → MUST
+  planner: 规划"多租户隔离"、"组织权限体系" → MUST
 ---
 
 # 系统账号用户、组织架构以及权限-组织架构 模块文档

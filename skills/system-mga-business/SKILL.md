@@ -1,6 +1,18 @@
 ---
-name: lcyf-system-mga-business
-description: MGA 业务模块。java-developer 在维护 MGA 业务时使用；planner 在规划 MGA 功能时使用。
+name: mga-business
+description: |
+  【模块定位】MGA业务模块
+
+  【支持的代理】
+  - java-developer: 实现MGA业务功能
+  - planner: 规划MGA体系
+
+  【触发关键词】
+  MGA、mga、业务
+
+  【必须调用】
+  java-developer: 任务涉及"MGA"、"MGA业务" → MUST
+  planner: 规划"MGA集成"、"MGA业务方案" → MUST
 ---
 
 # System模块 MGA业务详细文档

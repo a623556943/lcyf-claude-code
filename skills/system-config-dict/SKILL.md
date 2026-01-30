@@ -1,6 +1,18 @@
 ---
-name: lcyf-config-dict
-description: 数据字典与枚举值管理。java-developer 在获取字典值时使用；planner 在规划基础配置系统时使用。
+name: config-dict
+description: |
+  【模块定位】数据字典与枚举值管理
+
+  【支持的代理】
+  - java-developer: 实现字典管理功能
+  - planner: 规划字典体系
+
+  【触发关键词】
+  字典、dict、数据字典、枚举、配置、enum
+
+  【必须调用】
+  java-developer: 任务涉及"数据字典"、"枚举值"、"字典配置" → MUST
+  planner: 规划"数据字典架构"、"枚举管理" → MUST
 ---
 
 # 配置管理-字典 模块文档

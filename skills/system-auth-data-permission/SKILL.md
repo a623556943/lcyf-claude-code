@@ -1,6 +1,18 @@
 ---
-name: lcyf-auth-data-permission
-description: 数据权限管理（行级/字段级权限）。java-developer 在实现数据权限控制时使用；planner 在规划数据安全隔离方案时使用。
+name: auth-data-permission
+description: |
+  【模块定位】数据权限管理（行级/字段级权限）
+
+  【支持的代理】
+  - java-developer: 实现数据权限控制
+  - planner: 规划数据权限体系
+
+  【触发关键词】
+  权限、数据权限、行级权限、字段权限、权限范围、权限控制
+
+  【必须调用】
+  java-developer: 任务涉及"数据权限"、"行级权限"、"权限隔离" → MUST
+  planner: 规划"权限隔离"、"数据安全方案" → MUST
 ---
 
 # 系统账号用户、组织架构以及权限-数据 模块文档
