@@ -752,7 +752,6 @@ ServiceExceptionUtil.exception(ErrorCode.XXX_ERROR)
 ## 关联 Agent
 
 - java-developer：Java 代码实现
-- code-reviewer：代码审查
 
 ---
 
